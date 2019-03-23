@@ -1,0 +1,2 @@
+class InventoryStock < ApplicationRecord
+end

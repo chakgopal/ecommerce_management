@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: MyString
+  quantity: MyString
+  min_quantity: MyString
+  min_sale_quantity: MyString
+  max_sale_quantity: MyString
+  is_in_stock: MyString
+  status: MyString
+
+two:
+  product_id: MyString
+  quantity: MyString
+  min_quantity: MyString
+  min_sale_quantity: MyString
+  max_sale_quantity: MyString
+  is_in_stock: MyString
+  status: MyString

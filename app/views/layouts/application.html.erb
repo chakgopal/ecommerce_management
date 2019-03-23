@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecommerce</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+<% if current_seller %>
+     <%= link_to "logout", destroy_seller_session_path, method: :delete %>
+     <%= link_to "Edit", edit_seller_registration_path(@user) %>
+     <% else %>
+      <%= link_to "Register",new_seller_registration_path %>
+      
+       <%= link_to "Login", new_seller_session_path %>
+
+     <% end %>  
+
+    <%= yield %>
+  </body>
+</html>
