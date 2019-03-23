@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop_name: MyString
+  shop_image: MyString
+  website_url: MyString
+  company_email: MyString
+  shop_intro: MyString
+  gst_image: MyString
+  shop_pan_image: MyString
+  trade_license_image: MyString
+  iso_image: MyString
+  landmark: MyString
+  address1: MyString
+  address2: MyString
+  shop_phone_no: MyString
+  alternative_phone_no1: MyString
+  alternative_phone_no2: MyString
+  certificate_of_incorporation: MyString
+  trademark_registration: MyString
+  address_proff: MyString
+  working_hour_to: MyString
+  working_hour_from: MyString
+  working_date_to: MyString
+  working_date_from: MyString
+
+two:
+  shop_name: MyString
+  shop_image: MyString
+  website_url: MyString
+  company_email: MyString
+  shop_intro: MyString
+  gst_image: MyString
+  shop_pan_image: MyString
+  trade_license_image: MyString
+  iso_image: MyString
+  landmark: MyString
+  address1: MyString
+  address2: MyString
+  shop_phone_no: MyString
+  alternative_phone_no1: MyString
+  alternative_phone_no2: MyString
+  certificate_of_incorporation: MyString
+  trademark_registration: MyString
+  address_proff: MyString
+  working_hour_to: MyString
+  working_hour_from: MyString
+  working_date_to: MyString
+  working_date_from: MyString
