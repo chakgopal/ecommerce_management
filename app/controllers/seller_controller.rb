@@ -1,7 +1,5 @@
-class SellerController < ApplicationController
+class StoresController < ApplicationController
 #before_action :authenticate_seller! :except=>[:index, :show]
 
-def index
-      puts "Owner"
-   end
- end
+
+end
