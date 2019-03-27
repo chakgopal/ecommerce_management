@@ -9,7 +9,6 @@ class StoresController < ApplicationController
 end
 
  def new 
-  
   @store = Store.new
   render layout: false
  end
@@ -17,11 +16,11 @@ end
  def create
    #render :text=>params.inspect
    @store = Store.new(store_params)
-
     if  @store.save
-      redirect_to @store
+      render :plain => "Store registration successfull"
+      #redirect_to store_path
     else
-     redirect_to 'new'
+      redirect_to 'new'
     end
  end
 
@@ -31,6 +30,6 @@ end
 
 private
     def store_params
-      params.require(:store).permit(:shop_name, :company_email,:shop_intro,:address1,:shop_phone_no,:address_proff,)
+      params.require(:store).permit(:shop_name, :company_email,:shop_intro,:address1,:shop_phone_no,:address_proff)
     end
 end
