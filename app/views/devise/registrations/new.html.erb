@@ -1,22 +1,27 @@
-<h2>Sign up</h2>
+<div class="container">
+<form>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+ <h3 class="page-header">Sign up</h3>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {style: "width: 100%;max-width: 330px;padding: 15px;margin: auto;"}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: "Full Name", class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control" %>
   </div>
  
   <div class="field">
       <%= f.label :designation %><br />
     <%= f.select :role, 
-               options_for_select([["Owner", 1], ["Admin", 2], ["Employee", 3]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox' %> 
+               options_for_select([["Owner", 1], ["Admin", 2], ["Employee", 3]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', placeholder: "Designation", class: "form-control" %> 
   </div> 
 
   <div class="field">
@@ -24,17 +29,20 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" ,value:"" %>
+    <%= f.password_field :password, autocomplete: "new-password" ,value:"", placeholder: "New Password", class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Passwod", class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-sm btn-primary" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+ <%= render "devise/shared/links" %>
+ 
+</form>
+</div>
