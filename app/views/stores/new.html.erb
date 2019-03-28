@@ -1,0 +1,42 @@
+<h1> REGISTER STORE </h1>
+
+<%= form_for :store, url: stores_path do |f| %>
+  <%= f.label :shop_name %>:
+  <%= f.text_field :shop_name %><br />
+
+  <%= f.label :website_url %>:
+  <%= f.text_field :website_url %><br />
+  
+ <%= f.label :company_email %>:
+  <%= f.text_field :company_email %><br />
+
+ <%= f.label :shop_intro %>:
+  <%= f.text_field :shop_intro %><br />
+ 
+<%= f.label :landmark %>:
+  <%= f.text_field :landmark%><br />
+ 
+<%= f.label :address1 %>:
+  <%= f.text_field :address1 %><br />
+ 
+<%= f.label :address2 %>:
+  <%= f.text_field :address2 %><br />
+ 
+<%= f.label :shop_phone_no %>:
+  <%= f.text_field :shop_phone_no %><br />
+ 
+<%= f.label :alternative_phone_no1 %>:
+  <%= f.text_field :alternative_phone_no1 %><br />
+ 
+<%= f.label :alternative_phone_no2 %>:
+  <%= f.text_field :alternative_phone_no2 %><br />
+ 
+<%= f.label :address_proff %>:
+  
+
+<%= f.label :address_proff %>:
+  <%= f.select :address_proff, 
+               options_for_select([["Electricity bill", 1], ["Telephone bill", 2]]),{ :include_blank => '-- Select One address proff --' }, :required => true,:class =>'genForm_dropBox' %> <br />
+
+  <%= f.submit %>
+<% end %>
