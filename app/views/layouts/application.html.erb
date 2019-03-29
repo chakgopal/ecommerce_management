@@ -9,18 +9,22 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p> 
+ 
   <body>
-     <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-<% if current_seller %>
-     <%= link_to "logout", destroy_seller_session_path, method: :delete %>
-     <%= link_to "Edit", edit_seller_registration_path(@user) %>
+   
+   <% if current_admin %>
+     <%= link_to "logout", destroy_admin_session_path, method: :delete %>
+     <%= link_to "Edit", edit_admin_registration_path(@admin) %>
      <% else %>
-      <%= link_to "Register",new_seller_registration_path %>
+          <%= link_to "logout", destroy_admin_session_path, method: :delete %>
+      <%= link_to "Register",new_admin_registration_path %>
       
-       <%= link_to "Login", new_seller_session_path %>
+       <%= link_to "Login", new_admin_session_path %>
 
-     <% end %>  
+     <% end %>
+ 
 
     <%= yield %>
   </body>
