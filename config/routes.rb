@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  devise_for :admins, path: 'admins'
+  devise_for :sellers, path: 'sellers'
+  devise_for :customers, path: 'customers'
+  
+  root to: 'stores#index'
+  
+  resources :stores
   resources :dashboard
   resources :customer_addresses
   
-  devise_for :customers
-  root to: 'dashboard#new'
-
-  devise_for :sellers , path:'', path_names: {sign_up: 'register', sign_in: 'login', sign_out: 'logout'}
-  resources :stores
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
