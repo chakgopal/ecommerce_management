@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
    
-   	 devise_for :admins, path:'/admin/admins', path_names: {sign_up: 'register', sign_in: 'login', sign_out: 'logout'} 
- 
+   devise_for :admins, path: 'admins'
+   devise_for :sellers, path: 'sellers'
 
-  
+   root to:'stores#index'
 
-  root to: 'stores#root'
-
-  devise_for :sellers , path:'/seller/sellers', path_names: {sign_up: 'register', sign_in: 'login', sign_out: 'logout'}
-  resources :stores
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+   resources :stores
 end
 
