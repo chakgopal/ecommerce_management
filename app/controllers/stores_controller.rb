@@ -11,7 +11,7 @@ end
 
  def new 
   @store = Store.new
-  render layout: false
+  # render layout: false
  end
 
  def create
@@ -23,6 +23,10 @@ end
     else
       redirect_to 'new'
     end
+ end
+
+ def index
+  @stores = Store.all
  end
 
 
