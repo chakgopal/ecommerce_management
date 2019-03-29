@@ -1,12 +1,6 @@
 class StoresController < ApplicationController
   
- def root
-  if seller_signed_in?
-    redirect_to new_stores_url
-  else
-    redirect_to new_seller_session_path
-  end
-end
+ 
 
  def new 
   @store = Store.new
