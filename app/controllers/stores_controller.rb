@@ -2,7 +2,8 @@ class StoresController < ApplicationController
   
  def root
   if seller_signed_in?
-    redirect_to new_stores_url
+    puts "coca cola"
+    redirect_to new_store_url
   else
     redirect_to new_seller_session_path
   end
