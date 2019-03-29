@@ -1,0 +1,104 @@
+ <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+<% if current_seller %>
+     <%= link_to "logout", destroy_seller_session_path, method: :delete %>
+     <%= link_to "Edit", edit_seller_registration_path(@user) %>
+     <% else %>
+      <%= link_to "Register",new_seller_registration_path %>
+      
+       <%= link_to "Login", new_seller_session_path %>
+
+     <% end %>  
+ def seller_create
+	 if current_admin?
+       redirect_to :controller => 'seller', :action => 'create'
+       else
+       	redirect_to 'new_admin_session_path'
+  end def seller_create
+   if current_admin?
+       redirect_to :controller => 'seller', :action => 'create'
+       else
+        redirect_to 'new_admin_session_path'
+  end 
+  def seller_index
+       @store = Store.all
+        link_to "EDIT", store_path(@store) 
+
+        link_to "DELETE", store_path(@store) 
+
+  end
+  def seller_show
+        @store = Store.find(params[:id])
+
+        link_to "BACK", store_path(@store) 
+  end
+
+  def seller_edit
+       redirect_to :conroller => 'seller', :action => 'edit'
+  end
+  
+  def seller_update
+       @store = Store.find(params[:id])
+ 
+  end
+  
+  def seller_destroy
+       
+         @store = Store.find(params[:id])
+         @store.destroy
+         redirect_to 'new_admin_session_path'
+  end 
+
+  end
+  def customer_index
+  end #
+
+ def customer_show
+ end
+
+ def customer_delete
+ end
+ 
+  end
+  
+  def seller_index
+  	   @store = Store.all
+        link_to "EDIT", store_path(@store) 
+
+        link_to "DELETE", store_path(@store) 
+
+  end
+  def seller_show
+  	    @store = Store.find(params[:id])
+
+  	    link_to "BACK", store_path(@store) 
+  end
+
+  def seller_edit
+  	   redirect_to :conroller => 'seller', :action => 'edit'
+  end
+  
+  def seller_update
+       @store = Store.find(params[:id])
+ 
+  end
+  
+  def seller_destroy
+       
+         @store = Store.find(params[:id])
+         @store.destroy
+         redirect_to 'new_admin_session_path'
+  end 
+
+  end
+  def customer_index
+  end #
+
+ def customer_show
+ end
+
+ def customer_delete
+ end
+ 
+  end
+  
