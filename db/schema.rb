@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_142008) do
+ActiveRecord::Schema.define(version: 2019_03_26_122349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,24 @@ ActiveRecord::Schema.define(version: 2019_03_25_142008) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "total_paid"
+    t.string "email_sent"
+    t.string "total_invoice"
+    t.string "total_cancel"
+    t.string "total_refunded"
+    t.string "discount_amount"
+    t.string "discount_canceled"
+    t.string "discount_invoice"
+    t.string "discount_refunded"
+    t.string "shipping_amount"
+    t.string "shipping_canceled"
+    t.string "shipping_invoice"
+    t.string "shipping_refunded"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "sku"
@@ -60,6 +78,28 @@ ActiveRecord::Schema.define(version: 2019_03_25_142008) do
     t.string "description"
     t.string "price"
     t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quote_items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "quantity"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.string "status"
+    t.string "item_count"
+    t.string "customer_email"
+    t.string "customer_firstname"
+    t.string "customer_lastname"
+    t.string "coupon_code"
+    t.string "subtotal"
+    t.string "subtotal_with_discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
