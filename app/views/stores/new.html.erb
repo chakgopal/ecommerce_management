@@ -3,6 +3,9 @@
 <%= form_for :store, url: stores_path do |f| %>
   <%= f.label :shop_name %>:
   <%= f.text_field :shop_name %><br />
+    
+   <%= f.label :shop_image %>:
+   <%= f.file_field :shop_image %><br />
 
   <%= f.label :website_url %>:
   <%= f.text_field :website_url %><br />
@@ -13,6 +16,19 @@
  <%= f.label :shop_intro %>:
   <%= f.text_field :shop_intro %><br />
  
+  <%= f.label :gst_image %>:
+  <%= f.file_field :gst_image %><br />
+
+  <%= f.label :shop_pan_image %>:
+  <%= f.file_field :shop_pan_image %><br />
+
+  <%= f.label :trade_license_image %>:
+  <%= f.file_field :trade_license_image %><br />
+
+  <%= f.label :iso_image %>:
+  <%= f.file_field :iso_image %><br />
+
+
 <%= f.label :landmark %>:
   <%= f.text_field :landmark%><br />
  
@@ -28,15 +44,20 @@
 <%= f.label :alternative_phone_no1 %>:
   <%= f.text_field :alternative_phone_no1 %><br />
  
-<%= f.label :alternative_phone_no2 %>:
+ <%= f.label :alternative_phone_no2 %>:
   <%= f.text_field :alternative_phone_no2 %><br />
- 
-<%= f.label :address_proff %>:
-  
 
+  <%= f.label :certificate_of_incorporation %>:
+  <%= f.file_field :certificate_of_incorporation %><br />
+
+
+
+  
 <%= f.label :address_proff %>:
   <%= f.select :address_proff, 
                options_for_select([["Electricity bill", 1], ["Telephone bill", 2]]),{ :include_blank => '-- Select One address proff --' }, :required => true,:class =>'genForm_dropBox' %> <br />
+ 
+ <%= f.file_field :address_proff %><br />
 
   <%= f.submit %>
 <% end %>
