@@ -118,4 +118,31 @@ ActiveRecord::Schema.define(version: 2019_03_26_122349) do
     t.index ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
   end
 
+  create_table "stores", force: :cascade do |t|
+    t.string "shop_name"
+    t.string "shop_image"
+    t.string "website_url"
+    t.string "company_email"
+    t.string "shop_intro"
+    t.string "gst_image"
+    t.string "shop_pan_image"
+    t.string "trade_license_image"
+    t.string "iso_image"
+    t.string "landmark"
+    t.string "address1"
+    t.string "address2"
+    t.string "shop_phone_no"
+    t.string "alternative_phone_no1"
+    t.string "alternative_phone_no2"
+    t.string "certificate_of_incorporation"
+    t.string "trademark_registration"
+    t.string "address_proff"
+    t.string "working_hour_to"
+    t.string "working_hour_from"
+    t.string "working_date_to"
+    t.string "working_date_from"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
