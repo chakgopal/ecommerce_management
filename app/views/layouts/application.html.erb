@@ -11,12 +11,18 @@
   <body>
    <nav class="navbar navbar-expand navbar-dark">
       <a class="logo" %><%= image_tag("logo2-1.png", size: "62x50") %></a>
-      <% if current_seller || current_admin %>
+      <% if current_admin %>
+        <%= link_to "logout", destroy_admin_session_path, method: :delete, class: "fnt-lgin-ed-rg-lgot-2" %>
+        <%= link_to "Edit", edit_admin_registration_path(@admin), class: "fnt-lgin-ed-rg-lgot" %>
+      <% elsif current_seller %>
         <%= link_to "logout", destroy_seller_session_path, method: :delete, class: "fnt-lgin-ed-rg-lgot-2" %>
-        <%= link_to "Edit", edit_seller_registration_path(@user), class: "fnt-lgin-ed-rg-lgot" %>
+        <%= link_to "Edit", edit_seller_registration_path(@seller), class: "fnt-lgin-ed-rg-lgot" %>
+      <% elsif current_customer %>
+        <%= link_to "logout", destroy_customer_session_path, method: :delete, class: "fnt-lgin-ed-rg-lgot-2" %>
+        <%= link_to "Edit", edit_customer_registration_path(@customer), class: "fnt-lgin-ed-rg-lgot" %>
       <% else %>
-        <%= link_to "Register",new_admin_registration_path %>
-        <%= link_to "Login", new_admin_session_path %>
+        <%= link_to "Customer Register",new_customer_registration_path %>
+        <%= link_to "Customer Login", new_customer_session_path %>
       <% end %>
    </nav>
    <div class="notice">
