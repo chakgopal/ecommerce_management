@@ -1,112 +1,17 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
 @import "bootstrap";
-
-.navbar-dark{
-    background: linear-gradient(130deg, #4FA4DC, #3376BC) ;
-
-}
-
-.logo{
-    padding-left: 80px;
-    -webkit-filter: drop-shadow(5px 5px 5px rgb(18, 76, 138) );
-    filter: drop-shadow(5px 5px 5px rgb(18, 76, 138));
-  
-}
-
-.fnt-lgin-ed-rg-lgot{
-    padding-left: 12px;  
-    color: white;            
-}
-
-.fnt-lgin-ed-rg-lgot:hover{
-    color: black; 
-    text-decoration: none;          
-}
-
-.fnt-lgin-ed-rg-lgot-2{
-    margin-left: 75%;
-    color: white; 
-    
-}
-.fnt-lgin-ed-rg-lgot-2:hover{
-    color: black; 
-    text-decoration: none;
-    
-}
-
-.notice{
-    text-align: center;
-}
-
-.text{
-    padding-top: 5px;
-}
-
-
-/* Registration */ 
-
-.btn-sm{  
-    position: absolute; 
-    display:block;
-    margin-bottom: 50%;
-}
-
-.actions{
-    padding-left: 39.5%;
-    display: inline-block;
-}
-
-.page-header{
-    text-align: center;
-    margin-top: 0%;
-}
-
-.log{
-    text-align: center;
-    margin-top: 20px;
-}
-
-form {
-    max-width: 30rem;
-    margin: 0 auto;
-    padding: 3.5rem 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    
-}
-
-.container_2{
-    margin-top: 10%;
-}
-
-.qt{
-    text-align: center;
-}
-
-.btn-md{
-    margin-left: 31%;
-}
-
-label {
-    margin-top: 20px;
-}
-
-
-/* Login page */ 
-
-.form2{
-    max-width: 25rem;
-    margin: 0 auto;
-    padding: 3.5rem 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* forgot password */
-
-.btn-new{
-    position: fixed;
-    left: 33rem; 
-    
-}
