@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_073719) do
+ActiveRecord::Schema.define(version: 2019_03_26_122349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customer_addresses", force: :cascade do |t|
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "postalcode"
+    t.string "country"
+    t.string "phone1"
+    t.string "phone2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,6 +65,24 @@ ActiveRecord::Schema.define(version: 2019_03_26_073719) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "total_paid"
+    t.string "email_sent"
+    t.string "total_invoice"
+    t.string "total_cancel"
+    t.string "total_refunded"
+    t.string "discount_amount"
+    t.string "discount_canceled"
+    t.string "discount_invoice"
+    t.string "discount_refunded"
+    t.string "shipping_amount"
+    t.string "shipping_canceled"
+    t.string "shipping_invoice"
+    t.string "shipping_refunded"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "sku"
@@ -48,6 +91,28 @@ ActiveRecord::Schema.define(version: 2019_03_26_073719) do
     t.string "description"
     t.string "price"
     t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quote_items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "quantity"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.string "status"
+    t.string "item_count"
+    t.string "customer_email"
+    t.string "customer_firstname"
+    t.string "customer_lastname"
+    t.string "coupon_code"
+    t.string "subtotal"
+    t.string "subtotal_with_discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
