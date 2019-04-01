@@ -1,0 +1,36 @@
+
+<p id="notice"><%= notice %></p>
+ 
+
+
+<h1>Seller Information</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Designation</th>
+      <th colspan="3"></th>
+      <%= link_to '+ADD', new_seller_registration_path %> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seller.each do |seller| %>
+		<tr>
+			<td><%= seller.to_json%></td>
+			<td><%= seller.name %></td>
+			<td><%= seller.email %></td>
+			<td><%= seller.role %></td>
+		    <% if current_admin %>
+				<td><%= link_to 'Edit',  edit_seller_registration_url(id: seller["id"]) %></td>
+				<td><%= link_to 'Destroy',  seller_registration_url(id: seller["id"]), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+		  	<% end %>
+		 </tr>
+    <% end %>
+    <%= link_to "Admin Login", new_admin_session_path %>
+  </tbody>
+</table>
+
+

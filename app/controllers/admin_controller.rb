@@ -1,17 +1,16 @@
 class AdminController < ApplicationController
+ 
 def index
 	render layout: false
 end
-
-def root
-  if admin_signed_in?
-    puts "coca-cola"
-    render "admin/index"
-  else
-    redirect_to new_admin_session_path
-  end
-
-end
-
+   
+ def seller_index
+ 	
+   @seller = Seller.all
+   puts @seller.to_json
+ end 
+ def customer_index
+   @customer = Customer.all
+   puts @customer.to_json
  end
-  
+end
