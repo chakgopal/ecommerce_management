@@ -11,6 +11,12 @@
   <body>
    <nav class="navbar navbar-expand navbar-dark">
       <a class="logo" %><%= image_tag("logo2-1.png", size: "62x50") %></a>
+      <div id='search-box'>
+        
+          <input id='search-text' name='q' placeholder='Search..' type='text' />
+          <span id="search-button"><a type='submit'%><%= image_tag("search.png", size: "32x32") %></a></span>
+        
+      </div>
       <% if current_admin %>
         <%= link_to "logout", destroy_admin_session_path, method: :delete, class: "fnt-lgin-ed-rg-lgot-2" %>
         <%= link_to "Edit", edit_admin_registration_path(@admin), class: "fnt-lgin-ed-rg-lgot" %>
@@ -21,8 +27,9 @@
         <%= link_to "logout", destroy_customer_session_path, method: :delete, class: "fnt-lgin-ed-rg-lgot-2" %>
         <%= link_to "Edit", edit_customer_registration_path(@customer), class: "fnt-lgin-ed-rg-lgot" %>
       <% else %>
-        <%= link_to "Customer Register",new_customer_registration_path, class: "fnt-lgin-ed-rg-lgot-2" %>
-        <%= link_to "Customer Login", new_customer_session_path, class: "fnt-lgin-ed-rg-lgot" %>
+        <!-- Customer Part -->       
+        <%= link_to "Login", new_customer_session_path, class: "fnt-lgin-ed-rg-lgot-1" %>
+        <%= link_to "Register",new_customer_registration_path, class: "fnt-lgin-ed-rg-lgot-3" %>
       <% end %>
    </nav>
    <div class="notice">

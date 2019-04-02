@@ -1,17 +1,109 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
 @import "bootstrap";
+
+
+body{
+    background-color: rgb(243, 243, 243);
+}
+
+/* Navbar */
+
+.navbar-expand{
+    background-image: linear-gradient(150deg, #50A6DD, #3173B9);
+}
+
+.logo { 
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter:         drop-shadow(5px 5px 5px #222); 
+    padding-left: 10%;
+}
+
+.fnt-lgin-ed-rg-lgot-2{
+    color: white;
+    padding-left: 30%;
+    &:hover {
+        color:black;
+        text-decoration: none;
+    }
+}
+
+
+.fnt-lgin-ed-rg-lgot{
+    color: white;
+    padding-left: 15px;
+    &:hover {
+        color:black;
+        text-decoration: none;
+    }
+}
+
+.fnt-lgin-ed-rg-lgot-1{
+    color: white;
+    padding-left: 30%;
+    &:hover {
+        color:black;
+        text-decoration: none;
+    }
+}
+
+.fnt-lgin-ed-rg-lgot-3{
+    color: white;
+    padding-left: 15px;
+    &:hover {
+        color:black;
+        text-decoration: none;
+    }
+}
+
+
+#search-box {
+    position: relative;
+    width: 50%;
+    padding-left: 5%;
+    margin-top: 0%;
+}
+    
+#search-text 
+    {
+    height: 40px;
+    border-radius: 50px;
+    background-color: #fff;
+    overflow: hidden;
+    font-size: 14px;
+    color: rgb(202, 202, 202);
+    border-width: 0;
+    padding-bottom: 15px;
+}
+
+#search-box input[type="text"]
+    {
+    width: 80%;
+    padding: 11px 0 12px 1em;
+    color: #333;
+    outline: none;
+}
+    
+#search-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 20%;
+    padding-bottom: 15px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 42px;
+    border-width: 0;
+    -webkit-border-radius: 0px 5px 5px 0px;
+    -moz-border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+}
+
+/* Notice */ 
+
+.notice{
+    text-align: center;
+    padding-top: 5px;
+}
+
+
