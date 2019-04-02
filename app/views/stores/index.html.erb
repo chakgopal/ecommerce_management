@@ -1,3 +1,12 @@
 <% @stores.each do |store|%>
-    <%= store.shop_name %>
+    <%= image_tag(store.shop_image,style:"width:30%") if store.shop_images.attached? %>
+    <%= image_tag(store.gst_image,style:"width:30%") if store.gst_image.attached? %>
+    <%= image_tag(store.shop_pan_image,style:"width:30%") if store.shop_pan_image.attached? %>
+    <%= image_tag(store.trade_license_image,style:"width:30%") if store.trade_license_image.attached? %>
+    <%= image_tag(store.iso_image,style:"width:30%") if store.iso_image.attached? %>
+    <%= image_tag(store.certificate_of_incorporation,style:"width:30%") if store.certificate_of_incorporation.attached? %>
+    <%= image_tag(store.trademark_registration,style:"width:30%") if store.trademark_registration.attached? %>
+    <%= image_tag(store.address_proff,style:"width:30%") if store.address_proff.attached? %>
 <% end %>
+
+<%=@current_seller.name if current_seller%>
