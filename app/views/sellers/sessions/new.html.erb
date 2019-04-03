@@ -222,6 +222,7 @@
     <h1 class="header">Sign up</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
+      
       <div class="field">
         <%= f.label :firstname %><br />
         <%= f.text_field :name , placeholder: "First Name", class: "form-control" %>
@@ -229,7 +230,7 @@
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email  Address", class: "form-control" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "form-control" %>
       </div>
 
       <div class="field">
