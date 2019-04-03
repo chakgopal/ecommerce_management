@@ -27,7 +27,10 @@ end
   @quote_item = QuoteItem.all
   puts @quote_item.to_json
  end
+
  
   end
  
   
+
+
