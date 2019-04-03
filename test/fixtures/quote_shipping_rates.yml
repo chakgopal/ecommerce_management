@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quote_address: one
+  method: MyString
+  method_description: MyString
+  price: MyString
+
+two:
+  quote_address: two
+  method: MyString
+  method_description: MyString
+  price: MyString

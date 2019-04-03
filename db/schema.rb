@@ -10,35 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_122349) do
+ActiveRecord::Schema.define(version: 2019_04_03_090337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "customer_addresses", force: :cascade do |t|
-    t.string "address1"
-    t.string "address2"
-    t.string "city"
-    t.string "state"
-    t.string "postalcode"
-    t.string "country"
-    t.string "phone1"
-    t.string "phone2"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "customers", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_customers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
-  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -51,6 +26,35 @@ ActiveRecord::Schema.define(version: 2019_03_26_122349) do
     t.string "name"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "customer_addresses", force: :cascade do |t|
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "postalcode"
+    t.string "country"
+    t.string "phone1"
+    t.string "phone2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_customer_addresses_on_customer_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "firstname"
+    t.string "lastname"
+    t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
   create_table "inventory_stocks", force: :cascade do |t|
@@ -93,6 +97,24 @@ ActiveRecord::Schema.define(version: 2019_03_26_122349) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_products_on_order_id"
+  end
+
+  create_table "quote_addresses", force: :cascade do |t|
+    t.bigint "quote_id"
+    t.bigint "customer_id"
+    t.string "customer_address_type"
+    t.string "email"
+    t.string "first_name"
+    t.string "post_code"
+    t.boolean "same_as_billing"
+    t.boolean "free_shipping"
+    t.string "shipping_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_quote_addresses_on_customer_id"
+    t.index ["quote_id"], name: "index_quote_addresses_on_quote_id"
   end
 
   create_table "quote_items", force: :cascade do |t|
@@ -102,6 +124,28 @@ ActiveRecord::Schema.define(version: 2019_03_26_122349) do
     t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "store_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_quote_items_on_customer_id"
+    t.index ["store_id"], name: "index_quote_items_on_store_id"
+  end
+
+  create_table "quote_payments", force: :cascade do |t|
+    t.bigint "quote_id"
+    t.string "method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id"], name: "index_quote_payments_on_quote_id"
+  end
+
+  create_table "quote_shipping_rates", force: :cascade do |t|
+    t.bigint "quote_address_id"
+    t.string "method"
+    t.string "method_description"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_address_id"], name: "index_quote_shipping_rates_on_quote_address_id"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -158,4 +202,12 @@ ActiveRecord::Schema.define(version: 2019_03_26_122349) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "customer_addresses", "customers"
+  add_foreign_key "products", "orders"
+  add_foreign_key "quote_addresses", "customers"
+  add_foreign_key "quote_addresses", "quotes"
+  add_foreign_key "quote_items", "customers"
+  add_foreign_key "quote_items", "stores"
+  add_foreign_key "quote_payments", "quotes"
+  add_foreign_key "quote_shipping_rates", "quote_addresses"
 end
