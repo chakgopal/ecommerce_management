@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "order", to: "admin#order"
   get "quote", to: "admin#quote"
   get "quote_item", to: "admin#quote_item"
+  get "store_info", to: "admin#store_info"
 end
 
 

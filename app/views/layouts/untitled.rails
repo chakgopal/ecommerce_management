@@ -237,4 +237,5 @@
 
   </body>
 </html>
-<%= link_to 'New Customer Address', new_customer_address_path %>
+ <%= link_to 'New Customer Address', new_customer_address_path %> 
+ Store.last.shop_image ||  Store.last.shop_image.inspect
