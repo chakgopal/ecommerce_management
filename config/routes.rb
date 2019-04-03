@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :customer_addresses
   get "seller_index", to: "admin#seller_index"
   get "customer_index", to: "admin#customer_index"
-  
+  get "order", to: "admin#order"
+  get "quote", to: "admin#quote"
+  get "quote_item", to: "admin#quote_item"
 end
+
 
