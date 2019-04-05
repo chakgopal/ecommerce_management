@@ -47,10 +47,6 @@ end
 
 private
  def store_params
-
-                   params.require(:store).permit(:shop_name, :company_email,:shop_intro,:address1,:shop_phone_no)
-
     params.require(:store).permit(:shop_name,:company_email,:shop_intro,:address1,:shop_phone_no,:address_proff,:gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_of_incorporation,:trademark_registration,:shop_image)
->>>>>>> 8021deac63898c83d1458658be45a612d459e724
  end
- 
+end
