@@ -1,5 +1,8 @@
 class StoresController < ApplicationController
   
+
+ 
+
  def root
   if seller_signed_in?
 
@@ -9,12 +12,18 @@ class StoresController < ApplicationController
   end
 end
 
+
+ def new 
+  @store = Store.new
+  # render layout: false
+ end
  def new
   if current_seller 
    @store = Store.new
   else
    redirect_to new_seller_session_path
   end
+
  end
 
  def create
@@ -38,9 +47,10 @@ end
 
 private
  def store_params
+
                    params.require(:store).permit(:shop_name, :company_email,:shop_intro,:address1,:shop_phone_no)
+
+    params.require(:store).permit(:shop_name,:company_email,:shop_intro,:address1,:shop_phone_no,:address_proff,:gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_of_incorporation,:trademark_registration,:shop_image)
+>>>>>>> 8021deac63898c83d1458658be45a612d459e724
  end
- def image_param
-      params.dig(:address_proff, :gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_of_incorporation,:trademark_registration,:shop_name)
-  end
-end
+ 
