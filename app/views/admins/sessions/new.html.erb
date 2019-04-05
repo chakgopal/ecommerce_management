@@ -150,8 +150,6 @@
     border-color: #ffffff;
   }
 
-  
-
   form {
     background-color: #ffffff;
     display: flex;
@@ -196,7 +194,6 @@
     border: none;
   }
 
-
   .header{
     margin-bottom: 8%;
     margin-top: 5%;
@@ -211,6 +208,67 @@
     font-size: 15px;
     padding-bottom: 5px;
   }
+
+  .btn-primary{
+    background: none;
+    border: none;
+    color: #3173B9;
+    float: right;
+    padding-top: 5px;
+    
+}
+
+.btn-primary:hover{
+    background: none;
+    border: none;
+    color: black;
+    float: right;
+    padding-top: 5px;
+}
+
+.btn-primary:focus {
+    outline: none;
+}
+
+.btn-default{
+    background: none;
+    color: #3173B9;
+    text-transform: capitalize;
+}
+
+.modal-header{
+    background-color: #50A6DD;
+}
+.modal-title{
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.close{
+    color: white;
+}
+
+.modal-body{
+    margin-top: 20px;
+}
+
+.send{
+    background-color: #3173B9;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    width: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.actions_2{
+    padding-left: 38%;
+    margin-top: 25px;
+
+}
 
 </style>
 
@@ -257,9 +315,9 @@
       <div class="field">
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control" %>
-        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <%= link_to "Forgot your password?", new_password_path(resource_name), class: "fog" %><br />
-        <% end %>
+        <a href = "/page_to_fetch_remote_content/" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >
+          Forgot Password?
+        </a>
       </div>
 
       <% if devise_mapping.rememberable? %>
@@ -292,7 +350,34 @@
   </div>
 </div>
 
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Forgot your password?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+        
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Registered Email Address", class: "form-control" %>
+          </div>
+        
+          <div class="actions_2">
+            <%= f.submit "Send", class: "send" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to "Log in", new_session_path(resource_name) %><br />
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   const signUpButton = document.getElementById('signUp');
@@ -307,3 +392,7 @@
       container.classList.remove('right-panel-active');
   });
 </script>
+
+
+
+

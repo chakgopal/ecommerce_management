@@ -15,3 +15,8 @@ end
 
  end
   
+ def new
+  respond_to do |format|
+    format.js { render :partial => "form" }
+  end
+end
