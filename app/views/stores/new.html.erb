@@ -1,6 +1,6 @@
 <h1> REGISTER STORE </h1>
 
-<%= form_for :store, url: stores_path do |f| %>
+<%= form_for :store, multipart: true, url: stores_path do |f| %>
   <%= f.label :shop_name %>:
   <%= f.text_field :shop_name %><br />
     
