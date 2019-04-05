@@ -1,5 +1,9 @@
 <% @stores.each do |store|%>
-    <%= image_tag(store.shop_image,style:"width:30%") if store.shop_images.attached? %>
+
+    
+
+
+    <%= image_tag(store.shop_image,style:"width:30%") if store.shop_image.attached? %>
     <%= image_tag(store.gst_image,style:"width:30%") if store.gst_image.attached? %>
     <%= image_tag(store.shop_pan_image,style:"width:30%") if store.shop_pan_image.attached? %>
     <%= image_tag(store.trade_license_image,style:"width:30%") if store.trade_license_image.attached? %>
