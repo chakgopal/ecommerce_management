@@ -1,3 +1,20 @@
+
+<style>
+
+
+form {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+</style>
+
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
