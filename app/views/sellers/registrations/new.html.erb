@@ -16,7 +16,7 @@
   <div class="field">
       <%= f.label :designation %><br />
     <%= f.select :role, 
-               options_for_select([["Owner", 1], ["Admin", 2], ["Employee", 3]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox' %> 
+               options_for_select([["Owner", "owner"], ["Admin", "admin"], ["Employee", "employee"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox' %> 
   </div> 
 
   <div class="field">
