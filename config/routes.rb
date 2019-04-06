@@ -5,13 +5,14 @@ Rails.application.routes.draw do
 
   devise_for :admins, path: 'admins' 
   devise_for :sellers, path: 'sellers'
-  devise_for :customers, path: 'customers'
+  devise_for :customers, path: 'customers', :controllers => { registrations: 'registrations'}
   
-  root to: 'stores#index'
+  root to: 'products#index'
   
   resources :stores
   resources :dashboard
   resources :customer_addresses
+  resources :products
   get "seller_index", to: "admin#seller_index"
   get "customer_index", to: "admin#customer_index"
   get "order", to: "admin#order"

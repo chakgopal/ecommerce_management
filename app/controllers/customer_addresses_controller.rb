@@ -25,7 +25,7 @@ class CustomerAddressesController < ApplicationController
   # POST /customer_addresses
   # POST /customer_addresses.json
   def create
-    @customer_address = CustomerAddress.new(customer_address_params)
+    @customer_address = CustomerAddress.new(customer_address_params.merge(customer_id: current_customer.id))
 
     respond_to do |format|
       if @customer_address.save
