@@ -5,7 +5,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all.with_attached_images
+    if seller_signed_in?
+      @products = current_seller.products
+    else
+      @products = Product.all.with_attached_images
+    end
   end
 
   # GET /products/1

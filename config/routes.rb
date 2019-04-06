@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :customers, path: 'customers'
   
   resources :sellers
-  root to: 'stores#index'
+  root to: 'products#index'
   
   resources :stores
   resources :dashboard
