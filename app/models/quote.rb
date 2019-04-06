@@ -1,2 +1,30 @@
 class Quote < ApplicationRecord
+
+
+  def unit_price
+    if persisted?
+      self[:unit_price]
+    else
+      product.price
+    end
+  end
+
+  def total_price
+    unit_price * quantity
+  end
+
+  private
+  
+
+  def order_present
+    if order.nil?
+      errors.add(:order, "is not a valid order.")
+    end
+   end
+
+   def finalize
+    self[:unit_price] = unit_price
+    self[:total_price] = quantity * self[:unit_price]
+   end
+end
 end

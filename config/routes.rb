@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :stores
   resources :dashboard
   resources :customer_addresses
+  resources :products
   
 end
 
