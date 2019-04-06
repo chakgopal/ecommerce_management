@@ -8,5 +8,5 @@ class Product < ApplicationRecord
   end
 
   belongs_to :store
-
+  has_many_attached :images
 end

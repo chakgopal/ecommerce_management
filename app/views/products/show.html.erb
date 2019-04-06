@@ -37,7 +37,15 @@
 
 <p>
   <strong>Store:</strong>
-  <%= @product.store %>
+  <%= @product.store.shop_name %>
+</p>
+
+<p>
+  <% if @product.images.attached? %>
+    <% @product.images.each do |product_image| %>
+      <%= image_tag url_for(product_image), size: "64" %>
+    <% end %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
