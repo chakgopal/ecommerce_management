@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_063450) do
+ActiveRecord::Schema.define(version: 2019_04_05_081654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -58,7 +79,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_063450) do
   end
 
   create_table "inventory_stocks", force: :cascade do |t|
-    t.string "product_id"
     t.string "quantity"
     t.string "min_quantity"
     t.string "min_sale_quantity"
@@ -67,6 +87,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_063450) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -99,6 +121,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_063450) do
     t.datetime "updated_at", null: false
     t.bigint "order_id"
     t.index ["order_id"], name: "index_products_on_order_id"
+    t.bigint "store_id"
+    t.index ["store_id"], name: "index_products_on_store_id"
   end
 
   create_table "quote_addresses", force: :cascade do |t|
@@ -115,6 +139,8 @@ ActiveRecord::Schema.define(version: 2019_04_04_063450) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_quote_addresses_on_customer_id"
     t.index ["quote_id"], name: "index_quote_addresses_on_quote_id"
+    t.bigint "store_id"
+    t.index ["store_id"], name: "index_products_on_store_id"
   end
 
   create_table "quote_items", force: :cascade do |t|
@@ -202,8 +228,11 @@ ActiveRecord::Schema.define(version: 2019_04_04_063450) do
     t.string "working_date_from"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "seller_id"
+    t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
 
+<<<<<<< HEAD
   add_foreign_key "customer_addresses", "customers"
   add_foreign_key "products", "orders"
   add_foreign_key "quote_addresses", "customers"
@@ -213,4 +242,10 @@ ActiveRecord::Schema.define(version: 2019_04_04_063450) do
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quotes", "orders"
+=======
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "inventory_stocks", "products"
+  add_foreign_key "products", "stores"
+  add_foreign_key "stores", "sellers"
+>>>>>>> f116e0b1c5b0fc7090fbdd7359bc96a79a1c72d6
 end

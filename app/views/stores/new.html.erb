@@ -1,10 +1,10 @@
 <h1> REGISTER STORE </h1>
 
-<%= form_for :store, url: stores_path do |f| %>
+<%= form_for :store, multipart: true, url: stores_path do |f| %>
   <%= f.label :shop_name %>:
   <%= f.text_field :shop_name %><br />
     
-   <%= f.label :shop_image %>:
+   <%= f.label :shop_images %>:
    <%= f.file_field :shop_image %><br />
 
   <%= f.label :website_url %>:
@@ -17,20 +17,16 @@
   <%= f.text_field :shop_intro %><br />
  
   <%= f.label :gst_image %>:
-  <%= f.file_field :gst_image %><br />
+    <%= f.file_field :gst_image %><br />
 
   <%= f.label :shop_pan_image %>:
-  <%= f.file_field :shop_pan_image %><br />
+    <%= f.file_field :shop_pan_image %><br />
 
   <%= f.label :trade_license_image %>:
   <%= f.file_field :trade_license_image %><br />
 
   <%= f.label :iso_image %>:
   <%= f.file_field :iso_image %><br />
-
-
-<%= f.label :landmark %>:
-  <%= f.text_field :landmark%><br />
  
 <%= f.label :address1 %>:
   <%= f.text_field :address1 %><br />
@@ -38,6 +34,9 @@
 <%= f.label :address2 %>:
   <%= f.text_field :address2 %><br />
  
+<%= f.label :landmark %>:
+  <%= f.text_field :landmark%><br />
+
 <%= f.label :shop_phone_no %>:
   <%= f.text_field :shop_phone_no %><br />
  

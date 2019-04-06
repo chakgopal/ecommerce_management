@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:role,:firstname,:lastname])
  end
 
+ def root
+  if admin_signed_in?
+    puts "coca-cola"
+    render "admin/index"
+  else
+    redirect_to new_admin_session_path
+  end
+
+end
+
 end

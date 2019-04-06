@@ -1,0 +1,10 @@
+
+ <% @store.each do |store|%>
+
+   <%= image_tag (store.shop_image) if store.shop_image.attached? %>
+   <%= store.company_email %>
+   <%= store.shop_phone_no %>
+   <%= store.address1 %>
+   <%= store.seller_id %>
+  <% end %>
+  <%= @seller_information.name %>
