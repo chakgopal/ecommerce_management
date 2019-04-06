@@ -11,10 +11,12 @@ class SellersController < ApplicationController
   # GET /sellers/1
   # GET /sellers/1.json
   def show
+    @seller = Seller.find(params[:id])
   end
 
   # GET /sellers/1/edit
   def edit
+    @seller = Seller.find(params[:id])
   end
 
   # PATCH/PUT /sellers/1
@@ -49,6 +51,6 @@ class SellersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params
-      params.fetch(:seller, {})
+      params.fetch(:seller, {}).permit(:email, :name, :role)
     end
 end

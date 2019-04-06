@@ -3,17 +3,19 @@
 one:
   name: MyString
   sku: MyString
-  status: MyString
-  short_description: MyString
-  description: MyString
-  price: MyString
-  image: MyString
+  status: 1
+  short_desc: MyString
+  long_desc: MyString
+  price: 9.99
+  color: 1
+  store: 
 
 two:
   name: MyString
   sku: MyString
-  status: MyString
-  short_description: MyString
-  description: MyString
-  price: MyString
-  image: MyString
+  status: 1
+  short_desc: MyString
+  long_desc: MyString
+  price: 9.99
+  color: 1
+  store: 
