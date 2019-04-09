@@ -12,12 +12,6 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
- 
-  <div class="field">
-      <%= f.label :designation %><br />
-    <%= f.select :role, 
-               options_for_select([["Owner", "owner"], ["Admin", "admin"], ["Employee", "employee"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox' %> 
-  </div> 
 
   <div class="field">
     <%= f.label :password %>

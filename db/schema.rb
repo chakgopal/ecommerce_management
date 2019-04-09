@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_05_081654) do
+ActiveRecord::Schema.define(version: 2019_04_04_070233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "sku"
-    t.string "status"
-    t.string "short_description"
-    t.string "description"
-    t.string "price"
-    t.string "image"
+    t.integer "status"
+    t.string "short_desc"
+    t.string "long_desc"
+    t.decimal "price", precision: 7, scale: 2
+    t.integer "color"
+    t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "store_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.string "role"
+    t.integer "role"
     t.index ["email"], name: "index_sellers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
   end
@@ -186,6 +186,5 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "inventory_stocks", "products"
-  add_foreign_key "products", "stores"
   add_foreign_key "stores", "sellers"
 end
