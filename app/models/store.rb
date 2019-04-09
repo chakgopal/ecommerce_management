@@ -1,11 +1,7 @@
 class Store < ApplicationRecord
   belongs_to :seller ,required: false
-<<<<<<< HEAD
   has_many :products, dependent: :destroy
 
-=======
-  
->>>>>>> 8021deac63898c83d1458658be45a612d459e724
   has_one_attached :shop_image
   has_one_attached :gst_image
   has_one_attached :shop_pan_image
