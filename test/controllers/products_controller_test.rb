@@ -45,4 +45,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to products_url
   end
+  # test "the truth" do
+  #   assert true
+  # end
 end

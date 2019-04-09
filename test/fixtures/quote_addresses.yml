@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quote: one
+  customer: one
+  customer_address_type: MyString
+  email: MyString
+  first_name: MyString
+  post_code: MyString
+  same_as_billing: false
+  free_shipping: false
+  shipping_method: MyString
+
+two:
+  quote: two
+  customer: two
+  customer_address_type: MyString
+  email: MyString
+  first_name: MyString
+  post_code: MyString
+  same_as_billing: false
+  free_shipping: false
+  shipping_method: MyString

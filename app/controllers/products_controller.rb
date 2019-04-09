@@ -77,4 +77,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :sku, :status, :short_desc, :long_desc, :price, :color, :store_id, images: [])
     end
+	def index
+	end
 end
