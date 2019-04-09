@@ -120,8 +120,8 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
     t.bigint "store_id"
+    t.index ["order_id"], name: "index_products_on_order_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -139,8 +139,6 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_quote_addresses_on_customer_id"
     t.index ["quote_id"], name: "index_quote_addresses_on_quote_id"
-    t.bigint "store_id"
-    t.index ["store_id"], name: "index_products_on_store_id"
   end
 
   create_table "quote_items", force: :cascade do |t|
@@ -232,9 +230,11 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
     t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
 
-<<<<<<< HEAD
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_addresses", "customers"
+  add_foreign_key "inventory_stocks", "products"
   add_foreign_key "products", "orders"
+  add_foreign_key "products", "stores"
   add_foreign_key "quote_addresses", "customers"
   add_foreign_key "quote_addresses", "quotes"
   add_foreign_key "quote_items", "customers"
@@ -242,10 +242,5 @@ ActiveRecord::Schema.define(version: 2019_04_05_081654) do
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quotes", "orders"
-=======
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "inventory_stocks", "products"
-  add_foreign_key "products", "stores"
   add_foreign_key "stores", "sellers"
->>>>>>> f116e0b1c5b0fc7090fbdd7359bc96a79a1c72d6
 end
