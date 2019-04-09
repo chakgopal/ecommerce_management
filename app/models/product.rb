@@ -1,4 +1,12 @@
 class Product < ApplicationRecord
-    belongs_to :inventory_stock ,required: false
-    belongs_to :store ,required: false
+  enum color: [:white, :red, :yellow, :green, :blue, :black]
+  enum status: [:active, :inactive]
+  after_initialize :set_default_status, :if => :new_record?
+
+  def set_default_status
+    self.status ||= :active
+  end
+
+  belongs_to :store
+  has_many_attached :images
 end

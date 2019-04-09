@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-   
-  
- 
-
+  resources :products
   devise_for :admins, path: 'admins' 
   devise_for :sellers, path: 'sellers'
   devise_for :customers, path: 'customers', :controllers => { registrations: 'registrations'}
   
+  resources :sellers
   root to: 'products#index'
   
   resources :stores
