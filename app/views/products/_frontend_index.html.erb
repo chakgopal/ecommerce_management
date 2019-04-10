@@ -2,12 +2,14 @@
 
 <div class="container">
   <div class="row">
-  <% @products.each do |product| %>
+  <% unless @products.blank?
+  @products.each do |product| %>
     <div class="col-4">
       <%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %>
       <%= product.name %>
       <%= product.price %>
     </div>
-  <% end %>
+  <% end
+  end %>
   </div>
 </div>
