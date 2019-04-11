@@ -21,29 +21,6 @@ class SellersController < ApplicationController
 
   # PATCH/PUT /sellers/1
   # PATCH/PUT /sellers/1.json
-  def upda mas22@Antara
-Password for 'https://antara085@bitbucket.org': 
-
-    respon mas22@Antara
-Password for 'https://antara085@bitbucket.org': 
-
-      if @ mas22@Antara
-Password for 'https://antara085@bitbucket.org': 
-ler_params)
-        fo mas22@Antara
-Password for 'https://antara085@bitbucket.org': 
-ect_to @seller, notice: 'Seller was successfully updated.' }
-        fo mas22@Antara
-Password for 'https://antara085@bitbucket.org': 
-r :show, status: :ok, location: @seller }
-      else mas22@Antara
-Password for 'https://antara085@bitbucket.org': 
-
-        format.html { render :edit }
-        format.json { render json: @seller.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /sellers/1
   # DELETE /sellers/1.json
@@ -59,7 +36,22 @@ Password for 'https://antara085@bitbucket.org':
     # Use callbacks to share common setup or constraints between actions.
     def set_seller
       @seller = Seller.find(params[:id])
+    eclass Seller < ApplicationRecord
+    enum role: [:owner, :manager, :employee]
+    after_initialize :set_default_role, :if => :new_record?
+  
+    def set_default_role
+      self.role ||= :employee
     end
+  
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :validatable
+    has_many :stores, dependent: :destroy
+    has_many :products
+  end
+  nd
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params

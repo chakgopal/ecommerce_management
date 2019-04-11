@@ -1,31 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  total_paid: MyString
+  total_paid: 9.99
   email_sent: MyString
-  total_invoice: MyString
-  total_cancel: MyString
-  total_refunded: MyString
-  discount_amount: MyString
-  discount_canceled: MyString
-  discount_invoice: MyString
-  discount_refunded: MyString
-  shipping_amount: MyString
-  shipping_canceled: MyString
+  total_invoice: 1
+  total_cancel: 1
+  total_refunded: 1
+  discount_amount: 9.99
+  discount_cancelled: 9.99
+  discount_invoice: 9.99
+  discount_refunded: 9.99
+  shipping_amount: 9.99
   shipping_invoice: MyString
-  shipping_refunded: MyString
+  shipping_refunded: 9.99
 
 two:
-  total_paid: MyString
+  total_paid: 9.99
   email_sent: MyString
-  total_invoice: MyString
-  total_cancel: MyString
-  total_refunded: MyString
-  discount_amount: MyString
-  discount_canceled: MyString
-  discount_invoice: MyString
-  discount_refunded: MyString
-  shipping_amount: MyString
-  shipping_canceled: MyString
+  total_invoice: 1
+  total_cancel: 1
+  total_refunded: 1
+  discount_amount: 9.99
+  discount_cancelled: 9.99
+  discount_invoice: 9.99
+  discount_refunded: 9.99
+  shipping_amount: 9.99
   shipping_invoice: MyString
-  shipping_refunded: MyString
+  shipping_refunded: 9.99
