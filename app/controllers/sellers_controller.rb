@@ -21,6 +21,20 @@ class SellersController < ApplicationController
 
   # PATCH/PUT /sellers/1
   # PATCH/PUT /sellers/1.json
+
+  def update
+    respond_to do |format|
+      if @seller.update(seller_params)
+        format.html { redirect_to @seller, notice: 'Seller was successfully updated.' }
+        format.json { render :show, status: :ok, location: @seller }
+      else
+        format.html { render :edit }
+        format.json { render json: @seller.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+
   
 
   # DELETE /sellers/1

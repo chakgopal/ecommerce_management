@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer address type:</strong>
+  <%= @quote_address.customer_address_type %>
+</p>
+
+<p>
+  <strong>Same as billing:</strong>
+  <%= @quote_address.same_as_billing %>
+</p>
+
+<p>
+  <strong>Free shipping:</strong>
+  <%= @quote_address.free_shipping %>
+</p>
+
+<p>
+  <strong>Shipping method:</strong>
+  <%= @quote_address.shipping_method %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @quote_address.quote %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @quote_address.customer %>
+</p>
+
+<p>
+  <strong>Customer address:</strong>
+  <%= @quote_address.customer_address %>
+</p>
+
+<%= link_to 'Edit', edit_quote_address_path(@quote_address) %> |
+<%= link_to 'Back', quote_addresses_path %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sku:</strong>
+  <%= @quote_item.sku %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @quote_item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @quote_item.description %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @quote_item.quantity %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @quote_item.price %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @quote_item.quote %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @quote_item.product %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @quote_item.store %>
+</p>
+
+<%= link_to 'Edit', edit_quote_item_path(@quote_item) %> |
+<%= link_to 'Back', quote_items_path %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @quote.status %>
+</p>
+
+<p>
+  <strong>Item count:</strong>
+  <%= @quote.item_count %>
+</p>
+
+<p>
+  <strong>Item quantity:</strong>
+  <%= @quote.item_quantity %>
+</p>
+
+<p>
+  <strong>Grand total:</strong>
+  <%= @quote.grand_total %>
+</p>
+
+<p>
+  <strong>Coupon code:</strong>
+  <%= @quote.coupon_code %>
+</p>
+
+<p>
+  <strong>Subtotal:</strong>
+  <%= @quote.subtotal %>
+</p>
+
+<p>
+  <strong>Subtotal with discount:</strong>
+  <%= @quote.subtotal_with_discount %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @quote.store %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @quote.customer %>
+</p>
+
+<%= link_to 'Edit', edit_quote_path(@quote) %> |
+<%= link_to 'Back', quotes_path %>
