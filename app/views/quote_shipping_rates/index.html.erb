@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quote Shipping Rates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method description</th>
+      <th>Price</th>
+      <th>Quote payment</th>
+      <th>Quote address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quote_shipping_rates.each do |quote_shipping_rate| %>
+      <tr>
+        <td><%= quote_shipping_rate.method_description %></td>
+        <td><%= quote_shipping_rate.price %></td>
+        <td><%= quote_shipping_rate.quote_payment %></td>
+        <td><%= quote_shipping_rate.quote_address %></td>
+        <td><%= link_to 'Show', quote_shipping_rate %></td>
+        <td><%= link_to 'Edit', edit_quote_shipping_rate_path(quote_shipping_rate) %></td>
+        <td><%= link_to 'Destroy', quote_shipping_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quote Shipping Rate', new_quote_shipping_rate_path %>

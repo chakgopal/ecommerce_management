@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :quote_shipping_rates
+  resources :quote_payments
+  resources :quote_addresses
+  resources :quote_items
+  resources :quotes
   resources :products
   devise_for :admins, path: 'admins' 
   devise_for :sellers, path: 'sellers'

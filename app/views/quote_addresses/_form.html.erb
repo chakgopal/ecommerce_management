@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@quote_address) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :customer_address_type %>
+    <%= f.input :same_as_billing %>
+    <%= f.input :free_shipping %>
+    <%= f.input :shipping_method %>
+    <%= f.association :quote %>
+    <%= f.association :customer %>
+    <%= f.association :customer_address %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
