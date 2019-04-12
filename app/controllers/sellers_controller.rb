@@ -36,9 +36,8 @@ class SellersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_seller
       @seller = Seller.find(params[:id])
-    eclass Seller < ApplicationRecord
-    enum role: [:owner, :manager, :employee]
-    after_initialize :set_default_role, :if => :new_record?
+    end
+  
   
     def set_default_role
       self.role ||= :employee
@@ -50,8 +49,8 @@ class SellersController < ApplicationController
            :recoverable, :rememberable, :validatable
     has_many :stores, dependent: :destroy
     has_many :products
-  end
-  nd
+ 
+  
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params
