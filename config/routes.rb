@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   resources :sellers
   root to: 'products#index'
-  
+  resources :customers
   resources :stores
   resources :dashboard
   resources :customer_addresses
