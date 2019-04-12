@@ -102,6 +102,12 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+=======
+    t.bigint "store_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_products_on_order_id"
+>>>>>>> 68f1549893884905dc6c18f976f454451ac40893
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -217,7 +223,12 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_addresses", "customers"
   add_foreign_key "inventory_stocks", "products"
+
   add_foreign_key "quote_addresses", "customer_addresses"
+
+  add_foreign_key "products", "orders"
+  add_foreign_key "products", "stores"
+
   add_foreign_key "quote_addresses", "customers"
   add_foreign_key "quote_addresses", "quotes"
   add_foreign_key "quote_items", "products"
@@ -225,8 +236,12 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
   add_foreign_key "quote_items", "stores"
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
+
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
   add_foreign_key "quotes", "stores"
+
+  add_foreign_key "quotes", "orders"
+
   add_foreign_key "stores", "sellers"
 end

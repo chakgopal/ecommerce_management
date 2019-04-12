@@ -17,6 +17,7 @@
   </thead>
 
   <tbody>
+
     <% unless @products.blank?
     @products.each do |product| %>
       <tr>
@@ -35,9 +36,14 @@
       </tr>
     <% end 
     end %>
+
+    
+      
+
   </tbody>
 </table>
 
 <br>
 
 <%= link_to 'New Product', new_product_path %>
+

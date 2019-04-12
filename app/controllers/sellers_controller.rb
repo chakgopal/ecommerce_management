@@ -21,6 +21,7 @@ class SellersController < ApplicationController
 
   # PATCH/PUT /sellers/1
   # PATCH/PUT /sellers/1.json
+
   def update
     respond_to do |format|
       if @seller.update(seller_params)
@@ -33,6 +34,9 @@ class SellersController < ApplicationController
     end
   end
   
+
+  
+
   # DELETE /sellers/1
   # DELETE /sellers/1.json
   def destroy
