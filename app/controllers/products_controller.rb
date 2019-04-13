@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def index
     if seller_signed_in?
       @products = current_seller.products
+       puts @products.to_json
     else
       @products = Product.all.with_attached_images
     end
@@ -60,7 +61,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy
+    @product.update(deleted_flag:1)
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }

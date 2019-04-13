@@ -18,7 +18,7 @@
 
   <tbody>
     
-      <% unless @products.nil?
+      <% unless @products.blank?
       @products.each do |product| %>
            <tr>
              <td><%= product.name %></td>
