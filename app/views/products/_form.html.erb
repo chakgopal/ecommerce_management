@@ -10,7 +10,7 @@
     <%= f.input :short_desc %>
     <%= f.input :long_desc %>
     <%= f.input :price %>
-    <%= f.select :color, Product.colors.keys.to_a, prompt: "Select Color" %>
+    
     <%= f.association :store, label_method: :shop_name, value_method: :id, prompt: "Select your Shop" %>
     <%= f.input :images, as: :file, input_html: {multiple: true} %>
   </div>

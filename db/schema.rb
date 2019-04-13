@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_100708) do
+ActiveRecord::Schema.define(version: 2019_04_11_105123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,72 @@ ActiveRecord::Schema.define(version: 2019_04_11_100708) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
+  create_table "quote_addresses", force: :cascade do |t|
+    t.string "customer_address_type"
+    t.string "same_as_billing"
+    t.string "free_shipping"
+    t.string "shipping_method"
+    t.bigint "quote_id"
+    t.bigint "customer_id"
+    t.bigint "customer_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_address_id"], name: "index_quote_addresses_on_customer_address_id"
+    t.index ["customer_id"], name: "index_quote_addresses_on_customer_id"
+    t.index ["quote_id"], name: "index_quote_addresses_on_quote_id"
+  end
+
+  create_table "quote_items", force: :cascade do |t|
+    t.string "sku"
+    t.string "name"
+    t.string "description"
+    t.integer "quantity"
+    t.decimal "price", precision: 5, scale: 2
+    t.bigint "quote_id"
+    t.bigint "product_id"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_quote_items_on_product_id"
+    t.index ["quote_id"], name: "index_quote_items_on_quote_id"
+    t.index ["store_id"], name: "index_quote_items_on_store_id"
+  end
+
+  create_table "quote_payments", force: :cascade do |t|
+    t.string "method"
+    t.bigint "quote_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_id"], name: "index_quote_payments_on_quote_id"
+  end
+
+  create_table "quote_shipping_rates", force: :cascade do |t|
+    t.string "method_description"
+    t.decimal "price", precision: 5, scale: 2
+    t.bigint "quote_payment_id"
+    t.bigint "quote_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quote_address_id"], name: "index_quote_shipping_rates_on_quote_address_id"
+    t.index ["quote_payment_id"], name: "index_quote_shipping_rates_on_quote_payment_id"
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.string "status"
+    t.integer "item_count"
+    t.integer "item_quantity"
+    t.decimal "grand_total", precision: 5, scale: 2
+    t.string "coupon_code"
+    t.decimal "subtotal", precision: 5, scale: 2
+    t.decimal "subtotal_with_discount", precision: 5, scale: 2
+    t.bigint "store_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_quotes_on_customer_id"
+    t.index ["store_id"], name: "index_quotes_on_store_id"
+  end
+
   create_table "sellers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -187,5 +253,16 @@ ActiveRecord::Schema.define(version: 2019_04_11_100708) do
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "stores"
+  add_foreign_key "quote_addresses", "customer_addresses"
+  add_foreign_key "quote_addresses", "customers"
+  add_foreign_key "quote_addresses", "quotes"
+  add_foreign_key "quote_items", "products"
+  add_foreign_key "quote_items", "quotes"
+  add_foreign_key "quote_items", "stores"
+  add_foreign_key "quote_payments", "quotes"
+  add_foreign_key "quote_shipping_rates", "quote_addresses"
+  add_foreign_key "quote_shipping_rates", "quote_payments"
+  add_foreign_key "quotes", "customers"
+  add_foreign_key "quotes", "stores"
   add_foreign_key "stores", "sellers"
 end

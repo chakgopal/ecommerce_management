@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quote Addresses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer address type</th>
+      <th>Same as billing</th>
+      <th>Free shipping</th>
+      <th>Shipping method</th>
+      <th>Quote</th>
+      <th>Customer</th>
+      <th>Customer address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quote_addresses.each do |quote_address| %>
+      <tr>
+        <td><%= quote_address.customer_address_type %></td>
+        <td><%= quote_address.same_as_billing %></td>
+        <td><%= quote_address.free_shipping %></td>
+        <td><%= quote_address.shipping_method %></td>
+        <td><%= quote_address.quote %></td>
+        <td><%= quote_address.customer %></td>
+        <td><%= quote_address.customer_address %></td>
+        <td><%= link_to 'Show', quote_address %></td>
+        <td><%= link_to 'Edit', edit_quote_address_path(quote_address) %></td>
+        <td><%= link_to 'Destroy', quote_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quote Address', new_quote_address_path %>

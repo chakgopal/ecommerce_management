@@ -1,9 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+<<<<<<< HEAD:test/fixtures/order_items.yml
   order: one
   store: one
 
 two:
   order: two
   store: two
+=======
+  method: MyString
+  quote: one
+
+two:
+  method: MyString
+  quote: two
+>>>>>>> e15adf33d99ee25f5073fd155a2a68654d27ea13:test/fixtures/quote_payments.yml

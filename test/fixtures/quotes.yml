@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  item_count: 1
+  item_quantity: 1
+  grand_total: 9.99
+  coupon_code: MyString
+  subtotal: 9.99
+  subtotal_with_discount: 9.99
+  store: one
+  customer: one
+
+two:
+  status: MyString
+  item_count: 1
+  item_quantity: 1
+  grand_total: 9.99
+  coupon_code: MyString
+  subtotal: 9.99
+  subtotal_with_discount: 9.99
+  store: two
+  customer: two

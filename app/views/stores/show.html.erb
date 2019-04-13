@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+ 
+ <p>
+  <strong>Shop Name:</strong>
+  <%= @store.shop_name %>
+</p>
+
+<p>
+  <strong>Website Url:</strong>
+  <%= @store.website_url %>
+</p>
+
+<p>
+  <strong>Company Email:</strong>
+  <%= @store.company_email %>
+</p>
+
+<p>
+  <strong>Shop Intro:</strong>
+  <%= @store.shop_intro %>
+</p>
+
+<p>
+  <strong>Gst Image:</strong>
+  <%= @store.gst_image %>
+</p>
+
+<p>
+  <strong>Shop Pan Image:</strong>
+  <%= @store.shop_pan_image %>
+</p>
+
+<p>
+  <strong>Trade Liscense Image:</strong>
+  <%= @store.trade_liscense_image %>
+</p>
+<p>
+  <strong>Iso Image:</strong>
+  <%= @store.iso_image %>
+</p>
+<p>
+  <strong>Address1:</strong>
+  <%= @store.address1 %>
+</p>
+<p>
+  <strong>Address2:</strong>
+  <%= @store.address2 %>
+</p>
+<p>
+  <strong>Shop Phone No:</strong>
+  <%= @store.shop_phone_no %>
+</p>
+<p>
+  <strong>Alternative Phone No1:</strong>
+  <%= @store.alternative_phone_no1 %>
+</p>
+<p>
+  <strong>Alternative Phone No2:</strong>
+  <%= @store.alternative_phone_no2 %>
+</p>
+<p>
+  <strong>Certificate Of Incorporation:</strong>
+  <%= @store.certificate_of_incorporation %>
+</p>
+<p>
+  <strong>Address Proof:</strong>
+  <%= @store.address_proof %>
+</p>
+<p>
+  <% if @store.shop_images.attached? %>
+    <% @store.shop_images.each do |store_shop_image| %>
+      <%= image_tag url_for(store_shop_image), size: "64" %>
+    <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_store_path(@store) %> |
+<%= link_to 'Back', stores_path %>
+ 

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  method_description: MyString
+  price: 9.99
+  quote_payment: one
+  quote_address: one
+
+two:
+  method_description: MyString
+  price: 9.99
+  quote_payment: two
+  quote_address: two

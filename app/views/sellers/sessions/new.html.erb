@@ -305,7 +305,11 @@
       <div class="field">
         <%= f.label :designation %><br />
         <%= f.select :role, 
-                    options_for_select([["Owner", 1], ["Manager", 2], ["Employee", 3]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', class: "form-control" %> 
+<<<<<<< HEAD
+                    options_for_select([["Owner", "owner"], ["Manager", "manager"], ["Employee", "employee"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', class: "form-control" %> 
+=======
+                    options_for_select([["Owner", "owner"], ["Manager", "manager"], ["Employee", "manager"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', class: "form-control" %> 
+>>>>>>> 68f1549893884905dc6c18f976f454451ac40893
       </div> 
 
       <div class="field">

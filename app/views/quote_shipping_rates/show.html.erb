@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Method description:</strong>
+  <%= @quote_shipping_rate.method_description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @quote_shipping_rate.price %>
+</p>
+
+<p>
+  <strong>Quote payment:</strong>
+  <%= @quote_shipping_rate.quote_payment %>
+</p>
+
+<p>
+  <strong>Quote address:</strong>
+  <%= @quote_shipping_rate.quote_address %>
+</p>
+
+<%= link_to 'Edit', edit_quote_shipping_rate_path(@quote_shipping_rate) %> |
+<%= link_to 'Back', quote_shipping_rates_path %>
