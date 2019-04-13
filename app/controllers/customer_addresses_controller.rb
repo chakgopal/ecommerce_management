@@ -29,7 +29,7 @@ class CustomerAddressesController < ApplicationController
 
     respond_to do |format|
       if @customer_address.save
-        format.html { redirect_to "/dashboard/new", notice: 'Customer address was successfully created.' }
+        format.html { redirect_to "/products/new", notice: 'Customer address was successfully created.' }
         format.json { render :show, status: :created, location: @customer_address }
       else
         format.html { render :new }

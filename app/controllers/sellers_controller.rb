@@ -21,7 +21,6 @@ class SellersController < ApplicationController
 
   # PATCH/PUT /sellers/1
   # PATCH/PUT /sellers/1.json
-  
 
   # DELETE /sellers/1
   # DELETE /sellers/1.json
@@ -38,6 +37,20 @@ class SellersController < ApplicationController
     def set_seller
       @seller = Seller.find(params[:id])
     end
+  
+  
+    def set_default_role
+      self.role ||= :employee
+    end
+  
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :validatable
+    has_many :stores, dependent: :destroy
+    has_many :products
+ 
+  
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params

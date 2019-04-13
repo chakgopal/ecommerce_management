@@ -15,14 +15,20 @@
   .form-container {
     position: absolute;
     top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
+    
+    height: 100
+
+    transition:
+
   }
 
-  .sign-in-container {
+  .sign-in-cont
+
     left: 0;
     width: 50%;
+
     z-index: 2;
+
   }
 
   .sign-up-container {
@@ -33,12 +39,14 @@
     overflow: auto;
   }
 
-  .container.right-panel-active .sign-in-container {
-    transform: translateX(200%);
+  .container.right-panel
+
+    transform: translateX
+
   }
 
-  .container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
+  .container.right-panel
+    transform: translateX
     opacity: 1;
     z-index: 5;
     animation: show 0.6s;
@@ -54,12 +62,12 @@
     50%,
     100% {
         opacity: 1;
-        z-index: 5;
+        z-in<% end %>dex: 5;
     }
   }
 
-  .overlay-container {
-  position: absolute;
+  .overlay-co
+  position: a
   top: 0;
   left: 50%;
   width: 50%;
@@ -246,9 +254,6 @@
     text-transform: capitalize;
 }
 
-.modal-header{
-    background-color: #50A6DD;
-}
 
 .modal-title{
     color: #fff;
@@ -305,7 +310,11 @@
       <div class="field">
         <%= f.label :designation %><br />
         <%= f.select :role, 
+
+                     
+
                     options_for_select([["Owner", "owner"], ["Manager", "manager"], ["Employee", "manager"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', class: "form-control" %> 
+
       </div> 
 
       <div class="field">
@@ -342,7 +351,7 @@
         <a href = "/page_to_fetch_remote_content/" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >
           Forgot Password?
         </a>
-      </div>
+     
       
       <% if devise_mapping.rememberable? %>
         <div class="field_1">
@@ -351,11 +360,9 @@
         </div>
       <% end %>
 
-      <div class="actions_3">
-        <%= f.submit "Log in", class: "action" %>
-      </div>
-    <% end %>
-  </div>
+      
+      
+    
 
   <div class="overlay-container">
     <!-- The overlay code goes here -->
@@ -370,11 +377,7 @@
           <div class="overlay-panel overlay-right">
             <h2>Hello, Friend!</h2>
             <p>Enter your personal details and start journey with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
-          </div>
-    </div>
-  </div>
-</div>
+ class="ghost" id="signUp">Sign Up</button>
 
 
 

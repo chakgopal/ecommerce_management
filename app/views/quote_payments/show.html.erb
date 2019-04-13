@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Method:</strong>
+  <%= @quote_payment.method %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @quote_payment.quote %>
+</p>
+
+<%= link_to 'Edit', edit_quote_payment_path(@quote_payment) %> |
+<%= link_to 'Back', quote_payments_path %>

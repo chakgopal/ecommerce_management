@@ -17,30 +17,32 @@
   </thead>
 
   <tbody>
+
     
       <% unless @products.blank?
+
+    <% unless @products.blank?
+
       @products.each do |product| %>
-           <tr>
-             <td><%= product.name %></td>
-             <td><%= product.sku %></td>
-             <td><%= product.status %></td>
-             <td><%= product.short_desc %></td>
-             <td><%= product.long_desc %></td>
-             <td><%= product.price %></td>
-             <td><%= product.color %></td>
-             <td><%= product.store.shop_name %></td>
-             
-             <td><%= link_to 'Show', product %></td>
-             <td><%= link_to 'Edit', edit_product_path(product) %></td>
-             <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-           </tr>
-       <% end 
-        end %> 
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.sku %></td>
+          <td><%= product.status %></td>
+          <td><%= product.short_desc %></td>
+          <td><%= product.long_desc %></td>
+          <td><%= product.price %></td>
+          <td><%= product.color %></td>
+          <td><%= product.store.shop_name %></td>
+          <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
+          <td><%= link_to 'Show', product %></td>
+          <td><%= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end end %>
+    
   </tbody>
 </table>
 
-<br>
+<br/>
 
 <%= link_to 'New Product', new_product_path %>
-
-</br>

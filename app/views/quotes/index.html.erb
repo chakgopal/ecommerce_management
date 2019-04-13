@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quotes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Item count</th>
+      <th>Item quantity</th>
+      <th>Grand total</th>
+      <th>Coupon code</th>
+      <th>Subtotal</th>
+      <th>Subtotal with discount</th>
+      <th>Store</th>
+      <th>Customer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quotes.each do |quote| %>
+      <tr>
+        <td><%= quote.status %></td>
+        <td><%= quote.item_count %></td>
+        <td><%= quote.item_quantity %></td>
+        <td><%= quote.grand_total %></td>
+        <td><%= quote.coupon_code %></td>
+        <td><%= quote.subtotal %></td>
+        <td><%= quote.subtotal_with_discount %></td>
+        <td><%= quote.store %></td>
+        <td><%= quote.customer %></td>
+        <td><%= link_to 'Show', quote %></td>
+        <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+        <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quote', new_quote_path %>

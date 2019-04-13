@@ -25,3 +25,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326095829_create_quotes.rb
+db/migrate/20190326100531_create_quote_items.rb
