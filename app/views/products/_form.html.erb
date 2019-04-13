@@ -7,8 +7,8 @@
     <%= f.input :name %>
     <%= f.input :sku %>
     <%#= f.select :status, Product.statuses.keys.to_a, prompt: "Select status" %>
-    <%= f.input :short_description %>
-    <%= f.input :description %>
+    <%= f.input :short_desc %>
+    <%= f.input :long_desc %>
     <%= f.input :price %>
     
     <%= f.association :store, label_method: :shop_name, value_method: :id, prompt: "Select your Shop" %>

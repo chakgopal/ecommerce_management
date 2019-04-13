@@ -21,24 +21,6 @@
 </p>
 
 <p>
-  <strong>Gst Image:</strong>
-  <%= @store.gst_image %>
-</p>
-
-<p>
-  <strong>Shop Pan Image:</strong>
-  <%= @store.shop_pan_image %>
-</p>
-
-<p>
-  <strong>Trade Liscense Image:</strong>
-  <%= @store.trade_liscense_image %>
-</p>
-<p>
-  <strong>Iso Image:</strong>
-  <%= @store.iso_image %>
-</p>
-<p>
   <strong>Address1:</strong>
   <%= @store.address1 %>
 </p>
@@ -58,14 +40,7 @@
   <strong>Alternative Phone No2:</strong>
   <%= @store.alternative_phone_no2 %>
 </p>
-<p>
-  <strong>Certificate Of Incorporation:</strong>
-  <%= @store.certificate_of_incorporation %>
-</p>
-<p>
-  <strong>Address Proof:</strong>
-  <%= @store.address_proof %>
-</p>
+
 <p>
   <% if @store.shop_images.attached? %>
     <% @store.shop_images.each do |store_shop_image| %>

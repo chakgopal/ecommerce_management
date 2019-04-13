@@ -13,10 +13,10 @@ class StoresController < ApplicationController
 end
 
 
- def new 
-  @store = Store.new
+ #def new 
+  #@store = Store.new
   # render layout: false
- end
+ #end
  def new
   if current_seller 
    @store = Store.new
@@ -39,14 +39,50 @@ end
  end
 
   def index
-     @stores = Store.where(seller_id: current_seller.id)
+     #@stores = Store.where(seller_id: current_seller.id)
+     @stores = Store.all
+  end
+
+  def edit
+     @store = Store.find(params[:id])
+     puts @store.shop_name
+  end 
+
+def update
+  @store = Store.find(params[:id])
+   puts  @store.shop_name
+    respond_to do |format|
+      if @store.update(store_params)
+        format.html { redirect_to @store, notice: 'Store was successfully updated.' }
+        format.json { render :show, status: :ok, location: @store }
+      else
+        format.html { render :edit }
+        format.json { render json: @store.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
 
+def show
+   @store = Store.find(params[:id])
+    puts  @store.shop_name
+end
 
+def destroy
+         @store.destroy
+         respond_to do |format|
+           format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
+           format.json { head :no_content }
+         end
+     end
+ private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_store
+      @store = Store.find(params[:id])
+    end
 
 private
  def store_params
-    params.require(:store).permit(:shop_name,:company_email,:shop_intro,:address1,:shop_phone_no,:address_proff,:gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_of_incorporation,:trademark_registration,:shop_image, :seller_id)
+    params.require(:store).permit(:shop_name,:company_email,:shop_intro,:address1,:shop_phone_no,:address_proff,:gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_of_incorporation,:trademark_registration, :seller_id,shop_images:[])
  end
 end

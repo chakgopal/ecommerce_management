@@ -11,7 +11,7 @@ class Seller < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :stores, dependent: :destroy
-  has_many :products
+  has_many :products, dependent: :destroy
 end
 
   

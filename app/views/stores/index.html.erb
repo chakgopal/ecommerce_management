@@ -14,7 +14,7 @@
       <th>Shop Pan Image</th>
       <th>Trade Liscense Image</th>
       <th>Iso Image</th>
-      <th>Address1/th>
+      <th>Address1</th>
       <th>Address2</th>
       <th>Landmark</th>
       <th>Shop Phone No</th>
@@ -27,10 +27,12 @@
   </thead>
 
   <tbody>
-    <% @stores.each do |store| %>
+     <% unless @stores.blank?
+     @stores.each do |store| %>
      <tr>
         <td><%= store.shop_name %></td>
-        <td><%= shop_image_tag url_for(store.shop_images.first), size: "64" if store.shop_images.attached? %></td> 
+
+        <td><%= image_tag url_for(store.shop_images.first), size: "64" if store.shop_images.attached?%></td> 
         <td><%= store.website_url %></td>
         <td><%= store.company_email %></td>
         <td><%= store.shop_intro %></td>
@@ -44,7 +46,7 @@
         <td><%= link_to 'Edit', edit_store_path(store) %></td>
         <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <% end end%>
   </tbody>
 </table>
 
