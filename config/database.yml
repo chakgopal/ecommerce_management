@@ -21,8 +21,10 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-  username: vinita
-  password: Magic2512@
+
+  username: saptaswa
+  password: qwerty
+
 
 
 development:

@@ -87,8 +87,41 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_id"
-    t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
+  end
+
+  create_table "order_addresses", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "customer_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_address_id"], name: "index_order_addresses_on_customer_address_id"
+    t.index ["order_id"], name: "index_order_addresses_on_order_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["store_id"], name: "index_order_items_on_store_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "total_paid", precision: 5, scale: 2
+    t.string "email_sent"
+    t.integer "total_invoice"
+    t.integer "total_cancel"
+    t.integer "total_refunded"
+    t.decimal "discount_amount", precision: 5, scale: 2
+    t.decimal "discount_cancelled", precision: 5, scale: 2
+    t.decimal "discount_invoice", precision: 5, scale: 2
+    t.decimal "discount_refunded", precision: 5, scale: 2
+    t.decimal "shipping_amount", precision: 5, scale: 2
+    t.string "shipping_invoice"
+    t.decimal "shipping_refunded", precision: 5, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -102,12 +135,6 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-=======
-    t.bigint "store_id"
-    t.bigint "order_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
->>>>>>> 68f1549893884905dc6c18f976f454451ac40893
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -222,13 +249,11 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_addresses", "customers"
-  add_foreign_key "inventory_stocks", "products"
-
+  add_foreign_key "order_addresses", "customer_addresses"
+  add_foreign_key "order_addresses", "orders"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "stores"
   add_foreign_key "quote_addresses", "customer_addresses"
-
-  add_foreign_key "products", "orders"
-  add_foreign_key "products", "stores"
-
   add_foreign_key "quote_addresses", "customers"
   add_foreign_key "quote_addresses", "quotes"
   add_foreign_key "quote_items", "products"
@@ -236,12 +261,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_105123) do
   add_foreign_key "quote_items", "stores"
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
-
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
   add_foreign_key "quotes", "stores"
-
-  add_foreign_key "quotes", "orders"
-
   add_foreign_key "stores", "sellers"
 end

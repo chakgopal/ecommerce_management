@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Total paid:</strong>
+  <%= @order.total_paid %>
+</p>
+
+<p>
+  <strong>Email sent:</strong>
+  <%= @order.email_sent %>
+</p>
+
+<p>
+  <strong>Total invoice:</strong>
+  <%= @order.total_invoice %>
+</p>
+
+<p>
+  <strong>Total cancel:</strong>
+  <%= @order.total_cancel %>
+</p>
+
+<p>
+  <strong>Total refunded:</strong>
+  <%= @order.total_refunded %>
+</p>
+
+<p>
+  <strong>Discount amount:</strong>
+  <%= @order.discount_amount %>
+</p>
+
+<p>
+  <strong>Discount cancelled:</strong>
+  <%= @order.discount_cancelled %>
+</p>
+
+<p>
+  <strong>Discount invoice:</strong>
+  <%= @order.discount_invoice %>
+</p>
+
+<p>
+  <strong>Discount refunded:</strong>
+  <%= @order.discount_refunded %>
+</p>
+
+<p>
+  <strong>Shipping amount:</strong>
+  <%= @order.shipping_amount %>
+</p>
+
+<p>
+  <strong>Shipping invoice:</strong>
+  <%= @order.shipping_invoice %>
+</p>
+
+<p>
+  <strong>Shipping refunded:</strong>
+  <%= @order.shipping_refunded %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

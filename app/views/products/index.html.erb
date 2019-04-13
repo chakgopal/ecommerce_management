@@ -1,8 +1,11 @@
 <% if admin_signed_in? || seller_signed_in? %>
-  <%= render "backend_index" %>
+    <%= render "backend_index" %>
 <% else %>
-  <%= render "frontend_index" %>
-
-
+    <%= render "frontend_index" %>
 <% end %>
+
+
+
+
+
 
