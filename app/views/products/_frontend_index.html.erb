@@ -3,6 +3,7 @@
 <div class="container">
   <div class="row">
 
+
   <%unless @products.blank?
   @products.each do |product| %>
     <div class="col-4">
@@ -11,7 +12,6 @@
       <%= product.price %>
     </div>
   <% end 
-  end %>
-
+   end %>
   </div>
 </div>

@@ -1,5 +1,7 @@
 class StoresController < ApplicationController
   
+  before_action :authenticate_seller!
+  before_action :set_store, only: [:show, :edit, :update, :destroy]
 
  
 
@@ -20,6 +22,7 @@ end
  def new
   if current_seller 
    @store = Store.new
+
   else
    redirect_to new_seller_session_path
   end
@@ -39,8 +42,11 @@ end
  end
 
   def index
+    if seller_signed_in?
+    
+     @stores = Store.where(status:'inactive').with_attached_shop_images
      #@stores = Store.where(seller_id: current_seller.id)
-     @stores = Store.all
+     end
   end
 
   def edit
@@ -69,7 +75,7 @@ def show
 end
 
 def destroy
-         @store.destroy
+        @store.update(:status => 'inactive')
          respond_to do |format|
            format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
            format.json { head :no_content }
@@ -79,6 +85,7 @@ def destroy
     # Use callbacks to share common setup or constraints between actions.
     def set_store
       @store = Store.find(params[:id])
+     
     end
 
 private

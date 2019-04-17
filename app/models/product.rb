@@ -7,6 +7,8 @@ class Product < ApplicationRecord
     self.status ||= :active
   end
 
-  belongs_to :store
+  belongs_to :store,required: false
   has_many_attached :images
+  has_many :orders
+  belongs_to :seller,required: false
 end

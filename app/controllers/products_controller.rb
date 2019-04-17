@@ -5,10 +5,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+
     if seller_signed_in?
-      @products = current_seller.products
+      @products = current_seller.products.where(status:'active')
+       puts @products.to_json
     else
-      @products = Product.all.with_attached_images
+      @products = Product.where(status:'active').with_attached_images
     end
   end
 
@@ -17,7 +19,6 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end
-
   # GET /products/new
   def new
     @product = Product.new
@@ -30,10 +31,11 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
-
+    logger.info current_seller.inspect
+    
+    @product = Product.new(product_params.merge(seller_id: current_seller.id))
     respond_to do |format|
-      if @product.save
+     if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -60,7 +62,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy
+    
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
