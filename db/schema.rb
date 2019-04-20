@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_112602) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
   end
 
   create_table "order_addresses", force: :cascade do |t|
@@ -251,6 +253,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_112602) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_addresses", "customers"
+  add_foreign_key "inventory_stocks", "products"
   add_foreign_key "order_addresses", "customer_addresses"
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_items", "orders"
@@ -263,7 +266,6 @@ ActiveRecord::Schema.define(version: 2019_04_11_112602) do
   add_foreign_key "quote_items", "stores"
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
-  add_foreign_key "quotes", "orders"
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
   add_foreign_key "quotes", "stores"
