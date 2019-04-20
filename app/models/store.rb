@@ -1,8 +1,15 @@
 class Store < ApplicationRecord
+  enum status: [:active, :inactive]
+  after_initialize :set_default_status, :if => :new_record?
+
+  def set_default_status
+    self.status ||= :active
+  end
+
   belongs_to :seller ,required: false
   has_many :products, dependent: :destroy
 
-  has_one_attached :shop_image
+  has_many_attached :images
   has_one_attached :gst_image
   has_one_attached :shop_pan_image
   has_one_attached :trade_license_image
@@ -10,4 +17,5 @@ class Store < ApplicationRecord
   has_one_attached :certificate_of_incorporation
   has_one_attached :trademark_registration
   has_one_attached :address_proff
+
 end

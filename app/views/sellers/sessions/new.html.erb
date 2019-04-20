@@ -15,20 +15,14 @@
   .form-container {
     position: absolute;
     top: 0;
-    
-    height: 100
-
-    transition:
-
+    height: 100%;
+    transition: all 0.6s ease-in-out;
   }
 
-  .sign-in-cont
-
+  .sign-in-container {
     left: 0;
     width: 50%;
-
     z-index: 2;
-
   }
 
   .sign-up-container {
@@ -39,14 +33,12 @@
     overflow: auto;
   }
 
-  .container.right-panel
-
-    transform: translateX
-
+  .container.right-panel-active .sign-in-container {
+    transform: translateX(200%);
   }
 
-  .container.right-panel
-    transform: translateX
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
     opacity: 1;
     z-index: 5;
     animation: show 0.6s;
@@ -62,12 +54,12 @@
     50%,
     100% {
         opacity: 1;
-        z-in<% end %>dex: 5;
+        z-index: 5;
     }
   }
 
-  .overlay-co
-  position: a
+  .overlay-container {
+  position: absolute;
   top: 0;
   left: 50%;
   width: 50%;
@@ -254,6 +246,9 @@
     text-transform: capitalize;
 }
 
+.modal-header{
+    background-color: #50A6DD;
+}
 
 .modal-title{
     color: #fff;
@@ -311,10 +306,9 @@
         <%= f.label :designation %><br />
         <%= f.select :role, 
 
-                     
+                    options_for_select([["Owner", "owner"], ["Manager", "manager"], ["Employee", "employee"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', class: "form-control" %> 
 
-                    options_for_select([["Owner", "owner"], ["Manager", "manager"], ["Employee", "manager"]]),{ :include_blank => '-- Select One designation --' }, :required => true,:class =>'genForm_dropBox', class: "form-control" %> 
-
+                    
       </div> 
 
       <div class="field">
@@ -351,7 +345,7 @@
         <a href = "/page_to_fetch_remote_content/" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" >
           Forgot Password?
         </a>
-     
+      </div>
       
       <% if devise_mapping.rememberable? %>
         <div class="field_1">
@@ -360,9 +354,11 @@
         </div>
       <% end %>
 
-      
-      
-    
+      <div class="actions_3">
+        <%= f.submit "Log in", class: "action" %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="overlay-container">
     <!-- The overlay code goes here -->
@@ -377,7 +373,11 @@
           <div class="overlay-panel overlay-right">
             <h2>Hello, Friend!</h2>
             <p>Enter your personal details and start journey with us</p>
- class="ghost" id="signUp">Sign Up</button>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -399,28 +399,28 @@
         
           <div class="actions_2">
             <%= f.submit "Send", class: "send" %>
+            </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= link_to "Log in", new_session_path(resource_name) %><br />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= link_to "Log in", new_session_path(resource_name) %><br />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-<script>
-  const signUpButton = document.getElementById('signUp');
-  const signInButton = document.getElementById('signIn');
-  const container = document.getElementById('container');
-
-  signUpButton.addEventListener('click', () => {
-      container.classList.add('right-panel-active');
-  });
-
-  signInButton.addEventListener('click', () => {
-      container.classList.remove('right-panel-active');
-  });
-</script>
+    
+    
+    <script>
+      const signUpButton = document.getElementById('signUp');
+      const signInButton = document.getElementById('signIn');
+      const container = document.getElementById('container');
+    
+      signUpButton.addEventListener('click', () => {
+          container.classList.add('right-panel-active');
+      });
+    
+      signInButton.addEventListener('click', () => {
+          container.classList.remove('right-panel-active');
+      });
+    </script>

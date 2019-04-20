@@ -67,8 +67,8 @@
   <%= @store.address_proof %>
 </p>
 <p>
-  <% if @store.shop_images.attached? %>
-    <% @store.shop_images.each do |store_shop_image| %>
+  <% if @store.images.attached? %>
+    <% @store.images.each do |store_shop_image| %>
       <%= image_tag url_for(store_shop_image), size: "64" %>
     <% end %>
   <% end %>

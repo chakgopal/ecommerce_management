@@ -45,11 +45,6 @@ class SellersController < ApplicationController
   
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-    devise :database_authenticatable, :registerable,
-           :recoverable, :rememberable, :validatable
-    has_many :stores, dependent: :destroy
-    has_many :products
- 
   
 
     # Never trust parameters from the scary internet, only allow the white list through.

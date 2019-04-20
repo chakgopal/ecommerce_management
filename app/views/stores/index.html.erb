@@ -30,7 +30,7 @@
     <% @stores.each do |store| %>
      <tr>
         <td><%= store.shop_name %></td>
-        <td><%= shop_image_tag url_for(store.shop_images.first), size: "64" if store.shop_images.attached? %></td> 
+        <td><%= image_tag url_for(store.images.first), size: "64" if store.images.attached? %></td> 
         <td><%= store.website_url %></td>
         <td><%= store.company_email %></td>
         <td><%= store.shop_intro %></td>
