@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_112602) do
   add_foreign_key "quote_items", "stores"
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
+  add_foreign_key "quotes", "orders"
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
   add_foreign_key "quotes", "stores"
