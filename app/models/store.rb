@@ -3,9 +3,8 @@ class Store < ApplicationRecord
   after_initialize :set_default_status, :if => :new_record?
 
   def set_default_status
-    self.status ||= :inactive
+    self.status ||= :active
   end
-
 
   belongs_to :seller ,required: false
   has_many :products, dependent: :destroy

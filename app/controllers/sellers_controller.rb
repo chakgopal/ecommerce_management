@@ -49,17 +49,8 @@ class SellersController < ApplicationController
   
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-    
- 
-  
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params
       params.fetch(:seller, {}).permit(:email, :name, :role)
     end
-    
-
-
-
-
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_064113) do
+ActiveRecord::Schema.define(version: 2019_04_20_105350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,9 +140,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_064113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "deleted_flag"
-    t.bigint "order_id"
     t.bigint "seller_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
@@ -260,9 +258,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_064113) do
     t.datetime "updated_at", null: false
     t.bigint "seller_id"
     t.boolean "deleted_flag"
-    t.bigint "quote_item_id"
     t.integer "status"
-    t.index ["quote_item_id"], name: "index_stores_on_quote_item_id"
     t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
 
@@ -273,8 +269,6 @@ ActiveRecord::Schema.define(version: 2019_04_17_064113) do
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "stores"
-  add_foreign_key "orders", "quote_items"
-  add_foreign_key "products", "orders"
   add_foreign_key "products", "sellers"
   add_foreign_key "quote_addresses", "customer_addresses"
   add_foreign_key "quote_addresses", "customers"

@@ -8,13 +8,15 @@ simple_form_for(@store) do |f| %>
 
   <div class="form-inputs">
     <%= f.input :shop_name %>
+    <%= f.select :status, Store.statuses.keys.to_a, prompt: "Select Status" %>
     <%= f.input :images, as: :file, input_html: {multiple: true}%>
     <%= f.input :website_url %>
     <%= f.input :company_email %>
-    <%= f.input :shop_intro %>
+    <%= f.text_area :shop_intro %>
+    
     <%= f.input :gst_image, as: :file %>
     <%= f.input :shop_pan_image, as: :file %>
-    <%= f.input :trade_license_image, as: :file %>
+    <%= f.input :trade_liscense_image, as: :file %>
     <%= f.input :iso_image, as: :file %>
     <%= f.input :address1 %>
     <%= f.input :address2 %>
