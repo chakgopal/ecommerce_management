@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo2-1.png", size: "62x50", class: "d-inline-block align-top", alt: "") %></a>
+    
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <!-- Dashboard; Sales: Orders, Invoices, Shipments; Catalog: Products, Categories; Customers; Stores; Settings; --> 
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <%= link_to('Dashboard', "#", class: "nav-link") %>
+            </li>
+            <li class="nav-item">
+                <%= link_to('Orders', "#", class: "nav-link") %>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCatalog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Catalog
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCatalog">
+                    <a class="dropdown-item" href="#">Products</a>
+                    <a class="dropdown-item" href="#">Categories</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <%= link_to('Customers', "customers_path", class: "nav-link") %>
+            </li>
+            <li class="nav-item">
+                <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li class="nav-item">
+                <%= link_to('Sellers', sellers_path, class: "nav-link") %>
+            </li>
+        </ul>
+        <!-- Profile/Account, Orders, Wishlist, Notifications, Logout --> 
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_admin.name.split.first %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <%= link_to('My Account', edit_admin_registration_path, class: "dropdown-item") %>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Notifications</a>
+                <div class="dropdown-divider"></div>
+                <%= link_to('Logout', destroy_admin_session_path, method: :delete, class: "dropdown-item") %>
+            </div>
+        </div>
+    </div>
+</nav>
