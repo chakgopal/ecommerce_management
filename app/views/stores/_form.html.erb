@@ -8,24 +8,25 @@ simple_form_for(@store) do |f| %>
 
   <div class="form-inputs">
     <%= f.input :shop_name %>
-    <%= f.input :shop_image, as: :file, input_html: {multiple: true}%>
+    <%= f.input :images, as: :file, input_html: {multiple: true}%>
     <%= f.input :website_url %>
     <%= f.input :company_email %>
     <%= f.input :shop_intro %>
-    <%= f.input :gst_image, as: :file, input_html: {multiple: true} %>
-    <%= f.input :shop_pan_image, as: :file, input_html: {multiple: true} %>
-    <%= f.input :trade_liscense_image, as: :file, input_html: {multiple: true}%>
-    <%= f.input :iso_image, as: :file, input_html: {multiple: true} %>
+    <%= f.input :gst_image, as: :file %>
+    <%= f.input :shop_pan_image, as: :file %>
+    <%= f.input :trade_license_image, as: :file %>
+    <%= f.input :iso_image, as: :file %>
     <%= f.input :address1 %>
     <%= f.input :address2 %>
     <%= f.input :landmark %>
     <%= f.input :shop_phone_no %>
     <%= f.input :alternative_phone_no1 %>
     <%= f.input :alternative_phone_no2 %>
-    <%= f.input :certificate_of_incorporation, as: :file, input_html: {multiple: true} %>
-    <%= f.input :address_proof ,as: :file, input_html: {multiple: true} %>
+    <%= f.input :certificate_image, as: :file  %>
+    <%= f.input :address_proff_image ,as: :file %>
+    <%= f.input :trade_mark_image ,as: :file %>
     <%= f.association :seller %>
-    <%= f.association :products %>
+   
   </div>
 
   <div class="form-actions">

@@ -7,10 +7,10 @@ class ProductsController < ApplicationController
   def index
 
     if seller_signed_in?
-      @products = current_seller.products.where(status:'active')
-       puts @products.to_json
+      @products = current_seller.products
+       
     else
-      @products = Product.where(status:'active').with_attached_images
+      @products = Product.with_attached_images
     end
   end
 
@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    
+    @product.update(status:'inactive')
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
@@ -79,6 +79,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :sku, :status, :short_desc, :long_desc, :price, :color, :store_id, images: [])
     end
-	def index
-	end
+	
 end

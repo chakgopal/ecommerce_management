@@ -28,6 +28,12 @@
   <strong>Address2:</strong>
   <%= @store.address2 %>
 </p>
+ 
+  <p>
+  <strong>LandMark:</strong>
+  <%= @store.landmark %>
+</p>
+
 <p>
   <strong>Shop Phone No:</strong>
   <%= @store.shop_phone_no %>
@@ -40,15 +46,67 @@
   <strong>Alternative Phone No2:</strong>
   <%= @store.alternative_phone_no2 %>
 </p>
+<p>
+  <strong>Gst Image:</strong>
+  <% if @store.gst_image.attached? %>
+     <%= image_tag url_for(@store.gst_image), size: "64"%>
+  <% end %>   
+</p>
+ <p>
+  <strong>Shop Pan Image:</strong>
+  <% if @store.shop_pan_image.attached? %>
+     <%= image_tag url_for(@store.shop_pan_image), size: "64"%>
+  <% end %>   
+</p>
+ 
+ <p>
+  <strong>Trade Liscense Image:</strong>
+  <% if @store.trade_license_image.attached? %>
+     <%= image_tag url_for(@store.trade_license_image), size: "64"%>
+  <% end %>   
+</p>
+ 
+ <p>
+  <strong>Iso Image:</strong>
+  <% if @store.iso_image.attached? %>
+     <%= image_tag url_for(@store.iso_image), size: "64"%>
+  <% end %>   
+</p>
+ <p>
+  <strong>Certificate Of Incorporation:</strong>
+  <% if @store.certificate_image.attached? %>
+     <%= image_tag url_for(@store.certificate_image), size: "64"%>
+  <% end %>   
+</p>
+<p>
+  <strong>Trade Mark Registration:</strong>
+  <% if @store.trade_mark_image.attached? %>
+     <%= image_tag url_for(@store.trade_mark_image), size: "64"%>
+  <% end %>   
+</p>
+<p>
+  <strong>Address Proof:</strong>
+  <% if @store.address_proff_image.attached? %>
+     <%= image_tag url_for(@store.address_proff_image), size: "64"%>
+  <% end %>   
+</p>
+
+
+
 
 <p>
-  <% if @store.shop_images.attached? %>
-    <% @store.shop_images.each do |store_shop_image| %>
-      <%= image_tag url_for(store_shop_image), size: "64" %>
+  <% if @store.images.attached? %>
+    <% @store.images.each do |image| %>
+      <%= image_tag url_for(image), size: "64" %>
     <% end %>
   <% end %>
 </p>
-
-<%= link_to 'Edit', edit_store_path(@store) %> |
-<%= link_to 'Back', stores_path %>
  
+
+
+<%= link_to 'Edit', edit_store_path(@store) %> | 
+<% if admin_signed_in? %>
+    <%= link_to "SellersBack", controller: "sellers", action: "show",id:@store.seller_id %>
+<% else %> 
+     <%= link_to 'Back', stores_path %>
+<% end %>

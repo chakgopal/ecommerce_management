@@ -7,21 +7,16 @@
     <tr>
       <th>Shop Name</th>
       <th>Shop Image</th>
-      <th>Website Url</th>
+     
       <th>Company Email</th>
       <th>Shop Intro</th>
-      <th>Gst Image</th>
-      <th>Shop Pan Image</th>
-      <th>Trade Liscense Image</th>
-      <th>Iso Image</th>
       <th>Address1</th>
       <th>Address2</th>
       <th>Landmark</th>
       <th>Shop Phone No</th>
       <th>Alternative Phone no1</th>
       <th>Alternative Phone no2</th>
-      <th>Certificate Of Incorporation</th>
-      <th>Address Proof</th>
+      
       <th colspan="8"></th>
     </tr>
   </thead>
@@ -32,7 +27,8 @@
      <tr>
         <td><%= store.shop_name %></td>
 
-        <td><%= image_tag url_for(store.shop_images.first), size: "64" if store.shop_images.attached?%></td> 
+        <td><%= image_tag url_for(store.images.first), size: "64" if store.images.attached?%></td> 
+        
         <td><%= store.website_url %></td>
         <td><%= store.company_email %></td>
         <td><%= store.shop_intro %></td>

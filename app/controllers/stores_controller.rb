@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
   
-  before_action :authenticate_seller!
+  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_seller!, only:[:new,:destroy]
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
  
@@ -44,7 +45,7 @@ end
   def index
     if seller_signed_in?
     
-     @stores = Store.where(status:'inactive').with_attached_shop_images
+     @stores = Store.with_attached_images
      #@stores = Store.where(seller_id: current_seller.id)
      end
   end
@@ -90,6 +91,6 @@ def destroy
 
 private
  def store_params
-    params.require(:store).permit(:shop_name,:company_email,:shop_intro,:address1,:shop_phone_no,:address_proff,:gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_of_incorporation,:trademark_registration, :seller_id,shop_images:[])
+    params.require(:store).permit(:shop_name,:company_email,:shop_intro,:address1, :address2, :alternative_phone_no1,:shop_phone_no,:gst_image,:shop_pan_image,:trade_license_image,:iso_image,:certificate_image,:address_proff_image,:trade_mark_image, :landmark, :seller_id,images:[])
  end
 end
