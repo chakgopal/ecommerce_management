@@ -1,0 +1,24 @@
+
+<%= simple_form_for(@order) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :total_paid %>
+    <%= f.input :email_sent %>
+    <%= f.input :total_invoice %>
+    <%= f.input :total_cancel %>
+    <%= f.input :total_refunded %>
+    <%= f.input :discount_amount %>
+    <%= f.input :discount_cancelled %>
+    <%= f.input :discount_invoice %>
+    <%= f.input :discount_refunded %>
+    <%= f.input :shipping_amount %>
+    <%= f.input :shipping_invoice %>
+    <%= f.input :shipping_refunded %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

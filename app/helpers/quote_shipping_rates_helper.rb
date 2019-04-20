@@ -1,0 +1,2 @@
+module QuoteShippingRatesHelper
+end

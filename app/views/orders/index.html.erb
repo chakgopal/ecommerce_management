@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Total paid</th>
+      <th>Email sent</th>
+      <th>Total invoice</th>
+      <th>Total cancel</th>
+      <th>Total refunded</th>
+      <th>Discount amount</th>
+      <th>Discount cancelled</th>
+      <th>Discount invoice</th>
+      <th>Discount refunded</th>
+      <th>Shipping amount</th>
+      <th>Shipping invoice</th>
+      <th>Shipping refunded</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.total_paid %></td>
+        <td><%= order.email_sent %></td>
+        <td><%= order.total_invoice %></td>
+        <td><%= order.total_cancel %></td>
+        <td><%= order.total_refunded %></td>
+        <td><%= order.discount_amount %></td>
+        <td><%= order.discount_cancelled %></td>
+        <td><%= order.discount_invoice %></td>
+        <td><%= order.discount_refunded %></td>
+        <td><%= order.shipping_amount %></td>
+        <td><%= order.shipping_invoice %></td>
+        <td><%= order.shipping_refunded %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path %>

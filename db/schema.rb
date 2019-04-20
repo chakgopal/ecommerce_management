@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_070233) do
+ActiveRecord::Schema.define(version: 2019_04_11_112602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,24 +87,39 @@ ActiveRecord::Schema.define(version: 2019_04_04_070233) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_id"
-    t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
+  end
+
+  create_table "order_addresses", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "customer_address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_address_id"], name: "index_order_addresses_on_customer_address_id"
+    t.index ["order_id"], name: "index_order_addresses_on_order_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["store_id"], name: "index_order_items_on_store_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "total_paid"
+    t.decimal "total_paid", precision: 5, scale: 2
     t.string "email_sent"
-    t.string "total_invoice"
-    t.string "total_cancel"
-    t.string "total_refunded"
-    t.string "discount_amount"
-    t.string "discount_canceled"
-    t.string "discount_invoice"
-    t.string "discount_refunded"
-    t.string "shipping_amount"
-    t.string "shipping_canceled"
+    t.integer "total_invoice"
+    t.integer "total_cancel"
+    t.integer "total_refunded"
+    t.decimal "discount_amount", precision: 5, scale: 2
+    t.decimal "discount_cancelled", precision: 5, scale: 2
+    t.decimal "discount_invoice", precision: 5, scale: 2
+    t.decimal "discount_refunded", precision: 5, scale: 2
+    t.decimal "shipping_amount", precision: 5, scale: 2
     t.string "shipping_invoice"
-    t.string "shipping_refunded"
+    t.decimal "shipping_refunded", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -120,71 +135,74 @@ ActiveRecord::Schema.define(version: 2019_04_04_070233) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "order_id"
-    t.index ["order_id"], name: "index_products_on_order_id"
+    t.boolean "deleted_flag"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
   create_table "quote_addresses", force: :cascade do |t|
+    t.string "customer_address_type"
+    t.string "same_as_billing"
+    t.string "free_shipping"
+    t.string "shipping_method"
     t.bigint "quote_id"
     t.bigint "customer_id"
-    t.string "customer_address_type"
-    t.string "email"
-    t.string "first_name"
-    t.string "post_code"
-    t.boolean "same_as_billing"
-    t.boolean "free_shipping"
-    t.string "shipping_method"
+    t.bigint "customer_address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_address_id"], name: "index_quote_addresses_on_customer_address_id"
     t.index ["customer_id"], name: "index_quote_addresses_on_customer_id"
     t.index ["quote_id"], name: "index_quote_addresses_on_quote_id"
   end
 
   create_table "quote_items", force: :cascade do |t|
+    t.string "sku"
     t.string "name"
     t.string "description"
-    t.string "quantity"
-    t.string "price"
+    t.integer "quantity"
+    t.decimal "price", precision: 5, scale: 2
+    t.bigint "quote_id"
+    t.bigint "product_id"
+    t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "store_id"
-    t.bigint "customer_id"
-    t.index ["customer_id"], name: "index_quote_items_on_customer_id"
+    t.index ["product_id"], name: "index_quote_items_on_product_id"
+    t.index ["quote_id"], name: "index_quote_items_on_quote_id"
     t.index ["store_id"], name: "index_quote_items_on_store_id"
   end
 
   create_table "quote_payments", force: :cascade do |t|
-    t.bigint "quote_id"
     t.string "method"
+    t.bigint "quote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quote_id"], name: "index_quote_payments_on_quote_id"
   end
 
   create_table "quote_shipping_rates", force: :cascade do |t|
-    t.bigint "quote_address_id"
-    t.string "method"
     t.string "method_description"
-    t.string "price"
+    t.decimal "price", precision: 5, scale: 2
+    t.bigint "quote_payment_id"
+    t.bigint "quote_address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quote_address_id"], name: "index_quote_shipping_rates_on_quote_address_id"
+    t.index ["quote_payment_id"], name: "index_quote_shipping_rates_on_quote_payment_id"
   end
 
   create_table "quotes", force: :cascade do |t|
     t.string "status"
-    t.string "item_count"
-    t.string "customer_email"
-    t.string "customer_firstname"
-    t.string "customer_lastname"
+    t.integer "item_count"
+    t.integer "item_quantity"
+    t.decimal "grand_total", precision: 5, scale: 2
     t.string "coupon_code"
-    t.string "subtotal"
-    t.string "subtotal_with_discount"
+    t.decimal "subtotal", precision: 5, scale: 2
+    t.decimal "subtotal_with_discount", precision: 5, scale: 2
+    t.bigint "store_id"
+    t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "order_id"
-    t.index ["order_id"], name: "index_quotes_on_order_id"
+    t.index ["customer_id"], name: "index_quotes_on_customer_id"
+    t.index ["store_id"], name: "index_quotes_on_store_id"
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -227,19 +245,27 @@ ActiveRecord::Schema.define(version: 2019_04_04_070233) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "seller_id"
+    t.boolean "deleted_flag"
     t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "customer_addresses", "customers"
-  add_foreign_key "inventory_stocks", "products"
-  add_foreign_key "products", "orders"
+  add_foreign_key "order_addresses", "customer_addresses"
+  add_foreign_key "order_addresses", "orders"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "stores"
+  add_foreign_key "quote_addresses", "customer_addresses"
   add_foreign_key "quote_addresses", "customers"
   add_foreign_key "quote_addresses", "quotes"
-  add_foreign_key "quote_items", "customers"
+  add_foreign_key "quote_items", "products"
+  add_foreign_key "quote_items", "quotes"
   add_foreign_key "quote_items", "stores"
   add_foreign_key "quote_payments", "quotes"
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quotes", "orders"
+  add_foreign_key "quote_shipping_rates", "quote_payments"
+  add_foreign_key "quotes", "customers"
+  add_foreign_key "quotes", "stores"
   add_foreign_key "stores", "sellers"
 end

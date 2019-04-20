@@ -1,13 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  sku: MyString
   name: MyString
   description: MyString
-  quantity: MyString
-  price: MyString
+  quantity: 1
+  price: 9.99
+  quote: one
+  product: one
+  store: one
 
 two:
+  sku: MyString
   name: MyString
   description: MyString
-  quantity: MyString
-  price: MyString
+  quantity: 1
+  price: 9.99
+  quote: two
+  product: two
+  store: two
