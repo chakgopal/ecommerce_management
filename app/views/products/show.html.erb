@@ -44,6 +44,7 @@
     <% end %>
   <% end %>
 </p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<% if seller_signed_in? || admin_signed_in? %>
+  <%= link_to 'Edit', edit_product_path(@product) %>|
+<% end %>
 <%= link_to 'Back', products_path %>

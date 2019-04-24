@@ -39,7 +39,7 @@ end
  end
 
   def index
-     @stores = Store.where(seller_id: current_seller.id)
+     @stores = Store.where(seller_id: current_seller.id )
   end
 
 def edit
@@ -47,7 +47,7 @@ def edit
 
 
 def destroy
-    @store.update(:status => 'inactive')
+    @store.update(status:'inactive')
     respond_to do |format|
       format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }
