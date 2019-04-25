@@ -10,4 +10,5 @@ class Product < ApplicationRecord
   belongs_to :store,required: false
   belongs_to :seller,required: false
   has_many_attached :images
+  
 end
