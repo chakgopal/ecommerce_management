@@ -18,4 +18,5 @@ class Store < ApplicationRecord
   has_one_attached :certificate_image
   has_one_attached :address_proff_image
   has_one_attached :trade_mark_image
+  paginates_per 2
 end

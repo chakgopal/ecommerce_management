@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_seller!, only:[:new,:destroy]
+  before_action :authenticate_seller!, only:[:new,:destroy,:index]
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
  
@@ -44,7 +44,8 @@ end
   def index
     if seller_signed_in?
     
-     @stores = Store.with_attached_images
+     @stores = Store.with_attached_images.order(:id).page params[:page]
+     
      #@stores = Store.where(seller_id: current_seller.id)
      end
   end

@@ -25,6 +25,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @sellers, :outer_window => 3 %>
+<%= page_entries_info @sellers, entry_name: 'item' %>
 <br>
 

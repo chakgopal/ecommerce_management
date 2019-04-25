@@ -12,6 +12,8 @@ class CustomersController < ApplicationController
   # GET /customers/1.json
   def show
     @customer = Customer.find(params[:id])
+    @customer_address = CustomerAddress.where(customer_id: current_customer.id)
+    puts  @customer_address.to_json
   end
 
   # GET /customers/new
@@ -22,8 +24,19 @@ class CustomersController < ApplicationController
   # GET /customers/1/edit
   def edit
     @customer = Customer.find(params[:id])
+  end 
+  
+  def update
+    respond_to do |format|
+      if @customer.update(customer_params)
+        format.html { redirect_to @product, notice: 'Customer was successfully updated.' }
+        format.json { render :show, status: :ok, location: @customer }
+      else
+        format.html { render :edit }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
   end
-
   # POST /customers
   # POST /customers.json
   

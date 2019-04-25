@@ -7,24 +7,29 @@
     <tr>
       <th>Shop Name</th>
       <th>Shop Image</th>
-     
+      <th>Website Url</th>
       <th>Company Email</th>
       <th>Shop Intro</th>
-      <th>Address1</th>
+      <th>Gst Image</th>
+      <th>Shop Pan Image</th>
+      <th>Trade Liscense Image</th>
+      <th>Iso Image</th>
+      <th>Address1/th>
       <th>Address2</th>
       <th>Landmark</th>
       <th>Shop Phone No</th>
       <th>Alternative Phone no1</th>
       <th>Alternative Phone no2</th>
-      
-      <th colspan="8"></th>
+      <th>Certificate Of Incorporation</th>
+      <th>Address Proof</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-     <% unless @stores.blank?
-     @stores.each do |store| %>
-     <tr>
+      <% unless @stores.blank?
+      @stores.each do |store| %>
+      <tr>
         <td><%= store.shop_name %></td>
         <td><%= image_tag url_for(store.images.first), size: "64" if store.images.attached? %></td> 
         <td><%= store.website_url %></td>
@@ -40,11 +45,11 @@
         <td><%= link_to 'Edit', edit_store_path(store) %></td>
         <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end end%>
+    <% end 
+    end %>
   </tbody>
 </table>
-
+<%= paginate @stores %>
+<%= page_entries_info @stores, entry_name: 'item' %>
  <br>
  <%= link_to 'New Store', new_store_path %>
-
-

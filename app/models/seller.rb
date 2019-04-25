@@ -12,6 +12,7 @@ class Seller < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :stores,  dependent: :destroy
   has_many :products, dependent: :destroy
+  paginates_per 2
 end
 
   

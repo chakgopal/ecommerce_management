@@ -7,10 +7,10 @@ class ProductsController < ApplicationController
   def index
 
     if seller_signed_in?
-      @products = current_seller.products
+      @products = current_seller.products.order(:name).page params[:page]
        
     else
-      @products = Product.with_attached_images
+      @products = Product.with_attached_images.order(:name).page params[:page]
     end
   end
 
