@@ -29,18 +29,21 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
-
+<p>
+  <strong>Quantity:</strong>
+  <%= select_tag "quantity_id", options_for_select((1..100).map{ |i| [i, i]}), class: 'form-control' %> 
+</p>
 
 
 <p>
   <strong>Store:</strong>
-  <%= @product.store.shop_name %>
+  <%= @product.store.shop_name if @product.store.shop_name.present? %>
 </p>
 
 <p>
   <% if @product.images.attached? %>
     <% @product.images.each do |product_image| %>
-      <%= image_tag url_for(product_image), size: "64" %>
+      <%= image_tag url_for(product_image.variant(resize:"400x760").processed) %>
     <% end %>
   <% end %>
 </p>
