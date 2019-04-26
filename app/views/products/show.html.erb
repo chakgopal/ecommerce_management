@@ -29,10 +29,7 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
-<p>
-  <strong>Quantity:</strong>
-  <%= select_tag "quantity_id", options_for_select((1..100).map{ |i| [i, i]}), class: 'form-control' %> 
-</p>
+
 
 
 <p>
@@ -47,6 +44,12 @@
     <% end %>
   <% end %>
 </p>
+<%= @product.name %>
+<%= button_to "Add To Cart", new_quote_path, :params => {name: @product.name, short_desc: @product.short_desc, shop_name: @product.store.shop_name, price: @product.price, sku: @product.sku, id: @product.id},  method: :get, :class => "inbox-sf-add-btn tip" %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+ <% if admin_signed_in? || seller_signed_in? %>
+
+    <%= link_to 'Edit', edit_product_path(@product) %> |
+ <% end %>
+ <%= link_to 'Back', products_path %>
+  
