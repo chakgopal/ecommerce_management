@@ -1,5 +1,8 @@
 
-<%= simple_form_for(@store) do |f| %>
+
+<%= unless @store.blank? 
+simple_form_for(@store) do |f| %>
+
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -9,8 +12,8 @@
     <%= f.input :images, as: :file, input_html: {multiple: true}%>
     <%= f.input :website_url %>
     <%= f.input :company_email %>
-    <%= f.text_area :shop_intro %>
-    
+   
+    <%= f.input :shop_intro, :as => :text, :input_html => { 'rows' => 4, 'cols' => 5 } %>
     <%= f.input :gst_image, as: :file %>
     <%= f.input :shop_pan_image, as: :file %>
     <%= f.input :trade_liscense_image, as: :file %>
@@ -21,12 +24,14 @@
     <%= f.input :shop_phone_no %>
     <%= f.input :alternative_phone_no1 %>
     <%= f.input :alternative_phone_no2 %>
-    <%= f.input :certificate_of_incorporation, as: :file, input_html: {multiple: true} %>
-    <%= f.input :address_proof ,as: :file, input_html: {multiple: true} %>
-    
+    <%= f.input :certificate_image, as: :file  %>
+    <%= f.input :address_proff_image ,as: :file %>
+    <%= f.input :trade_mark_image ,as: :file %>
+    <%= f.association :seller %>
+   
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
-<% end %>
+<% end end%>

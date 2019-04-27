@@ -1,22 +1,27 @@
 class SellersController < ApplicationController
+  
   before_action :authenticate_admin!
+  
   before_action :set_seller, only: [:show, :edit, :update, :destroy]
 
   # GET /sellers
   # GET /sellers.json
   def index
-    @sellers = Seller.all
+    @sellers = Seller.order(:name).page params[:page]
   end
 
   # GET /sellers/1
   # GET /sellers/1.json
   def show
     @seller = Seller.find(params[:id])
+    seller_id = @seller.id
+    @store = Store.where(seller_id:seller_id)
   end
 
   # GET /sellers/1/edit
   def edit
     @seller = Seller.find(params[:id])
+
   end
 
   # PATCH/PUT /sellers/1
@@ -45,10 +50,17 @@ class SellersController < ApplicationController
   
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    
+ 
   
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seller_params
       params.fetch(:seller, {}).permit(:email, :name, :role)
     end
+    
+
+
+
+
 end

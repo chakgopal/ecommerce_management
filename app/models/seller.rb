@@ -10,8 +10,9 @@ class Seller < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :stores, dependent: :destroy
-  has_many :products,dependent: :destroy
+  has_many :stores,  dependent: :destroy
+  has_many :products, dependent: :destroy
+  paginates_per 2
 end
 
   

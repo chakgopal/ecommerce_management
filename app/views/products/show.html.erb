@@ -34,19 +34,20 @@
 
 <p>
   <strong>Store:</strong>
-  <%= @product.store.shop_name %>
+  <%= @product.store.shop_name if @product.store.shop_name.present? %>
 </p>
 
 
 <p>
   <% if @product.images.attached? %>
     <% @product.images.each do |product_image| %>
-      <%= image_tag url_for(product_image.variant(resize: "500x200").processed ) %>
+
+      <%= image_tag url_for(product_image.variant(resize:"400x760").processed) %>
     <% end %>
   <% end %>
 
 </p>
-<%= button_to "Add To Cart", new_quote_path, :params =>{id:@product.id,short_desc:@product.short_desc,price:@product.price,sku:@product.sku,store_name:@product.store.shop_name},
+<%= button_to "Add To Cart", new_quote_path, :params =>{id:@product.id},
       :class => "inbox-sf-add-btn tip", :method => :get%>
 <% if seller_signed_in? || admin_signed_in? %>
   <%= link_to 'Edit', edit_product_path(@product) %>|
