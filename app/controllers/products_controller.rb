@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  require "mini_magick"
+ 
   before_action :authenticate_seller!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   #before_action :set_store, only: [:create, :edit, :update, :destroy]
@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
       @products = current_seller.products.order(:name).page params[:page]
        
 
-      @products = current_seller.products.where(status:'active')
+      #@products = current_seller.products.where(status:'active')
        #puts @products.to_json
 
     else

@@ -1,11 +1,13 @@
 class QuotesController < ApplicationController
  
  before_action :set_quote, only: [:show, :edit, :update, :destroy]
-
+ before_action :authenticate_customer!, only: [:new, :create, :destroy]
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.all
+    if customer_signed_in?
+      @quotes = Quote.where(customer_id:current_customer.id).all
+   end 
   end
 
   # GET /quotes/1
@@ -16,25 +18,17 @@ class QuotesController < ApplicationController
 
   # GET /quotes/new
   def new
-    name = params[:name]
-    short_desc = params[:short_desc]
-    shop_name = params[:shop_name]
-    price = params[:price]
-    sku = params[:sku]
     id = params[:id] if params[:id].present?
-    puts price.to_s
-      if customer_signed_in? 
-        current_customer_id = current_customer.id
-        quote_count = Quote.where(customer_id: current_customer_id).count
-        if quote_count == 0
-          @quote = Quote.new
-        end
-      else
-        redirect_to new_customer_session_path
-      end    
-  end 
-
-  # GET /quotes/1/edit
+    @product_details = Product.find(id)
+    status = @product_details.status
+    if customer_signed_in? 
+      quote_count = Quote.where(customer_id: current_customer.id).count
+      if quote_count == 0
+        @quote = Quote.new
+      end
+    end
+  end  
+# GET /quotes/1/edit
   def edit
   end
 

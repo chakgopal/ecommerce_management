@@ -47,7 +47,7 @@
   <% end %>
 </p>
 <%= @product.name %>
-<%= button_to "Add To Cart", new_quote_path, :params => {name: @product.name, short_desc: @product.short_desc, shop_name: @product.store.shop_name, price: @product.price, sku: @product.sku, id: @product.id},  method: :get, :class => "inbox-sf-add-btn tip" %>
+<%= button_to "Add To Cart", new_quote_path, :params => {id: @product.id},  method: :get, :class => "inbox-sf-add-btn tip" %>
 
  <% if admin_signed_in? || seller_signed_in? %>
 
