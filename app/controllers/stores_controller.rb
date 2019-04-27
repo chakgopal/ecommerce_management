@@ -42,12 +42,16 @@ end
  end
 
   def index
+
     if seller_signed_in?
     
      @stores = Store.with_attached_images.order(:id).page params[:page]
      
      #@stores = Store.where(seller_id: current_seller.id)
      end
+
+     @stores = Store.where(seller_id: current_seller.id )
+
   end
 
   def edit
@@ -70,13 +74,17 @@ end
   end
 
 
+
   def show
     @store = Store.find(params[:id])
       puts  @store.shop_name
   end
 
-  def destroy
-    @store.update(:status => 'inactive')
+  
+
+def destroy
+    @store.update(status:'inactive')
+
     respond_to do |format|
       format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }

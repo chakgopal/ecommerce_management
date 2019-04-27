@@ -10,6 +10,10 @@ class Product < ApplicationRecord
   belongs_to :store, required: false
   belongs_to :seller, required: false
   has_many_attached :images
+
   has_many :orders
   paginates_per 2
+
+  
+
 end
