@@ -44,7 +44,10 @@
       <%= image_tag url_for(product_image.variant(resize: "500x200").processed ) %>
     <% end %>
   <% end %>
+
 </p>
+<%= button_to "Add To Cart", new_quote_path, :params =>{id:@product.id,short_desc:@product.short_desc,price:@product.price,sku:@product.sku,store_name:@product.store.shop_name},
+      :class => "inbox-sf-add-btn tip", :method => :get%>
 <% if seller_signed_in? || admin_signed_in? %>
   <%= link_to 'Edit', edit_product_path(@product) %>|
 <% end %>
