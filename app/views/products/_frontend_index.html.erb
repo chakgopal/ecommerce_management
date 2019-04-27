@@ -2,17 +2,22 @@
 
 <div class="container">
   <div class="row">
-    <% unless @products.blank?
-      @products.each do |product| %>
-        <div class="col-4">
-        <%= link_to product do %>
-            <%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %>
-            
-        <% end %>
-        <%= product.name %>
-        <%= product.price %>
-        </div>
-      <% end
-    end %>
+
+
+
+  <%unless @products.blank?
+  @products.each do |product| %>
+    <div class="col-4">
+       <%= link_to product do %>
+          <%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %>
+      <% end %>
+      <%= product.name %>
+      <%= product.price %>
+    </div>
+  <% end 
+   end %>
+
+    
+
   </div>
 </div>

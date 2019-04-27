@@ -1,16 +1,22 @@
 class ProductsController < ApplicationController
-  require "mini_magick"
+ 
   before_action :authenticate_seller!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   #before_action :set_store, only: [:create, :edit, :update, :destroy]
   # GET /products
   # GET /products.json
   def index
+
     if seller_signed_in?
-      @products = current_seller.products.where(status:'active')
+
+      @products = current_seller.products.order(:name).page params[:page]
+       
+
+      #@products = current_seller.products.where(status:'active')
        #puts @products.to_json
+
     else
-      @products = Product.with_attached_images.where(status:'active')
+      @products = Product.with_attached_images.order(:name).page params[:page]
     end
   end
 
@@ -35,7 +41,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params.merge(seller_id: current_seller.id))
 
     respond_to do |format|
-      if @product.save
+     if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else

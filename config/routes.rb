@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :products
   resources :sellers
   resources :stores
+  resources :quotes
+  resources :quote_items
+    
+
 
   root to: 'products#index'
 end

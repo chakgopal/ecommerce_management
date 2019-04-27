@@ -27,8 +27,9 @@
   </thead>
 
   <tbody>
-    <% @stores.each do |store| %>
-     <tr>
+      <% unless @stores.blank?
+      @stores.each do |store| %>
+      <tr>
         <td><%= store.shop_name %></td>
         <td><%= image_tag url_for(store.images.first), size: "64" if store.images.attached? %></td> 
         <td><%= store.website_url %></td>
@@ -44,11 +45,11 @@
         <td><%= link_to 'Edit', edit_store_path(store) %></td>
         <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <% end 
+    end %>
   </tbody>
 </table>
-
+<%= paginate @stores %>
+<%= page_entries_info @stores, entry_name: 'item' %>
  <br>
  <%= link_to 'New Store', new_store_path %>
-
-

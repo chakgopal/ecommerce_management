@@ -22,8 +22,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
-  username: gopal
-  password: gopal@1993
+  username: vinita
+  password: Magic2512@
 
 
 

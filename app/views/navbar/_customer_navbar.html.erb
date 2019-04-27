@@ -18,7 +18,7 @@
                         <%= current_customer.firstname %>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <%= link_to('My Account', edit_customer_registration_path, class: "dropdown-item") %>
+                        <%= link_to('My Account',  new_customer_address_url, class: "dropdown-item") %>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Notifications</a>
                         <div class="dropdown-divider"></div>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="nav-item">
-                <%= link_to('Cart', "#", style: "vertical-align: -webkit-baseline-middle;") %>
+                <%= link_to('Cart', new_quote_url, style: "vertical-align: -webkit-baseline-middle;") %>
             </div>
         </ul>
         
