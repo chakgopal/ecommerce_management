@@ -20,6 +20,8 @@ class QuotesController < ApplicationController
     id = params[:id] if params[:id].present?
     @product_details = Product.find(id)
     status = @product_details.status
+    inventory_details = InventoryStock.where(product_id: @product_details.id)
+    @quant = inventory_details[0].quantity if inventory_details.present?
     if customer_signed_in? 
       quote_count = Quote.where(customer_id: current_customer.id).count
       if quote_count == 0

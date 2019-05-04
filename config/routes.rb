@@ -14,11 +14,7 @@ Rails.application.routes.draw do
   resources :stores
   resources :quotes
   resources :quote_items
-<<<<<<< HEAD
-=======
-    
-
->>>>>>> a8dbe27d62b96fba14853a70f7d7030730367eb9
-
+  resources :inventory_stocks
+  
   root to: 'products#index'
 end

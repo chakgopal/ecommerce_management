@@ -1,47 +1,48 @@
-<%=@data_hash.to_json %>
-
-<<<<<<< HEAD
-
-=======
 <p>
-
-   <%= link_to @product_details do %>
-   <strong>
-  <%= @product_details.short_desc %>
-</strong>
-  <% end %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= @product_details.name %>
-</p>
-
-
-<p>
-  <strong>Status:</strong>
-  <%= @product_details.status %>
-</p>
-<p>
-  <strong>Shop Name:</strong>
-  <%= @product_details.store.shop_name %>
-</p>
-
-
-
-<p>
-  <% if @product_details.images.attached? %>
-    <% @product_details.images.each do |product_image| %>
-       <%= link_to @product_details do %>
-      <%= image_tag url_for(product_image.variant(resize:"400x760").processed) %>
-       <% end %>
-    <% end %>
-  <% end %>
-</p>
-<p>
+<%= link_to @product_details do %>
   <strong>
-  <%= "₹" + @product_details.price.to_s %>
+    <%= @product_details.short_desc %>
+   </strong>
+<% end %>
+</p>
+    
+<p>
+<strong>Name:</strong>
+<%= @product_details.name %>
+</p>
+
+<p>
+<strong>Status:</strong>
+<%= @product_details.status %>
+</p>
+    
+<p>
+ <strong>Shop Name:</strong>
+ <%= @product_details.store.shop_name %>
+</p>
+    
+<p>
+    <% if @product_details.images.attached? %>
+       <% @product_details.images.each do |product_image| %>
+            <%= link_to @product_details do %>
+                <%= image_tag url_for(product_image.variant(resize:"400x760").processed) %>
+            <% end %>
+        <% end %>
+    <% end %>
+</p>
+
+<p>
+<strong>
+    <%= "₹" + @product_details.price.to_s %>
+</strong>
+</p>
+
+<p>
+<strong>
+    <%= @quant%> stocks are left
 </strong>
 </p>
 <%= button_to "Place Order", "#", :class => "inbox-sf-add-btn tip" %>
 <%= button_to "Continue Shopping", products_url, :class => "inbox-sf-add-btn tip", method: :get %>
->>>>>>> a8dbe27d62b96fba14853a70f7d7030730367eb9
+
+
