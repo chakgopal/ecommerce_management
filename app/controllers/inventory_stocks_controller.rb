@@ -3,20 +3,17 @@ class InventoryStocksController < ApplicationController
     before_action :set_inventory_stock, only: [:show, :edit, :update, :destroy]
     
     def new
-     product_id = params[:id]
+     @product_id = params[:id]
      @inventory_stock = InventoryStock.new
      session[:id] = @product_id
-     
+     product_id = @product_id
      @product = Product.find(product_id)
      puts @product.to_json
      @stat = @product.status
     end
     
     def create
-        
        @product_id = session[:id]
-       inventory_count = InventoryStock.where(product_id:@product_id).count
-       if inventory_count == 0 
         @inventory_stock = InventoryStock.new(inventory_stock_params.merge(product_id: @product_id))
         respond_to do |format|
             if  @inventory_stock.save
@@ -29,9 +26,6 @@ class InventoryStocksController < ApplicationController
                format.json { render json:  @inventory_stock.errors, status: :unprocessable_entity }
              end
         end
-      else 
-       
-      end  
     end    
 
     def show
@@ -41,13 +35,12 @@ class InventoryStocksController < ApplicationController
 
     def edit
       @product_id = session[:id]
-      @inventory_stock = InventoryStock.where(product_id: @product_id)
-
+      @inventory_stock = InventoryStock.where(product_id: @product_id).first
     end
     
     def update
       respond_to do |format|
-        if @inventory_stock.update(product_params)
+        if @inventory_stock.update(inventory_stock_params)
           format.html { redirect_to @inventory_stock, notice: 'Product was successfully updated.' }
           format.json { render :show, status: :ok, location: @inventory_stock }
         else
@@ -61,7 +54,7 @@ class InventoryStocksController < ApplicationController
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_inventory_stock
-        @inventory_stock = InventoryStock.find(params[:id])
+        @inventory_stock = InventoryStock.find_by(id: params[:id])
     end
 
 

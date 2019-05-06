@@ -9,8 +9,9 @@ class ProductsController < ApplicationController
     if seller_signed_in?
 
       @products = current_seller.products.order(:name).page params[:page]
-       
-
+      @inventory_stock_count = InventoryStock.where(product_id:@products[0].id).count if @products.present?
+      @inventory_stock = InventoryStock.where(product_id:@products[0].id).first if @products.present?
+      puts @inventory_stock_count.to_s
       #@products = current_seller.products.where(status:'active')
        #puts @products.to_json
 

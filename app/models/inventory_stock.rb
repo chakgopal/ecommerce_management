@@ -4,13 +4,7 @@ class InventoryStock < ApplicationRecord
   after_initialize :set_default_is_in_stock,:if => :new_record?
 
   def set_default_is_in_stock
-     self.status ||= :yes
+     self.is_in_stock ||= :yes
   end  
   belongs_to :Product,required:false
-  def is_in_stock()
-    
-  end
-
-
-
 end

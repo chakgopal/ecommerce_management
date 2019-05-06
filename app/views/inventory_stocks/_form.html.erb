@@ -6,7 +6,7 @@
     <div class="form-inputs">
       <%= f.input :quantity %>
       <%= f.input :min_quantity %>
-      <%= f.input :status, :input_html => { :value => @stat } %>
+     
       <%= f.input :min_sale_quantity %>
       <%= f.input :max_sale_quantity %>
       <%= f.select :is_in_stock, InventoryStock.is_in_stocks.keys.to_a, prompt: "Select stock aviability" %>
