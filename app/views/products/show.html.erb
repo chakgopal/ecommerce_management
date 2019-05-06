@@ -47,10 +47,13 @@
   <% end %>
 
 </p>
-<%= button_to "Add To Cart", new_quote_path, :params =>{id:@product.id},
-      :class => "inbox-sf-add-btn tip", :method => :get%>
+<% if customer_signed_in? %>
+   <%= button_to "Add To Cart", new_quote_path, 
+       :params =>{id:@product.id},
+       :class => "inbox-sf-add-btn tip", :method => :get %>
+<% end %>    
 <% if seller_signed_in? || admin_signed_in? %>
-  <%= link_to 'Edit', edit_product_path(@product) %>|
+  <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>
 <%= link_to 'Back', products_path %>
 
