@@ -1,8 +1,87 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+<style>
+
+    .sidenav {
+        height: 100%;
+        width: 180px;
+        position: fixed;
+        margin-top: 5.5%;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    @media screen and (max-height: 50px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }
+
+    #navbarDropdown1:hover{
+        color: #222;
+        text-decoration: none;
+    }
+
+    #navbarDropdown1{
+        color: white;
+    }
+    
+    .drop{
+        position: absolute;
+        right: 0.001px;
+        margin-right: 18%; 
+        top: 1.5px;
+        margin-top: 1.12%;
+    }
+
+    #navbarDropdown2{
+        color: white;
+    }
+
+    .drop1{
+        position: absolute;
+        right: 0.001px;
+        margin-right: 12%;  
+        top: 1.5px;
+        margin-top: 1.2%;
+    }
+    
+    #navbarDropdown2:hover{
+        color: #222;
+        text-decoration: none;
+    }
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-image: linear-gradient(120deg, #50A6DD, #3173B9);">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo2-1.png", size: "62x50", class: "d-inline-block align-top", alt: "") %></a>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo2-1.png", size: "62x50", class: "logo", alt: "") %></a>
     
     <div class="collapse navbar-collapse" id="navbarColor03">
         <!-- Dashboard; Sales: Orders, Invoices, Shipments; Catalog: Products, Categories; Customers; Stores; Settings; --> 
@@ -30,7 +109,7 @@
             </li>
         </ul>
         <!-- Profile/Account, Orders, Wishlist, Notifications, Logout --> 
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown drop">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= current_seller.name&.split&.first %>
             </a>
@@ -43,7 +122,7 @@
             </div>
         </div>
         <!-- Sell On Weebuy, 24x7 Customer Care --> 
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown drop1">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 More
             </a>
@@ -55,3 +134,38 @@
         </div>
     </div>
 </nav>
+
+<div id="mySidenav" class="sidenav" style="display: hidden">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <li class="nav-item active">
+                <%= link_to('Dashboard', "#", class: "nav-link") %>
+            </li>
+            <li class="nav-item">
+            <%= link_to('Orders', "#", class: "nav-link") %>
+        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCatalog" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Catalog
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownCatalog">
+            <a class="dropdown-item" href="#">Products</a>
+            <a class="dropdown-item" href="#">Categories</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <%= link_to('Customers', "customers_path", class: "nav-link") %>
+    </li>
+    <li class="nav-item">
+        <%= link_to('Stores', stores_path, class: "nav-link") %>
+    </li>
+</div>
+
+<script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "180px";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    }
+</script>

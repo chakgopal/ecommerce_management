@@ -26,7 +26,12 @@
                   <%= image_tag url_for(product.images.first),class: "img" if product.images.attached? %>
                 </div>
                 <span class="product-grid__title"><%= product.name %></span><br />
-                <span class="product-grid__price">₹ <%= product.price %></span>              
+                <span class="product-grid__price">₹ <%= product.price %></span>
+                <div class="product-grid__extend">
+                  <p class="product-grid__description"><%= product.store.shop_name %><br /><%= product.name %><br />₹<%= product.price %></p>
+                  <span class="product-grid__btn product-grid__add-to-cart"> Add to cart</span>				
+                  <span class="product-grid__btn product-grid__view">View more</span>
+                </div>               
               </div>
             <% end
           end %>
@@ -116,6 +121,14 @@
 </div>
 
 <script>
+
+  $( ".product-grid__product" ).mouseenter(function() {
+    $('.product-grid__price').hide();
+  });
+
+  $( ".product-grid__product" ).mouseleave(function() {
+  $('.product-grid__price').show();
+  });
   
   $("#slideshow > div:gt(0)").hide();
 

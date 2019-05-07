@@ -1,18 +1,31 @@
-<h2>Forgot your password?</h2>
+<style>
+  .fog-cus{
+      margin-top: 5%;
+  }
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  .btn-md{
+      margin-top: 20px;
+  }
+</style>
+
+<center class="fog-cus">
+<h4>Forgot your password?</h4>
+
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, style: "width: 100%;max-width: 330px;padding: 15px;" }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" } %>
+                label: false,
+                input_html: { autocomplete: "email", class: "form-control", placeholder: "Registered Email ID" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+    <%= f.button :submit, "Request", class: "btn btn-md btn-primary btn-block" %>
   </div>
 <% end %>
 
-<%= render "sellers/shared/links" %>
+<%= link_to "Back to Login page", new_session_path(resource_name) %>
+</center>
