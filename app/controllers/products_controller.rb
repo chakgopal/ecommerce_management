@@ -5,11 +5,18 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+
     if seller_signed_in?
-      @products = current_seller.products.where(status:'active')
-       puts @products.to_json
+
+      @products = current_seller.products.order(:name).page params[:page]
+      @inventory_stock_count = InventoryStock.where(product_id:@products[0].id).count if @products.present?
+      @inventory_stock = InventoryStock.where(product_id:@products[0].id).first if @products.present?
+      puts @inventory_stock_count.to_s
+      #@products = current_seller.products.where(status:'active')
+       #puts @products.to_json
+
     else
-      @products = Product.with_attached_images.where(status:'active')
+      @products = Product.with_attached_images.order(:name).page params[:page]
     end
   end
 
@@ -33,7 +40,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params.merge(seller_id: current_seller.id))
 
     respond_to do |format|
-      if @product.save
+     if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -60,6 +67,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    
     @product.update(status:'inactive')
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }

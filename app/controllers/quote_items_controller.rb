@@ -4,7 +4,7 @@ class QuoteItemsController < ApplicationController
   # GET /quote_items
   # GET /quote_items.json
   def index
-    @quote_items = QuoteItem.all
+    @quote_items = QuoteItem.where(order_id: current_customer.order_id)
   end
 
   # GET /quote_items/1
@@ -21,12 +21,11 @@ class QuoteItemsController < ApplicationController
   def edit
   end
 
-  # POST /quote_items
+  # POST /quote_ite
   # POST /quote_items.json
   def create
-    @quote_item = QuoteItem.new(quote_item_params)
-
     respond_to do |format|
+    @quote_item = QuoteItem.new(quote_item_params.merge(order_id: current_customer.order_id))
       if @quote_item.save
         format.html { redirect_to @quote_item, notice: 'Quote item was successfully created.' }
         format.json { render :show, status: :created, location: @quote_item }

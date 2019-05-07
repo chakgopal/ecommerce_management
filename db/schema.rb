@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_105350) do
+ActiveRecord::Schema.define(version: 2019_05_06_205630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -72,8 +71,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "firstname"
-    t.string "lastname"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -83,11 +82,11 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
     t.string "min_quantity"
     t.string "min_sale_quantity"
     t.string "max_sale_quantity"
-    t.string "is_in_stock"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_id"
+    t.integer "is_in_stock"
     t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
   end
 
@@ -124,6 +123,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
     t.decimal "shipping_refunded", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quote_item_id"
+    t.index ["quote_item_id"], name: "index_orders_on_quote_item_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -205,7 +206,9 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
     t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quote_item_id"
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
+    t.index ["quote_item_id"], name: "index_quotes_on_quote_item_id"
     t.index ["store_id"], name: "index_quotes_on_store_id"
   end
 
@@ -250,7 +253,9 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
     t.datetime "updated_at", null: false
     t.bigint "seller_id"
     t.boolean "deleted_flag"
+    t.bigint "quote_item_id"
     t.integer "status"
+    t.index ["quote_item_id"], name: "index_stores_on_quote_item_id"
     t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
 
@@ -261,6 +266,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "stores"
+  add_foreign_key "orders", "quote_items"
   add_foreign_key "products", "sellers"
   add_foreign_key "quote_addresses", "customer_addresses"
   add_foreign_key "quote_addresses", "customers"
@@ -272,6 +278,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_105350) do
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
+  add_foreign_key "quotes", "quote_items"
   add_foreign_key "quotes", "stores"
+  add_foreign_key "stores", "quote_items"
   add_foreign_key "stores", "sellers"
 end

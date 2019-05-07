@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -30,20 +32,29 @@
   <%= @product.price %>
 </p>
 
-
-
 <p>
   <strong>Store:</strong>
-  <%= @product.store.shop_name %>
+  <%= @product.store.shop_name if @product.store.shop_name.present? %>
 </p>
+
 
 <p>
   <% if @product.images.attached? %>
     <% @product.images.each do |product_image| %>
-      <%= image_tag url_for(product_image), size: "64" %>
+
+      <%= image_tag url_for(product_image.variant(resize:"400x760").processed) %>
     <% end %>
   <% end %>
-</p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+</p>
+<% if customer_signed_in? %>
+   <%= button_to "Add To Cart", new_quote_path, 
+       :params =>{id:@product.id},
+       :class => "inbox-sf-add-btn tip", :method => :get %>
+<% end %>    
+<% if seller_signed_in? || admin_signed_in? %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
 <%= link_to 'Back', products_path %>
+
+

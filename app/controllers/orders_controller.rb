@@ -1,10 +1,11 @@
+
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   # GET /orders/1
@@ -24,19 +25,24 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    if customer_signed_in?
+      respond_to do |format|
+        @order = Order.new(order_params.merge(customer_id: current_customer.id))
+        if @order.save
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        else
+
+          format.html { render :new }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
+   else
+       flash[:notice] = "please sign in before placing your order"
     end
-  end
-
+ end
+    
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
