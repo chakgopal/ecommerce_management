@@ -28,6 +28,8 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    category = Category.new
+    @category_result = category.all_children_iteration
   end
 
   # GET /products/1/edit

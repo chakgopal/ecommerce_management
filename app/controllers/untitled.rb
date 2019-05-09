@@ -89,7 +89,7 @@ def new
     }
 
   </script>
-    t.string "quantity"
+   t.string "quantity"
     t.string "min_quantity"
     t.string "min_sale_quantity"
     t.string "max_sale_quantity"
