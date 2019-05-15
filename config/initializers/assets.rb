@@ -10,6 +10,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # Precompile additional assets.
 Rails.application.config.assets.precompile += %w( frontend.scss )
+Rails.application.config.assets.precompile += %w( backend.scss )
 
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

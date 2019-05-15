@@ -1,0 +1,45 @@
+<h1>Inventory</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Sku</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Store</th>
+      <th>Image</th>
+      <th>Quantity</th>
+      <th>Min Quantity</th>
+      <th>Stock Aviability</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless @seller_products.blank?
+    @seller_products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.sku %></td>
+        <td><%= product.price %></td>
+        <td><%= product.color %></td>
+        <td><%= product.store.shop_name %></td>
+        <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
+      <% unless @inventory_stock.blank?
+      @inventory_stock.each do |inventory| %>
+        <% if product.id == inventory["product_id"] %>
+          <td><%= inventory["quantity"] %></td>
+          <td><%= inventory["min_quantity"] %></td>
+          <td><%= inventory["is_in_stock"] %></td>
+      </tr>
+      <% end %>
+      <% end
+    end %>
+
+    <% end
+    end %>
+
+  </tbody>
+</table>
+

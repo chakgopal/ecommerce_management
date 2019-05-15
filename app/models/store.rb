@@ -9,6 +9,7 @@ class Store < ApplicationRecord
   belongs_to :seller ,required: false
   has_many :products, dependent: :destroy
   has_many :quote_items, dependent: :destroy
+  has_many :inventory_stocks, dependent: :destroy
 
   has_many_attached :images
   has_one_attached :gst_image

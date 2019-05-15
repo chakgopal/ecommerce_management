@@ -1,0 +1,149 @@
+
+.logo1 { 
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter:         drop-shadow(5px 5px 5px #222); 
+    margin-left: 30px;
+}
+
+a{
+  text-decoration: none;
+  transition: all 0.6s ease;
+  
+  &:hover{
+    transition: all 0.6s ease;
+  }
+}
+
+.app{
+  height: 100%;
+  
+}
+/* -------------
+Sidebar
+----------------*/
+.sidebar {
+  margin-top: 50px;
+  position: absolute;
+  //width: 33.3333%;
+  width: 190px;
+  height: 200%;
+  top: 0;
+  overflow:hidden;
+  background-color: #3173B9;
+  -webkit-transform: translateZ(0);
+  visibility: visible;
+  -webkit-backface-visibility: hidden;
+  
+  header{
+    background-color: #09f;
+    width: 100%;
+    display:block;
+  }
+}
+
+/* -------------
+Sidebar Nav
+----------------*/
+.sidebar-nav {
+  position: fixed;
+  padding-top: 20px;
+  background-color: #3173B9;
+  height: 100%;
+  font-weight: 400; 
+  font-size: 1.2em;
+  overflow: auto;
+  padding-bottom: 6em;
+  z-index: 9;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+ 
+  
+  ul{
+    list-style:none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    
+    li{
+      margin-left: 0;
+      padding-left: 0;
+      padding-top: 10px;
+      //min-width: 13em;
+      display:inline-block;
+      width: 100%;
+      
+      a{
+        color: rgba(255,255,255,0.9);
+        font-size: 0.75em;
+        padding: 0.5em	1em;
+        position: relative;
+        display:block;
+        
+        &:hover{
+          background-color: rgb(49, 139, 235);
+          transition: all 0.6s ease;
+        }
+      }
+
+    }
+  }
+
+/* -------------
+Chev elements
+----------------*/ 
+  & > ul > li > a:after {
+    content: ">";
+    font-family: ionicons;
+    font-size: 0.8em;
+    font-weight: bold;
+    width: 20px;
+    color: #fff;
+    position: absolute;
+    right: 0.75em;
+    top: 25%;
+  }
+/* -------------
+Nav-Flyout
+----------------*/
+  & .nav-flyout {
+    position: absolute;
+    padding-left: 10px;
+    margin-top: 30px;
+    background-color: rgb(49, 139, 235);
+    z-index: 9;
+    left: 2.5em;
+    top: 0;
+    height: 100vh;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+    
+    a:hover{
+      background-color: rgba(255,255,255, 0.05)
+    }
+  }
+
+/* -------------
+Hover
+----------------*/
+  & ul > li:hover{
+      .nav-flyout{
+      transform: translateX(0);
+      transition:all 0.5s ease;
+    }
+  }
+}
+
+.pro_sell{
+    position: absolute;
+    margin-left: 15%;
+    
+    margin-right: 50%;
+}
+.des{
+width: calc(100% - 500px);}
+
+.container{
+  float: left;
+  padding-left: 0px;
+  width: 100%;
+}

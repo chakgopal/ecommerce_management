@@ -1,17 +1,51 @@
+
 .img{
-	height: 150px;
+	height: 180px;
 }
 
-.col-1{
-    flex: 0 0 50%;
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.col{
+	flex: 0 0 50%;
+	max-width: 13.5%;
+	margin-left: 8px;
+}
+
+.container {
+	max-width: 100%;
+}
+
+h4{
+	padding-top: 25px;
+}
+
+#loadMore {
+	margin-left: 85%;
+    padding-bottom: 20px;
+    margin-top: -40px;
+    text-align: center;
+}
+
+#loadMore a {
+    background: #042a63;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    padding: 10px 30px;
+    transition: all 0.25s ease-out;
+    -webkit-font-smoothing: antialiased;
+}
+
+#loadMore a:hover {
+    background-color: #021737;
 }
 
 .product-grid {
 	width: 100%;
-    margin-top: 0.1em;
-    margin-left: 0.1em;
 	
-
 	&.product-grid--flexbox {
 		.product-grid__wrapper {
 			display: flex;
@@ -25,29 +59,29 @@
 	}
 
 	&__wrapper {
-		margin-left: -15rem;
-		margin-right: -1rem;
-		background: rgb(0, 0, 0);
+		background: rgb(255, 254, 254);
+		margin-bottom: 20px;
+		margin-right: 5px;
+		margin-left: 5px;
 	}
 	
 	&__product-wrapper {
-		float: left;
+		float: right;
 		width: 100%;
 	}
 	
-	
 	&__product {
-        padding-bottom: 20%;
+        padding-bottom: 17%;
 		float: left;
 		position: relative;
 		cursor: pointer;
 		background: rgb(255, 255, 255);
 		box-shadow: rgb(136, 136, 136);
-        width: 60em;
-        box-sizing: content-box;
+		box-sizing: content-box;
+		margin-right: 4px;
 		
 		&:hover {
-			box-shadow: 0 0 5px rgba(109, 109, 109, 0.8);
+			box-shadow: 0 0 3px rgba(109, 109, 109, 0.8);
 			
 			.product-grid__extend {
 				display: block;
@@ -57,9 +91,10 @@
 			
 	&__img-wrapper {
 		width: 100%;
+		padding-top: 12px;
 		text-align: center;
-		padding-top: 1rem;
 		padding-bottom: 1rem;
+		padding-right: 5px;
 		height: 50px;
 	}
 	
@@ -69,17 +104,15 @@
         max-height: 100%;
     }
 	
-	
 	&__title {
         position: absolute;
         margin-top: 11rem;
-        margin-left: 9%;
 		display: inline-block;
-		font-size: 1.125em;
+		font-size: 1em;
 		color: rgb(0, 0, 0);
 		height: 3em;
 		overflow: hidden;
-        width: calc(100% - 80px);
+        width: calc(100% - 30px);
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -102,7 +135,7 @@
         letter-spacing: .4px;
         position: absolute;
         margin-top: 11.5rem;
-        margin-left: 9%;
+        margin-left: 26%;
 	}
 }
 
@@ -111,6 +144,7 @@
 	position: relative;
 	width: 100%;
 	height: 320px;
+	overflow:auto;
 }
 
 .ads{
@@ -126,10 +160,31 @@
 	bottom: 0.1px;
 }
 
+#slideshow2 {
+	margin: 0px auto;
+	position: relative;
+	width: 100%;
+	height: 320px;
+}
+
+.ads2{
+	width: 100%;
+	height:280px;
+}
+
+#slideshow2 > div {
+	position: absolute;
+	top: 0.1px;
+	left: 0.1px;
+	right: 0.1px;
+	bottom: 0.1px;
+}
+
 .content{
 	background-color: rgb(35, 48, 59);
 	height: 16em;
 	margin-top: 1px;
+	overflow:hidden;
 }
 
 ul {
@@ -265,3 +320,4 @@ hr{
 	margin-left: 37%;
 	font-size: 15px;
 }
+

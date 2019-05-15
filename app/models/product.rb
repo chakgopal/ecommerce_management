@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   has_many_attached :images
   has_one :inventory_stock, required: false
   has_many :orders
-  paginates_per 2
+  paginates_per 10
 
   
 

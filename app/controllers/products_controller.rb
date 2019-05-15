@@ -11,12 +11,15 @@ class ProductsController < ApplicationController
       @products = current_seller.products.order(:name).page params[:page]
       @inventory_stock_count = InventoryStock.where(product_id:@products[0].id).count if @products.present?
       @inventory_stock = InventoryStock.where(product_id:@products[0].id).first if @products.present?
-      puts @inventory_stock_count.to_s
+      #puts @inventory_stock_count.to_s
+     
       #@products = current_seller.products.where(status:'active')
        #puts @products.to_json
 
     else
-      @products = Product.with_attached_images.order(:name).page params[:page]
+      @products = Product.with_attached_images.order(:name).limit(6)
+      @shop_details = Store.take(6)
+     
     end
   end
 

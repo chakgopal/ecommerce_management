@@ -6,5 +6,6 @@ class InventoryStock < ApplicationRecord
   def set_default_is_in_stock
      self.is_in_stock ||= :yes
   end  
-  belongs_to :Product,required:false
+  belongs_to :product,required:false
+  belongs_to :store,required:false
 end
