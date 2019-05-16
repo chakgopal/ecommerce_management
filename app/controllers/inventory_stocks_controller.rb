@@ -4,10 +4,8 @@ class InventoryStocksController < ApplicationController
     
     def new
      @product_id = params[:id]
-     store_id = params[:store_id]
      @inventory_stock = InventoryStock.new
      session[:id] = @product_id
-     session[:store_id] = store_id
      product_id = @product_id
      @product = Product.find(product_id)
      puts @product.to_json
@@ -16,8 +14,7 @@ class InventoryStocksController < ApplicationController
     
     def create
        @product_id = session[:id]
-       store_id = session[:store_id]
-        @inventory_stock = InventoryStock.new(inventory_stock_params.merge(product_id: @product_id,store_id: store_id))
+        @inventory_stock = InventoryStock.new(inventory_stock_params.merge(product_id: @product_id))
         respond_to do |format|
             if  @inventory_stock.save
                 #inventory_stock = InventoryStock.where(product_id: @product_id)

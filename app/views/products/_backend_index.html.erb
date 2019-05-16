@@ -1,151 +1,48 @@
 <%= stylesheet_link_tag 'backend', media: 'print, screen' %>
-<div class="container">
-<section class="app">
-  <aside class="sidebar">
-  
-    <nav class="sidebar-nav">
-      <ul>
-        <li>
-          <%= link_to('Dashboard', "#", class: "nav-link") %>
-        </li>
-        <li>
-        <%= link_to('Inventory', class: "nav-link") %>
-          <ul class="nav-flyout">
-            <li>
-            <%= link_to('Products', products_path , method: "get", class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Product Stocks', inventory_stocks_path ,method: "get", class: "nav-link") %>
-            </li>
-          </ul>
-        </li>
-        <li>
-        <%= link_to('Sales Orders', "customers_path", class: "nav-link") %>
-          <ul class="nav-flyout">
-            <li>
-            <%= link_to('Orders', "customers_path", class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Invoice', "customers_path", class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Shipments', "customers_path", class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Returns', "customers_path", class: "nav-link") %>
-            </li>
-          </ul>
-        </li>
-        <li>
-        <%= link_to('Stores', "#", class: "nav-link") %>
-          <ul class="nav-flyout">
-            <li>
-            <%= link_to('Stores1', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores2', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores3', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores4', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores5', stores_path, class: "nav-link") %>
-            </li>
-          </ul>
-        </li>
-        <li>
-        <%= link_to('Product', stores_path, class: "nav-link") %>
-          <ul class="nav-flyout">
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-          </ul>
-        </li>
-        <li>
-        <%= link_to('Stores', stores_path, class: "nav-link") %>
-          <ul class="nav-flyout">
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-            <li>
-            <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-             <li>
-             <%= link_to('Stores', stores_path, class: "nav-link") %>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <%= link_to('Invoice', stores_path, class: "nav-link") %>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-</section>
 
-<div class="container_product">
+
+
 <div class="pro_sell">
-<h1>Products</h1>
+<h4>Products</h4>
 
-<table class="table table-hover">
+<table class="table table-fixed table-striped table-bordered table-scroll">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Sku</th>
-      <th>Status</th>
-      <th>Short desc</th>
-      <th>Long desc</th>
-      <th>Price</th>
-      <th>Color</th>
-      <th>Store</th>
-      <th>Image</th>
-      <th colspan="3"></th>
+    <tr class="fixedHeader">
+      <th style="padding-right:4.6em;"></th>
+      <th style="padding-right:9em;">Name</th>
+      <th style="padding-right:10em;">Sku</th>
+      <th style="padding-right:0.7em;">Status</th>
+      <th style="padding-right:7.5em;">Short desc</th>
+      <th style="padding-right:6.4em;">Long desc</th>
+      <th style="padding-right:3em;">Price</th>
+      <th style="padding-right:3em;">Store</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="scrollContent">
     <% unless @products.blank?
     @products.each do |product| %>
       <tr>
-        <td><%= product.name %></td>
-        <td><%= product.sku %></td>
+        <td><%= image_tag url_for(product.images.first), class: "img2", size: "42" if product.images.attached? %></td> 
+        <td class="long"><%= product.name %></td>
+        <td class="long1"><%= product.sku %></td>
         <td><%= product.status %></td>
-        <td><%= product.short_desc %></td>
-        <td class="des"><%= product.long_desc %></td>
+        <td class="long1"><%= product.short_desc %></td>
+        <td class="long"><%= product.long_desc %></td>
         <td><%= product.price %></td>
         <td><%= product.color %></td>
         <td><%= product.store.shop_name %></td>
-        <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% if @inventory_stock_count == 0 %>
-          <td><%= link_to 'Add Inventory', new_inventory_stock_path(id: product.id,store_id: product.store_id), :method => :get %></td>
+          <td><%= link_to 'Add Inventory', new_inventory_stock_path(id: product.id), :method => :get %></td>
         <%else%>
           <td><%= link_to 'Update Inventory', edit_inventory_stock_path(@inventory_stock) %></td>
         <%end%> 
       </tr>
     <% end
     end %>
-
   </tbody>
 </table>
 
@@ -154,4 +51,4 @@
 <%= link_to '+', new_product_path %>
 </div>
 </div>
-</div>
+

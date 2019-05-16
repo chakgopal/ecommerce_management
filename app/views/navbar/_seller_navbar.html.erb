@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'backend', media: 'print, screen' %>
 <style>
 
     #navbarDropdown1:hover{
@@ -70,7 +71,107 @@
     </div>
 </nav>
 
-
+<div class="container">
+<section class="app">
+  <aside class="sidebar">
+  
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <%= link_to('Dashboard', "#", class: "nav-link") %>
+        </li>
+        <li>
+        <%= link_to('Inventory', class: "nav-link") %>
+          <ul class="nav-flyout">
+            <li>
+            <%= link_to('Products', products_path , method: "get", class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Product Stocks', inventory_stocks_path ,method: "get", class: "nav-link") %>
+            </li>
+          </ul>
+        </li>
+        <li>
+        <%= link_to('Sales Orders', "customers_path", class: "nav-link") %>
+          <ul class="nav-flyout">
+            <li>
+            <%= link_to('Orders', "customers_path", class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Invoice', "customers_path", class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Shipments', "customers_path", class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Returns', "customers_path", class: "nav-link") %>
+            </li>
+          </ul>
+        </li>
+        <li>
+        <%= link_to('Stores', "#", class: "nav-link") %>
+          <ul class="nav-flyout">
+            <li>
+            <%= link_to('Stores1', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores2', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores3', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores4', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores5', stores_path, class: "nav-link") %>
+            </li>
+          </ul>
+        </li>
+        <li>
+        <%= link_to('Product', stores_path, class: "nav-link") %>
+          <ul class="nav-flyout">
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+          </ul>
+        </li>
+        <li>
+        <%= link_to('Stores', stores_path, class: "nav-link") %>
+          <ul class="nav-flyout">
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+            <li>
+            <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+             <li>
+             <%= link_to('Stores', stores_path, class: "nav-link") %>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <%= link_to('Invoice', stores_path, class: "nav-link") %>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+</section>
 
 <script>
   
