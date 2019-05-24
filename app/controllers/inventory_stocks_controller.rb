@@ -34,8 +34,6 @@ class InventoryStocksController < ApplicationController
     end
 
     def edit
-      @product_id = session[:id]
-      @inventory_stock = InventoryStock.where(product_id: @product_id).first
     end
     
     def update

@@ -8,11 +8,19 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :order_addresses
   resources :order_items
-  resources :orders
+  resources :orders do
+    collection do
+      get :checkout
+    end
+  end  
   resources :products
   resources :sellers
   resources :stores
-  resources :quotes
+  resources :quotes do
+    collection do
+      post :new_quote
+    end
+  end
   resources :quote_items
   resources :inventory_stocks
   

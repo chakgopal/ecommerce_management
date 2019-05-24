@@ -5,17 +5,24 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-
     if seller_signed_in?
-
       @products = current_seller.products.order(:name).page params[:page]
-      @inventory_stock_count = InventoryStock.where(product_id:@products[0].id).count if @products.present?
-      @inventory_stock = InventoryStock.where(product_id:@products[0].id).first if @products.present?
-      #puts @inventory_stock_count.to_s
-     
-      #@products = current_seller.products.where(status:'active')
-       #puts @products.to_json
-
+      @inventory_stock_count = []
+      @inventory_stock = []
+      @products.each do|p|
+         data_hash = {}
+         inventory_stock_result_count = InventoryStock.where(product_id:p.id).count
+         inventory_stock = InventoryStock.where(product_id:p.id)
+         inventory_stock.each do|i|
+           inventory_data_hash = {}
+           inventory_data_hash["id"] = i.id
+           inventory_data_hash["product_id"] = i.product_id
+           @inventory_stock << inventory_data_hash
+         end  
+          data_hash["pid"] = p.id
+          data_hash["count"] = inventory_stock_result_count
+         @inventory_stock_count << data_hash
+      end
     else
       @products = Product.with_attached_images.order(:name).limit(6)
       @shop_details = Store.take(6)
