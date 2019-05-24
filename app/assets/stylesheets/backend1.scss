@@ -1,0 +1,89 @@
+
+/*table */ 
+.long2{
+  display: flex;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.long{
+  display: block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  width:150px;
+}
+
+.long1{
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.table th, .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  font-size: 15px;
+}
+
+.table thead th {
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 0px;
+  width: 10em;
+  text-align: left;
+}
+
+.table tbody td {
+  width: 10em;
+  text-align: left;
+}
+
+.table-bordered td {
+  border: 0px solid #dee2e6;}
+
+.table-bordered th, .table-bordered td {
+  border: 0px solid #dee2e6;}
+
+tbody.scrollContent {
+  display: block;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 70em;
+}
+.fixedHeader {
+  display: block;
+  width: 100%;
+}
+
+/*table */ 
+
+.row{
+  width: 70em;
+}
+
+.pro_sell-2{
+  margin-top: -43.7%;
+  margin-left: 18%;
+}
+
+.pro-header-select{
+  margin-top: 50px;
+}
+
+.section{
+  display: inline-block;
+}
+
+.section1{
+  display: inline-block;
+  padding-top: -2%;
+  margin-left: 20px;
+}
+
+.back1{
+  margin-left: 80%;
+}
