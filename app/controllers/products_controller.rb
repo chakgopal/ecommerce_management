@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
       puts @inventory_stock_count.to_s
       #@products = current_seller.products.where(status:'active')
        #puts @products.to_json
-
+      
     else
       @products = Product.with_attached_images.order(:name).page params[:page]
     end
@@ -24,10 +24,12 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    
   end
   # GET /products/new
   def new
     @product = Product.new
+   
   end
 
   # GET /products/1/edit

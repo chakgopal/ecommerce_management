@@ -1,9 +1,9 @@
-class RegistrationsController < Devise::RegistrationsController
+class Customer::RegistrationsController < Devise::RegistrationsController
 
     
-
-    #def after_sign_up_path_for(resource)
-      #"/customer_addresses/new"
-    #end
- 
+    
+    def after_sign_up_path_for(resource)
+      "/customer_addresses/new"
+    end
+    
 end

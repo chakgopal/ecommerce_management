@@ -2,9 +2,9 @@
 
 <h1>Stores</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
-  <%if @stores.blank?%>
+  <%if !@stores.blank?%>
     <tr>
       <th>Shop Name</th>
       <th>Shop Image</th>
@@ -51,10 +51,11 @@
     end %>
   </tbody>
 </table>
-<%if !@stores.nil?%>
-<%else%>  
-  <%= paginate @stores %>
-  <%= page_entries_info @stores, entry_name: 'item' %>
+<%if @paginatable_array.nil?%>
+<h4>No stores present</h4>
+<% else %>  
+  <%= paginate @paginatable_array %>
+  <%= page_entries_info @paginatable_array, entry_name: 'item' %>
 <%end%>
  <br>
  <%= link_to 'New Store', new_store_path %>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers
+  devise_for :customers, controllers: { registrations: 'customers/registrations' }
   devise_for :sellers
 
   resources :customer_addresses

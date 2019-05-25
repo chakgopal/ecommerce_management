@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   
-  before_action :authenticate_admin!, only: [:index]
+  #before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_seller!, only:[:new,:destroy,:index]
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
@@ -45,8 +45,8 @@ end
 
     if seller_signed_in?
     
-     @stores = Store.with_attached_images.order(:id).page params[:page]
-     
+     @stores = Store.with_attached_images.where(seller_id: current_seller.id).order(:id)
+     @paginatable_array = Kaminari.paginate_array(@stores).page(params[:page]).per(10)
      #@stores = Store.where(seller_id: current_seller.id)
      end
 
