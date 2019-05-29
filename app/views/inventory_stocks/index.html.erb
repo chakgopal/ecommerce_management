@@ -1,56 +1,59 @@
 <%= stylesheet_link_tag 'backend1', media: 'print, screen' %>
 <h4 class="pro-head">Inventory</h4>
 
+<div class="dropdown-inventory">
+  <button class="btn btn-secondary dropdown-toggle btn-inventory" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="material-icons view">view_headline</i>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+    <a class="dropdown-item" href="#">General View</a>
+    <a class="dropdown-item" href="#">Inventory View</a>
+  </div>
+</div>
+
 <div class="main2">
-  <div class="pro_sell">
-    
-      <table class="table table-fixed table-striped table-bordered table-scroll">
-        <thead>
-          <tr class="fixedHeader">
-            <th></th>
-            <th>Name</th>
-            <th>Sku</th>
-            <th>Price</th>
-            <th>Color</th>
-            <th>Quantity</th>
-            <th>Reorder Level</th>
-            <th>Stock Availability</th>
+  <div class="pro_sell-3">
+    <table class="table table-fixed table-striped table-bordered table-scroll">
+      <thead>
+        <tr class="fixedHeader">
+          <th></th>
+          <th>Name</th>
+          <th>Sku</th>
+          <th>Price</th>
+          <th>Color</th>
+          <th>Quantity</th>
+          <th>Reorder Level</th>
+          <th>Stock Availability</th>
+        </tr>
+      </thead>
+
+      <tbody class="scrollContent">
+        <% unless @seller_products.blank?
+        @seller_products.each do |product| %>
+          <tr>
+            <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
+            <td class="long"><%= product.name %></td>
+            <td><%= product.sku %></td>
+            <td><%= product.price %></td>
+            <td><%= product.color %></td>
+          <% unless @inventory_stock.blank?
+          @inventory_stock.each do |inventory| %>
+            <% if product.id == inventory["product_id"] %>
+              <td><%= inventory["quantity"] %></td>
+              <td><%= inventory["min_quantity"] %></td>
+              <td><%= inventory["is_in_stock"] %></td>
           </tr>
-        </thead>
-
-        <tbody class="scrollContent">
-          <% unless @seller_products.blank?
-          @seller_products.each do |product| %>
-            <tr>
-              <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
-              <td class="long"><%= product.name %></td>
-              <td class="long2"><%= product.sku %></td>
-              <td><%= product.price %></td>
-              <td><%= product.color %></td>
-            <% unless @inventory_stock.blank?
-            @inventory_stock.each do |inventory| %>
-              <% if product.id == inventory["product_id"] %>
-                <td><%= inventory["quantity"] %></td>
-                <td><%= inventory["min_quantity"] %></td>
-                <td><%= inventory["is_in_stock"] %></td>
-            </tr>
-            <% end %>
-            <% end
-          end %>
-
+          <% end %>
           <% end
-          end %>
+        end %>
 
-        </tbody>
-      </table>
-    
+        <% end
+        end %>
+
+      </tbody>
+    </table>
   </div>
 </div>
 <script>
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollY": 200,
-        "scrollX": true
-    } );
-} );
+$('.dropdown-toggle').dropdown()
 </script>

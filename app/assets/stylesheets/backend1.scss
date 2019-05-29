@@ -42,10 +42,12 @@
 }
 
 .table-bordered td {
-  border: 0px solid #dee2e6;}
+  border: 0px solid #dee2e6;
+}
 
 .table-bordered th, .table-bordered td {
-  border: 0px solid #dee2e6;}
+  border: 0px solid #dee2e6;
+}
 
 tbody.scrollContent {
   display: block;
@@ -54,6 +56,7 @@ tbody.scrollContent {
   overflow-x: hidden;
   width: 70em;
 }
+
 .fixedHeader {
   display: block;
   width: 100%;
@@ -74,16 +77,67 @@ tbody.scrollContent {
   margin-top: 50px;
 }
 
-.section{
-  display: inline-block;
+select{
+  margin-bottom: 15px;
 }
 
-.section1{
-  display: inline-block;
-  padding-top: -2%;
-  margin-left: 20px;
+.hr6{
+  margin-top: -0.1px;
 }
 
 .back1{
   margin-left: 80%;
+}
+
+.vl {
+  border-left: 1px solid rgb(216, 216, 216);
+  height: 300px;
+}
+
+.dropdown-inventory{
+  position: absolute;
+  margin-left: 18%;
+  margin-top: -40%;
+}
+
+.pro_sell-3{
+  margin-top: 8%;
+  margin-left: 17%;
+}
+
+.btn-inventory{
+  background-color: transparent;
+  border: none;
+}
+
+.btn-inventory:hover{
+  background-color: transparent;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn{
+  padding: 0rem 0rem 0rem 0rem;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+  color: black;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.view{
+  color: black;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem transparent;
 }

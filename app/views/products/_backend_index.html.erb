@@ -13,54 +13,52 @@
     <table class="table table-fixed table-striped table-bordered table-scroll">
       <thead>
         <tr class="fixedHeader">
-          <th style="padding-right:4.6em;"></th>
-          <th style="padding-right:9em;">Name</th>
-          <th style="padding-right:10em;">Sku</th>
-          <th style="padding-right:0.7em;">Status</th>
-          <th style="padding-right:8em;">Short desc</th>
-          <th style="padding-right:6.5em;">Long desc</th>
+          <th style="padding-right:6.5em;"></th>
+          <th style="padding-right:8.5em;">Name</th>
+          <th style="padding-right:10.5em;">Sku</th>
+          <th style="padding-right:1.5em;">Status</th>
+          <th style="padding-right:9em;">Short desc</th>
+          <th style="padding-right:6.4em;">Long desc</th>
           <th style="padding-right:3em;">Price</th>
-          <th style="padding-right:3em;">Store</th>
         </tr>
       </thead>
 
-  <tbody class="scrollContent">
-    <% unless @products.blank?
-    @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.sku %></td>
-        <td><%= product.status %></td>
-        <td><%= product.short_desc %></td>
-        <td><%= product.long_desc %></td>
-        <td><%= product.price %></td>
-        <td><%= product.color %></td>
-        <td><%= product.store.shop_name %></td>
-        <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if seller_signed_in? %>
-          <% unless @inventory_stock_count.blank?
-          @inventory_stock_count.each do |i| %>
-        <% if i["pid"] == product.id && i["count"] == 0  %>
-          <td><%= link_to 'Add Inventory', new_inventory_stock_path(id: product.id), :method => :get %></td>
-        <%elsif i["pid"] == product.id && i["count"] != 0%>
-           <% unless @inventory_stock.blank?
-             @inventory_stock.each do |i| %>
-               <% if i["product_id"] == product.id %>
-                 <td><%= link_to 'Update Inventory', edit_inventory_stock_path(i["id"]), :method => :get %></td>
-               <%end%> 
-           <% end
-            end %>   
-        <%end%>
-        <%end%>
-        <% end
-      end %>
-      </tr>
-    <% end
-    end %>
-
-  </tbody>
-</table>
+      <tbody class="scrollContent">
+        <% unless @products.blank?
+          @products.each do |product| %>
+            <tr>
+              <td><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
+              <td class="long"><%= product.name %></td>
+              <td><%= product.sku %></td>
+              <td><%= product.status %></td>
+              <td><%= product.short_desc %></td>
+              <td class="long"><%= product.long_desc %></td>
+              <td><%= product.price %></td>
+              <td><%= product.color %></td>
+              <td><%= link_to 'Show', product %></td>
+              <td><%= link_to 'Edit', edit_product_path(product) %></td>
+              <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% if seller_signed_in? %>
+                <% unless @inventory_stock_count.blank?
+                @inventory_stock_count.each do |i| %>
+              <% if i["pid"] == product.id && i["count"] == 0  %>
+                <td><%= link_to 'Add Inventory', new_inventory_stock_path(id: product.id), :method => :get %></td>
+              <%elsif i["pid"] == product.id && i["count"] != 0%>
+                <% unless @inventory_stock.blank?
+                  @inventory_stock.each do |i| %>
+                    <% if i["product_id"] == product.id %>
+                      <td><%= link_to 'Edit Inventory', edit_inventory_stock_path(i["id"]), :method => :get %></td>
+                    <%end%> 
+                <% end
+                  end %>   
+              <%end%>
+              <%end%>
+              <% end
+            end %>
+            </tr>
+          <% end
+        end %>
+     </tbody>
+   </table>
+  </div>
 </div>

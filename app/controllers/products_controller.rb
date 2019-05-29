@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
     
     @product.update(status:'inactive')
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url}
       format.json { head :no_content }
     end
   end

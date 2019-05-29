@@ -1,25 +1,23 @@
 <style>
 
   .logincover{
-    background-color: rgba(0, 0, 0, 0.6);
     width: 410px;
-    height: 485px;
+    height: 455px;
     margin-left: 35%;
-    margin-top: 20px;
+    margin-top: 8px;
     position: absolute;
-    margin-bottom: 100px;
   }
 
   .header{
     text-align: center;
-    padding-top: 40px;
-    color: white;
+    padding-top: 20px;
+    color: black;
   }
 
   .fog{
     font-size: 15px;
     float: right;
-    color: white;
+    color: #0082fc;
   }
 
   .fog:hover{
@@ -29,7 +27,7 @@
   .btn-sm{
     margin-top: 30px;
     margin-left: 28.5%;
-    color: white;
+    color: black;
     font-size: 20px;
   }
 
@@ -39,8 +37,8 @@
   }
 
   label{
-    padding-top: 20px;
-    color: white;
+    padding-top: 10px;
+    color: black;
   }
 
   .btn{
@@ -53,6 +51,7 @@
 <div class="cover">
   <div class="logincover">
     <h2 class="header">Login</h2>
+    <hr>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {style: "width: 100%;max-width: 330px;padding: 15px;margin-left: 10%;"}) do |f| %>
       <div class="field">
         <%= f.label :email %><br />
@@ -75,10 +74,10 @@
       <% end %>
 
       <div class="actions">
-        <%= f.submit "Log in", class: "btn btn-lg btn-primary btn-block" %>
+        <%= f.submit "Log in", class: "btn btn-md btn-primary btn-block" %>
       </div>
     <% end %>
-
+    <hr>
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
       <%= link_to "Create an account", new_registration_path(resource_name), class: "btn-sm" %><br />
     <% end %>
