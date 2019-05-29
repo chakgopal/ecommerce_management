@@ -11,7 +11,7 @@
     <%= f.input :long_desc %>
     <%= f.input :price %>
     
-    <%= f.association :store, label_method: :shop_name, value_method: :id, prompt: "Select your Shop" %>
+    <%= f.association :store, label_method: :shop_name, value_method: :seller_id, prompt: "Select your Shop" %>
     <%= f.input :images, as: :file, input_html: {multiple: true} %>
   </div>
 

@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   resources :stores
   resources :quotes do
     collection do
-      post :new_quote
+      get :new_quote
+      get :show_cart
     end
   end
   resources :quote_items

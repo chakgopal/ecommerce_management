@@ -1,6 +1,7 @@
 
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  #before_action :set_order
+  
 
   # GET /orders
   # GET /orders.json
@@ -8,6 +9,22 @@ class OrdersController < ApplicationController
     @orders = Order.where(customer_id: current_customer.id)
   end
 
+  def checkout
+    product_id = params[:id]
+    product_details = Product.where(id: product_id)
+    @product_price = product_details[0].price
+    if customer_signed_in?
+      customer_id = current_customer.id  
+      if customer_id.present?
+        customer_details = Customer.find(customer_id)
+        @customer_login_details = customer_details.email 
+     else
+       flash[:notice] = "please sign in before placing your order"
+       redirect_to  new_customer_session_path
+     end
+   end      
+    @customer_address_details = CustomerAddress.find(customer_id) rescue ActiveRecord::RecordNotFound    
+  end  
   # GET /orders/1
   # GET /orders/1.json
   def show
