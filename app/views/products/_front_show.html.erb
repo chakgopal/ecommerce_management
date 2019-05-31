@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag 'backend1', media: 'print, screen' %>
+
+<div class="row">
+  <div class="col-sm">
+    <p>
+      <% if @product.images.attached? %>
+        <% @product.images.each do |product_image| %>
+          <%= image_tag url_for(product_image.variant(resize:"100x460").processed) %>
+        <% end %>
+      <% end %>
+    </p>
+    <% if customer_signed_in? %>
+      <%= button_to "Add To Cart", new_quote_quotes_url, 
+          :params =>{id:@product.id},
+          :class => "inbox-sf-add-btn tip", :method => :get %>
+
+      <%= button_to "Buy Now", checkout_orders_path, 
+          :params =>{id:@product.id},
+          :class => "inbox-sf-add-btn tip", :method => :get %> 
+    <% end %>    
+   
+  </div>
+  
+  <div class="col-sm">
+
+    <p>
+      <strong>Name:</strong>
+      <%= @product.name %>
+    </p>
+
+    <p>
+      <strong>Sku:</strong>
+      <%= @product.sku %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @product.status %>
+    </p>
+
+    <p>
+      <strong>Short desc:</strong>
+      <%= @product.short_desc %>
+    </p>
+
+    <p>
+      <strong>Long desc:</strong>
+      <%= @product.long_desc %>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <%= @product.price %>
+    </p>
+
+    <p>
+      <strong>Store:</strong>
+      <%= @product.store.shop_name if @product.store.shop_name.present? %>
+    </p>
+  </div>
+</div>
+  
+  
+
+
+
+

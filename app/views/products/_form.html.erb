@@ -2,11 +2,11 @@
 
 <div class="pro_sell-2">
   <div class="header22">
-  <%if @product.new_record? %>
-      <h5>Create a new product</h5>
-  <%elsif @product.persisted? %>
-      <h5>Edit a new product</h5>
-  <%end%>    
+    <%if @product.new_record? %>
+        <h5>Create a new product</h5>
+    <%elsif @product.persisted? %>
+        <h5>Edit your product</h5>
+    <%end%>    
   </div>
   <%= simple_form_for @product do |f| %>
     <%= f.error_notification %>

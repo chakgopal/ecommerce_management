@@ -31,7 +31,8 @@
                   <%= image_tag url_for(product.images.first),class: "img" if product.images.attached? %>
                 </div>
                 <span class="product-grid__title"><%= product.name %></span><br />
-                <span class="product-grid__price">₹ <%= product.price %></span>      
+                <span class="product-grid__price">₹ <%= product.price %></span>  
+                <%= link_to 'Show', product %>    
               </div>
             <% end
           end %>
