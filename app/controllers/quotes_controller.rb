@@ -2,6 +2,7 @@ class QuotesController < ApplicationController
 
 def new_quote
  id = params[:id] if params[:id].present?
+ session[:id] = id
  @product_details = Product.find(id)
  inventory_details = InventoryStock.where(product_id: @product_details.id)
  @quant = inventory_details[0].quantity if inventory_details.present?
@@ -38,12 +39,34 @@ def new_quote
           #quote_items = QuoteItem.where(quote_id:1)
       end
   end
-  render :plain =>""
+  redirect_to show_cart_quotes_url
 end
 
-# def show_cart
-#   if customer_signed_in?
+def show_cart
+   if customer_signed_in?
+      quotes = Quote.where(customer_id:current_customer.id).first
+      quote_id = quotes.id
+      @cart_items = []
+      product_ids = []
+      quote_items = QuoteItem.where(quote_id:quote_id)
+      @quote_items_count = QuoteItem.where(quote_id:quote_id).count
+      if @quote_items_count > 0
+         quote_items.each do|q|
+            product_id = q.product_id
+            product_ids << product_id
+            product_details = Product.where(id:product_id)
+            cart_items_hash ={}
+            cart_items_hash["name"] = product_details[0]["name"]
+            cart_items_hash["price"] = product_details[0]["price"]
+            cart_items_hash["shop_name"] = product_details[0].store.shop_name
+            cart_items_hash["count"] = @quote_items_count
+            cart_items_hash["desc"] = product_details[0]["short_desc"]
+            @cart_items << cart_items_hash
+            
+          end
+          @product_details = Product.where('id IN (?)', product_ids)
+      end  
+    end
+end
 
-#   end  
-# end   
 end

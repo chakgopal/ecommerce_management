@@ -47,18 +47,26 @@
   <% end %>
 
 </p>
-<% if customer_signed_in? && !@product_id_in_cart.present?%>
-   <%= button_to "Add To Cart", new_quote_quotes_url, 
-       :params =>{id:@product.id},
-       :class => "inbox-sf-add-btn tip", :method => :get %>
+<% if customer_signed_in? %>
 
-   <%= button_to "Buy Now", checkout_orders_path, 
-       :params =>{id:@product.id},
-       :class => "inbox-sf-add-btn tip", :method => :get %> 
-<% end %>
-<% if @product_id_in_cart.present? && customer_signed_in? %> 
-   <%= button_to "Go to cart",
-    :class => "inbox-sf-add-btn tip" %>
+     <%= button_to "Add To Cart", 
+         new_quote_quotes_url, 
+         :params =>{id:@product.id},
+         :class => "add_to_cart",
+         :onclick => "checkItem()",
+         :method => :get %>
+
+      <%= button_to "Buy Now", 
+          checkout_orders_path, 
+          :params =>{id:@product.id},
+          :class => "buy_now", 
+          :method => :get %> 
+
+     <%= button_to "Go to cart",
+         show_cart_quotes_path,
+         :class => "go_to_cart",
+         :onclick => "checkItem()",
+         :method => :get  %>
 <% end %>
 <% if seller_signed_in? || admin_signed_in? %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
@@ -66,3 +74,17 @@
 <%= link_to 'Back', products_path %>
 
 
+<script>
+$(document).ready(function(){
+  $(".go_to_cart").hide();
+});
+function checkItem(){
+  if($(".add_to_cart").clicked == true){
+       $(".add_to_cart").hide();
+       $(".go_to_cart").show();
+  }else{
+    $(".add_to_cart").show();
+    $(".go_to_cart").hide();
+  }
+}
+</script>
