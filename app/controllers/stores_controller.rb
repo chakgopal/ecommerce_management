@@ -45,10 +45,12 @@ end
 
     if seller_signed_in?
     
-     @stores = Store.with_attached_images.where(seller_id: current_seller.id).order(:id)
+     @stores = Store.with_attached_images.where(seller_id: current_seller.id ).order(:id)
      @paginatable_array = Kaminari.paginate_array(@stores).page(params[:page]).per(10)
+    end
+     
      #@stores = Store.where(seller_id: current_seller.id)
-     end
+     
 
      @stores = Store.where(seller_id: current_seller.id )
 

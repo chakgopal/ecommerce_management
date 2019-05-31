@@ -40,6 +40,10 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
+         # Deliver the signup email
+     
+      
+     
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render :show, status: :created, location: @quote }
       else
@@ -74,9 +78,11 @@ class QuotesController < ApplicationController
     end
   end
 
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quote
+      
       @quote = Quote.find(params[:id])
     end
 

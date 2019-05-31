@@ -2,7 +2,11 @@
 
 <h1>Stores</h1>
 
+<<<<<<< HEAD
 <table class="table table-hover">
+=======
+<table class ="table table-hover ">
+>>>>>>> 5cf431a0fe3f5e6f886aa43ac043f5d07c231155
   <thead>
   <%if !@stores.blank?%>
     <tr>
@@ -11,18 +15,10 @@
       <th>Website Url</th>
       <th>Company Email</th>
       <th>Shop Intro</th>
-      <th>Gst Image</th>
-      <th>Shop Pan Image</th>
-      <th>Trade Liscense Image</th>
-      <th>Iso Image</th>
       <th>Address1/th>
-      <th>Address2</th>
       <th>Landmark</th>
       <th>Shop Phone No</th>
       <th>Alternative Phone no1</th>
-      <th>Alternative Phone no2</th>
-      <th>Certificate Of Incorporation</th>
-      <th>Address Proof</th>
       <th colspan="3"></th>
     </tr>
     <%end%>
@@ -38,11 +34,10 @@
         <td><%= store.company_email %></td>
         <td><%= store.shop_intro %></td>
         <td><%= store.address1 %></td>
-        <td><%= store.address2 %></td>
         <td><%= store.landmark %></td>
         <td><%= store.shop_phone_no %></td>
         <td><%= store.alternative_phone_no1 %></td>
-        <td><%= store.alternative_phone_no2 %></td>
+       
         <td><%= link_to 'Show', store %></td>
         <td><%= link_to 'Edit', edit_store_path(store) %></td>
         <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -52,8 +47,12 @@
   </tbody>
 </table>
 <%if @paginatable_array.nil?%>
+<<<<<<< HEAD
 <h4>No stores present</h4>
 <% else %>  
+=======
+<%else%>  
+>>>>>>> 5cf431a0fe3f5e6f886aa43ac043f5d07c231155
   <%= paginate @paginatable_array %>
   <%= page_entries_info @paginatable_array, entry_name: 'item' %>
 <%end%>

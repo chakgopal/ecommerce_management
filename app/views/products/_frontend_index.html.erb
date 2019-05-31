@@ -14,7 +14,9 @@
       <% end %>
      
       <%= product.price %>
+      <%= link_to 'send mail', send_email_product_path(product) %>
     </div>
+   
   <% end 
    end %>
 
