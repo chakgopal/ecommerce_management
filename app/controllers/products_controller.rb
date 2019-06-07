@@ -96,7 +96,7 @@ class ProductsController < ApplicationController
     @customer = current_customer.email
     @product = Product.find(params[:id])
     puts @product.name
-    puts @product.price
+    #puts @product.price
     OrderNotifierMailer.order_create_email(@customer,@product).deliver_now
     end
     render :plain => 'message sent'

@@ -101,10 +101,25 @@
     <% end %>
   <% end %>
 </p>
+
+<p>
+<strong>Verified:</strong>
+<%= @store.verified %>
+</p>
+
+<% if !@store.verified %>
+  <h3>Verify your number</h3>
+  <%= form_tag @store, url: store_path(@store.id), :method => :put do %>
+  <%= label_tag :code, "Enter the code you received at #{@store.shop_phone_no} here" %>
+  <%= text_field_tag :code %>
+  <%= submit_tag 'Verify' %>
+  <% end %>
+<% end %>
  
 
-
-<%= link_to 'Edit', edit_store_path(@store) %> | 
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+ 
 <% if admin_signed_in? %>
     <%= link_to "SellersBack", controller: "sellers", action: "show",id:@store.seller_id %>
 <% else %> 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_060913) do
+ActiveRecord::Schema.define(version: 2019_06_05_113355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,10 @@ ActiveRecord::Schema.define(version: 2019_05_28_060913) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_customers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -230,6 +234,11 @@ ActiveRecord::Schema.define(version: 2019_05_28_060913) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.integer "role"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_sellers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_sellers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true
   end
@@ -262,6 +271,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_060913) do
     t.bigint "seller_id"
     t.boolean "deleted_flag"
     t.bigint "quote_item_id"
+    t.string "countrycode"
+    t.boolean "verified", default: false
     t.index ["quote_item_id"], name: "index_stores_on_quote_item_id"
     t.index ["seller_id"], name: "index_stores_on_seller_id"
   end

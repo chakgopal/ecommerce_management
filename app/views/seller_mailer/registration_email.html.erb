@@ -1,0 +1,11 @@
+!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+</head>
+<body>
+    <h1>Hi <%= @seller.email %>
+    <%= seller_confirmation_path(@seller.confirmation_token) %></h1>
+	
+</body>
+</html>

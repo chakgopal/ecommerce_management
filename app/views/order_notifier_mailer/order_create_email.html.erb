@@ -4,9 +4,7 @@
 	<title>Order Confirmation</title>
 </head>
 <body>
-	<h1>Your order <%= @product.name %> has been placed 
-		price is <%= @product.price %> </h1>
-	
-
+	<h1>Your order <%= @product.name %> has been placed price is <%= @product.price %></h1>
+	<%= image_tag @product.images.first %>
 </body>
 </html>
