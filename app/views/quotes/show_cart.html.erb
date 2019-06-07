@@ -1,11 +1,196 @@
+<style>
+._3ycxrs{
+border-top: 1px solid #f0f0f0;
+padding: 23px;
+position: relative;
+background: #fff;
+}
+.PaJLWc{box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+._2dcihZ{
+  position: absolute;
+  top: 7px;
+  text-align: center;
+  border-radius: 7px;
+  width: 18px;
+  height: 18px;
+  background-color: #ff6161;
+  border: 1px solid #fff;
+  font-weight: 400;
+  color: #f0f0f0;
+  line-height: 16px;
+  font-size: 10px;
+}
+.quantity {
+  position: relative;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
+.quantity input {
+  width: 45px;
+  height: 42px;
+  line-height: 1.65;
+  float: left;
+  display: block;
+  padding: 0;
+  margin: 0;
+  padding-left: 8px;
+  border: 1px solid #eee;
+}
+
+.quantity input:focus {
+  outline: 0;
+}
+
+.quantity-nav {
+  float: left;
+  position: relative;
+  height: 42px;
+}
+
+.quantity-button {
+  position: relative;
+  cursor: pointer;
+  border-left: 1px solid #eee;
+  width: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+  line-height: 1.7;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.quantity-button.quantity-up {
+  position: absolute;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.quantity-button.quantity-down {
+  position: absolute;
+  bottom: -1px;
+  height: 50%;
+}
+
+</style>
 <h3>My Cart(<%=@quote_items_count %>)</h3>
-<% @product_details.each do|p| %>
+<%= @subtotal %>
+<%= @quantity %>
+
+
+<% if @cart_items.size == 0 %>
+   <p class="text-center">
+     There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
+  </p>
+<% else %>
+<div class = "_3ycxrs">  
+<div class = "PaJLWc"> 
+   <% @product_details.each do|p| %>
        <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
-<%end%>  
+       <div class="quantity">
+          <input type="number" id="qty_<%=p.id%>" min="<%=@quantity%>" max="9" step="1" value = "<%=@quantity%>">
+       </div>
+       <%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => p.id),method: :delete,class: "btn btn-inverse" %>
+   <%end%>
+</div>
+</div>     
 <% @cart_items.each do|c| %>
   <%=c["name"] %>
   <%=c["price"] %>
   <%=c["desc"] %>
   <%=c["shop_name"] %>
 <%end%>  
+<%end%>
+<script>
+$(document).ready(function(){
+  if(<%=@quote_items_count%>!=0)
+     $(".cart").append('<div class="_2dcihZ"><%=@quote_items_count %></div>');
+  });
 
+  $('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    $('.quantity').each(function() {
+      var spinner = $(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+        input = spinner.find('input[id^=qty]');
+        input_id = input.attr('id').split("_")[1];
+        console.log(input_id);
+        console.log(input.val());
+      
+      $.ajax({
+
+      url: "show_cart?id="+input_id+"&qty="+input.val(),
+      method: "GET",
+      contentType: "application/json",
+      success: function(msg) {
+        console.log(msg);
+       }
+     });
+    });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+    
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 1;
+        }
+        spinner.find("input").val(newVal);
+        if(newVal!=min){
+          spinner.find("input").trigger("change");
+        }else{
+          $('.quantity-down').disabled = true;
+          
+        }
+        
+        input_id = input.attr('id').split("_")[1];
+        console.log(input_id);
+        console.log(input.val());
+        
+      $.ajax({
+
+      url: "show_cart?id="+input_id+"&qty="+input.val(),
+      method: "GET",
+      contentType: "application/json",
+      success: function(msg) {
+       console.log(msg);
+      }
+     });
+  });
+ });
+</script>

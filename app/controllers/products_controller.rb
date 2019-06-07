@@ -35,9 +35,9 @@ class ProductsController < ApplicationController
     if customer_signed_in?
       item_in_cart = Quote.where(customer_id:current_customer.id).first
       quote_id = item_in_cart.id if item_in_cart.present?
-      in_cart = QuoteItem.where(quote_id:quote_id)
-      @product_id_in_cart = in_cart[0]["product_id"]
-      puts @product_id_in_cart.to_s
+      @in_cart = QuoteItem.where(quote_id:quote_id).where(product_id:params[:id])
+      #@product_id_in_cart = in_cart[0]["product_id"] if in_cart.present?
+      #puts @product_id_in_cart.to_s
     end  
   end
   # GET /products/new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_082956) do
+ActiveRecord::Schema.define(version: 2019_06_06_094739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,10 +211,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_082956) do
 
   create_table "quotes", force: :cascade do |t|
     t.integer "item_count"
-    t.integer "item_quantity"
     t.decimal "grand_total", precision: 5, scale: 2
     t.string "coupon_code"
-    t.decimal "subtotal", precision: 5, scale: 2
     t.decimal "subtotal_with_discount", precision: 5, scale: 2
     t.bigint "store_id"
     t.bigint "customer_id"
@@ -223,6 +221,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_082956) do
     t.bigint "quote_item_id"
     t.integer "status", default: 0
     t.bigint "product_id"
+    t.integer "item_quantity", default: 1
+    t.integer "subtotal"
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
     t.index ["product_id"], name: "index_quotes_on_product_id"
     t.index ["quote_item_id"], name: "index_quotes_on_quote_item_id"
