@@ -5,6 +5,6 @@
 </head>
 <body>
 	<h1>Your order <%= @product.name %> has been placed price is <%= @product.price %></h1>
-	<%= image_tag @product.images.first %>
+	<%= image_tag url_for(@product.images.first), size: "64" if @product.images.attached? %>
 </body>
 </html>
