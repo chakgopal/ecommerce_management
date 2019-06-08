@@ -1,3 +1,18 @@
-// Place all the styles related to the seller controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.main {
+    position: fixed;
+    top: 0;
+    margin-top: 7em !important;
+    margin-left: 15em !important;
+}
+
+hr {
+    margin-top: 3em;
+}
+
+.deactive {
+    margin-left: 49em;
+}
+
+.form-control {
+    width: 50%;
+}

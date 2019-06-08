@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag 'backend', media: 'print, screen' %>
+
 <h4 class="pro-head">Products</h4>
-<div class="main">
+<div class="main-3">
   <div class="header_bck">
     <div class="form">
       <input class="form-control ml-sm-2" type="search" placeholder="Search..." aria-label="Search">
@@ -15,10 +16,10 @@
         <tr class="fixedHeader">
           <th style="padding-right:6.5em;"></th>
           <th style="padding-right:8.5em;">Name</th>
-          <th style="padding-right:10.5em;">Sku</th>
-          <th style="padding-right:1.5em;">Status</th>
-          <th style="padding-right:9em;">Short desc</th>
-          <th style="padding-right:6.4em;">Long desc</th>
+          <th style="padding-right:10em;">Sku</th>
+          <th style="padding-right:1.2em;">Status</th>
+          <th style="padding-right:7.8em;">Short desc</th>
+          <th style="padding-right:6.2em;">Long desc</th>
           <th style="padding-right:3em;">Price</th>
         </tr>
       </thead>
@@ -54,11 +55,13 @@
               <%end%>
               <%end%>
               <% end
-            end %>
+              end %>
             </tr>
           <% end
         end %>
-     </tbody>
-   </table>
+      </tbody>
+    </table>
+    <%= paginate @products %>
+    <%= page_entries_info @products, entry_name: 'item' %>
   </div>
 </div>

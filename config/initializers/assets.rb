@@ -13,6 +13,8 @@ Rails.application.config.assets.precompile += %w( frontend.scss )
 Rails.application.config.assets.precompile += %w( backend.scss )
 Rails.application.config.assets.precompile += %w( backend1.scss )
 Rails.application.config.assets.precompile += %w( inventory_stocks.scss )
+Rails.application.config.assets.precompile += %w( products.scss )
+Rails.application.config.assets.precompile += %w( seller.scss )
 
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

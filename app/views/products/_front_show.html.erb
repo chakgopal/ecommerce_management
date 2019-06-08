@@ -1,28 +1,41 @@
-<%= stylesheet_link_tag 'backend1', media: 'print, screen' %>
+<%= stylesheet_link_tag 'products', media: 'print, screen' %>
 
 <div class="row">
-  <div class="col-sm">
+  <div class="col-sm-4">
     <p>
+ 
       <% if @product.images.attached? %>
         <% @product.images.each do |product_image| %>
-          <%= image_tag url_for(product_image.variant(resize:"100x460").processed) %>
+          <div class="lazyload">
+            <%= image_tag url_for(product_image.variant(resize:"100x460").processed) %>
+          </div> 
         <% end %>
-      <% end %>
+      <% end %>  
     </p>
-    <% if customer_signed_in? %>
-      <%= button_to "Add To Cart", new_quote_quotes_url, 
-          :params =>{id:@product.id},
-          :class => "inbox-sf-add-btn tip", :method => :get %>
+    <%= button_to "Add To Cart", 
+      new_quote_quotes_url, 
+      :params =>{id:@product.id},
+      :class => "add_to_cart",
+      :onclick => "checkItem()",
+      :method => :get 
+    %>
 
-      <%= button_to "Buy Now", checkout_orders_path, 
-          :params =>{id:@product.id},
-          :class => "inbox-sf-add-btn tip", :method => :get %> 
-    <% end %>    
-   
+    <%= button_to "Buy Now", 
+      checkout_orders_path, 
+      :params =>{id:@product.id},
+      :class => "buy_now", 
+      :method => :get 
+    %> 
+
+    <%= button_to "Go to cart",
+      show_cart_quotes_path,
+      :class => "go_to_cart",
+      :onclick => "checkItem()",
+      :method => :get 
+    %>
   </div>
   
-  <div class="col-sm">
-
+  <div class="col-sm-4">
     <p>
       <strong>Name:</strong>
       <%= @product.name %>
@@ -55,13 +68,24 @@
 
     <p>
       <strong>Store:</strong>
-      <%= @product.store.shop_name if @product.store.shop_name.present? %>
+      <%= @product&.store&.shop_name if @product&.store&.shop_name&.present? %>
     </p>
   </div>
 </div>
-  
-  
+<%= render "company_content" %>
 
+<script>
+  $(document).ready(function(){
+    $(".go_to_cart").hide();
+  });
+  function checkItem(){
+    if($(".add_to_cart").clicked == true){
+        $(".add_to_cart").hide();
+        $(".go_to_cart").show();
+    }else{
+      $(".add_to_cart").show();
+      $(".go_to_cart").hide();
+    }
+  }
 
-
-
+</script>

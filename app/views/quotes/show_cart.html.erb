@@ -1,0 +1,11 @@
+<h3>My Cart(<%=@quote_items_count %>)</h3>
+<% @product_details.each do|p| %>
+       <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
+<%end%>  
+<% @cart_items.each do|c| %>
+  <%=c["name"] %>
+  <%=c["price"] %>
+  <%=c["desc"] %>
+  <%=c["shop_name"] %>
+<%end%>  
+

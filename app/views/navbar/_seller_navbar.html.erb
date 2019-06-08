@@ -40,8 +40,7 @@
   <div class="top-menu">
     <div class="dropdown first">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <span><i class="material-icons">face</i><%= current_seller.name&.split&.first %></span>
-        <span class="caret"></span>
+        <span><i class="material-icons">person</i><%= current_seller.name&.split&.first %></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <li><%= link_to('My Account', edit_seller_registration_path, class: "dropdown-item") %></li>
@@ -59,10 +58,10 @@
   // SIDEBAR
   $(document).ready(function(){
     $('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 300
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-        draggable: true // Choose whether you can drag to open on touch screens
+        menuWidth: 300, 
+        edge: 'left', 
+        closeOnClick: false, 
+        draggable: true 
       }
     );
     // START OPEN

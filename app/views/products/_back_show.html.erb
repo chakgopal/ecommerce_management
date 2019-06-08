@@ -1,60 +1,57 @@
-<%= stylesheet_link_tag 'backend1', media: 'print, screen' %>
-<div class="pro_sell-2">
-<hr>
-<div class="row">
-<div class="col-sm">
+<%= stylesheet_link_tag 'products', media: 'print, screen' %>
 
-  <p>
-    <strong>Name:</strong>
+<div class="all">
+  <h4 class="pro-head-2">Products</h4>
+  <p class="titel">
     <%= @product.name %>
-  </p>
-
-  <p>
-    <strong>Sku:</strong>
-    <%= @product.sku %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= @product.status %>
-  </p>
-
-  <p>
-    <strong>Short desc:</strong>
-    <%= @product.short_desc %>
-  </p>
-
-  <p>
-    <strong>Long desc:</strong>
-    <%= @product.long_desc %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= @product.price %>
-  </p>
-
-  <p>
-    <strong>Store:</strong>
-    <%= @product.store.shop_name if @product.store.shop_name.present? %>
-  </p>
-  </div>
-  <div class="vl"></div>
-  <div class="col-sm">
-  <p>
-    <% if @product.images.attached? %>
-      <% @product.images.each do |product_image| %>
-        
-        <%= image_tag url_for(product_image.variant(resize:"100x460").processed) %>
-        
+    <% if seller_signed_in? || admin_signed_in? %>
+      <%= link_to edit_product_path(@product) do %> 
+        <i class="material-icons">edit</i>
       <% end %>
     <% end %>
   </p>
+  <p id="notice"><%= notice %></p>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <p>
+        <strong>Sku:</strong>
+        <%= @product.sku %>
+      </p>
 
-  <% if seller_signed_in? || admin_signed_in? %>
-      <%= link_to 'Edit', edit_product_path(@product) %> 
-    <% end %>
-  </div>
+      <p>
+        <strong>Status:</strong>
+        <%= @product.status %>
+      </p>
+
+      <p>
+        <strong>Short desc:</strong>
+        <%= @product.short_desc %>
+      </p>
+
+      <p>
+        <strong>Long desc:</strong>
+        <%= @product.long_desc %>
+      </p>
+
+      <p>
+        <strong>Price:</strong>
+        <%= @product.price %>
+      </p>
+
+      <p>
+        <strong>Store:</strong>
+        <%= @product&.store&.shop_name if @product&.store&.shop_name&.present? %>
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <p class="product-image">
+        <% if @product.images.attached? %>
+          <% @product.images.each do |product_image| %>
+            <%= image_tag url_for(product_image.variant(resize:"100x360").processed) %>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+  </div> 
 </div>
-</div>
-    

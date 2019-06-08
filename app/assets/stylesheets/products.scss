@@ -1,4 +1,65 @@
-// Place all the styles related to the Products controller here.
-// Place all the styles related to the products controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* product create or edit page */
+
+.pro-head {
+    position: absolute;
+    top: 0;
+    margin-left: 15rem !important;
+    margin-top: 1.2rem !important;
+}
+
+.pro_sell-2 {
+    position: fixed;
+    top: 0;
+    margin-left: 14rem !important;
+    margin-top: 5rem !important;
+}
+
+.row {
+    width: 70em;
+}
+
+.pro-header-select {
+    margin-top: 50px;
+}
+
+select {
+    margin-bottom: 15px;
+}
+
+.back1 {
+    margin-left: 80%;
+}
+
+.btn-success {
+    margin-left: 17px;
+}
+
+
+/* Product show page */
+
+.all {
+    margin-left: 18%;
+    position: fixed;
+    top: 0;
+}
+
+.titel {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-top: 5em;
+}
+
+.col-sm-6 {
+    padding-left: 0px;
+}
+
+.pro-head-2 {
+    position: absolute;
+    top: 0;
+    margin-top: 1.2rem !important;
+}
+
+.product-image {
+    margin-left: 15em;
+}
