@@ -1,0 +1,34 @@
+<style>
+.price_details{
+  display: block;
+  text-transform: uppercase;
+  padding: 13px 24px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #878787;
+  min-height: 47px;
+  border-radius: 2px 2px 0 0;
+}
+.price_div{
+  padding: 0 24px;
+  box-sizing: border-box;
+  font-size: 15px;
+  margin: 20px 0;
+}
+</style>
+<div class = "check_div" style="height: auto;"><%=@customer_login_details%></div>
+<div class = "check_div" style="height: auto;">
+  <div class = "check_div_1" style="top: 0px; left: auto;">
+  <div class = "check_div_2" style="background: #fff; border-radius: 2px;min-height: 47px;box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
+    float: inline-end;">
+  <span class ="price_details" style="border-bottom: 1px solid #f0f0f0;">Price Details </span>
+  <div class = "check_div1" style="border-bottom: 1px solid #f0f0f0;">
+    <div class = "price_div" >Price
+      <span class ="price_details"> <%= @product_price %> </span>
+    </div>
+    <div class = "price_div1"> Delivery Charges <span class ="delivery_span" style="color: #388e3c;text-transform: uppercase;">Free</span></div>
+    <div class = "price_div2"> Amount Payable <span class ="amount_span"><%= @product_price %></span></div>
+  </div>
+</div>
+</div>
+</div>  

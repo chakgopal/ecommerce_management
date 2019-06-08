@@ -1,96 +1,124 @@
 class QuotesController < ApplicationController
- before_action :set_quote, only: [:show, :edit, :update, :destroy]
- before_action :authenticate_customer!, only: [:new, :create, :destroy]
-  # GET /quotes
-  # GET /quotes.json
-  def index
-    if customer_signed_in?
-      @quotes = Quote.where(customer_id:current_customer.id).all
-   end 
-  end
+  before_action :authenticate_customer!, only: [:new_quote, :show_cart, :remove_item]
 
-  # GET /quotes/1
-  # GET /quotes/1.json
-  def show
-    @quote = Quote.find(params[:id])
-  end
-
-  # GET /quotes/new
-  def new
+def new_quote
+  if customer_signed_in?
     id = params[:id] if params[:id].present?
+    session[:id] = id
     @product_details = Product.find(id)
-    status = @product_details.status
     inventory_details = InventoryStock.where(product_id: @product_details.id)
     @quant = inventory_details[0].quantity if inventory_details.present?
     if customer_signed_in? 
-      quote_count = Quote.where(customer_id: current_customer.id).count
-      if quote_count == 0
-        @quote = Quote.new
+     quote_count = Quote.where(customer_id: current_customer.id).count
+     if quote_count == 0
+       quotes = Quote.new
+       if quotes.status == "active"
+          quotes.customer_id = current_customer.id
+          quotes.save
+          quote_item = QuoteItem.new
+          quote_item.sku = @product_details.sku
+          quote_item.name = @product_details.name 
+          quote_item.description = @product_details.long_desc
+          quote_item.price = @product_details.price
+          quote_item.quote_id = quotes.id
+          quote_item.product_id = @product_details.id
+          quote_item.store_id = @product_details.store_id
+          quote_item.save
+       end  
+      else 
+          quote_item = QuoteItem.new
+          quote_details = Quote.where(customer_id: current_customer.id)
+          quote_item.sku = @product_details.sku
+          quote_item.name = @product_details.name 
+          quote_item.description = @product_details.long_desc
+          quote_item.price = @product_details.price
+          quote_item.quote_id = quote_details[0]["id"]
+          quote_item.product_id = @product_details.id
+          quote_item.store_id = @product_details.store_id
+          quote_item.save
       end
-    end
-  end  
-# GET /quotes/1/edit
-  def edit
-  end
+   end
+   redirect_to show_cart_quotes_url
+ else
+  redirect_to new_customer_session_path
+ end
+end
 
-  # POST /quotes
-  # POST /quotes.json
-  def create
-    @quote = Quote.new(quote_params)
-
-    respond_to do |format|
-      if @quote.save
-         # Deliver the signup email
+def show_cart
+   if customer_signed_in?
+     session[:customer_id] = current_customer.id
+     subtotal = 0
+     product_price = 0
+     id = params[:id] if params[:id].present?
+     quant = params[:qty] if params[:qty].present?
+     quotes = Quote.where(customer_id:current_customer.id).first
+     QuoteItem.where(product_id:id ).where(quote_id:quotes.id).update(quantity:quant)
+     quote_item = QuoteItem.where(quote_id:quotes.id)
      
-      
+    
      
-        format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
-        format.json { render :show, status: :created, location: @quote }
+     quote_item.each do|q|
+         if q.quantity.to_i > 1
+           product_price = q.price.to_f * q.quantity.to_i
+         else 
+           product_price = q.price.to_f * 1
+         end  
+         
+         subtotal+=  product_price 
+         
+     end
+     
+     Quote.where(customer_id:current_customer.id).update(subtotal:subtotal)
+         
+      quotes = Quote.where(customer_id:current_customer.id).first
+      quote_item = QuoteItem.where(quote_id:quotes.id).where(product_id: id)
+      if quote_item.blank?
+        @quantity = 1
       else
-        format.html { render :new }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
+        @quantity = quote_item[0].quantity
+        
       end
+
+      quote_id = quotes.id if quotes.present?
+      @cart_items = []
+      product_ids = []
+      quote_items = QuoteItem.where(quote_id:quote_id)
+      @quote_items_count = QuoteItem.where(quote_id:quote_id).count
+      if @quote_items_count > 0
+         quote_items.each do|q|
+            product_id = q.product_id
+            product_ids << product_id
+            product_details = Product.where(id:product_id)
+            cart_items_hash ={}
+            cart_items_hash["name"] = product_details[0]["name"]
+            cart_items_hash["price"] = product_details[0]["price"]
+            cart_items_hash["shop_name"] = product_details[0].store.shop_name
+            cart_items_hash["count"] = @quote_items_count
+            cart_items_hash["desc"] = product_details[0]["short_desc"]
+            @cart_items << cart_items_hash
+          end
+          @product_details = Product.where('id IN (?)', product_ids)
+          @subtotal = quotes.subtotal
+      end 
+    else
+      redirect_to new_customer_session_path
     end
-  end
+    puts 
+end
 
-  # PATCH/PUT /quotes/1
-  # PATCH/PUT /quotes/1.json
-  def update
-    respond_to do |format|
-      if @quote.update(quote_params)
-        format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
-        format.json { render :show, status: :ok, location: @quote }
-      else
-        format.html { render :edit }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /quotes/1
-  # DELETE /quotes/1.json
-  def destroy
-    @quote.destroy if @quote.id == session[:id]
-    session[:id] = nil
-    respond_to do |format|
-      format.html { redirect_to quotes_url, notice: 'Quote was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
- 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_quote
-      
-      @quote = Quote.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def quote_params
-      params.fetch(:quote, {})
-    end
-
-
+def remove_item_from_cart
+  customer_id = session[:customer_id]
+  product_id = params[:id]
+  customer_id = current_customer.id
+  quote_details = Quote.where(customer_id:customer_id)
+  quote_id = quote_details[0]["id"]
+  QuoteItem.where(quote_id:quote_id).where(product_id:product_id).delete_all
+  quote_item_details = QuoteItem.where(quote_id:quote_id).where(product_id:product_id)
   
+  redirect_to show_cart_quotes_url
+end
+
+def quote_item_checkout
+end
+
 end

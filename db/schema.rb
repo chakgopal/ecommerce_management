@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_113355) do
+ActiveRecord::Schema.define(version: 2019_06_08_093702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2019_06_05_113355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_categories_on_category_id"
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customer_addresses", force: :cascade do |t|
@@ -145,13 +152,13 @@ ActiveRecord::Schema.define(version: 2019_06_05_113355) do
     t.integer "status"
     t.string "short_desc"
     t.string "long_desc"
-    t.decimal "price", precision: 7, scale: 2
     t.integer "color"
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "deleted_flag"
     t.bigint "seller_id"
+    t.integer "price"
     t.index ["seller_id"], name: "index_products_on_seller_id"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
@@ -176,12 +183,12 @@ ActiveRecord::Schema.define(version: 2019_06_05_113355) do
     t.string "name"
     t.string "description"
     t.integer "quantity"
-    t.decimal "price", precision: 5, scale: 2
     t.bigint "quote_id"
     t.bigint "product_id"
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["product_id"], name: "index_quote_items_on_product_id"
     t.index ["quote_id"], name: "index_quote_items_on_quote_id"
     t.index ["store_id"], name: "index_quote_items_on_store_id"
@@ -207,18 +214,18 @@ ActiveRecord::Schema.define(version: 2019_06_05_113355) do
   end
 
   create_table "quotes", force: :cascade do |t|
-    t.string "status"
     t.integer "item_count"
-    t.integer "item_quantity"
-    t.decimal "grand_total", precision: 5, scale: 2
     t.string "coupon_code"
-    t.decimal "subtotal", precision: 5, scale: 2
-    t.decimal "subtotal_with_discount", precision: 5, scale: 2
     t.bigint "store_id"
     t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quote_item_id"
+    t.integer "status", default: 0
+    t.integer "item_quantity", default: 1
+    t.integer "subtotal"
+    t.integer "grand_total"
+    t.integer "subtotal_with_discount"
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
     t.index ["quote_item_id"], name: "index_quotes_on_quote_item_id"
     t.index ["store_id"], name: "index_quotes_on_store_id"

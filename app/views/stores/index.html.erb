@@ -2,11 +2,7 @@
 
 <h1>Stores</h1>
 
-<<<<<<< HEAD
-<table class="table table-hover">
-=======
 <table class ="table table-hover ">
->>>>>>> 5cf431a0fe3f5e6f886aa43ac043f5d07c231155
   <thead>
   <%if !@stores.blank?%>
     <tr>
@@ -47,12 +43,7 @@
   </tbody>
 </table>
 <%if @paginatable_array.nil?%>
-<<<<<<< HEAD
-<h4>No stores present</h4>
-<% else %>  
-=======
 <%else%>  
->>>>>>> 5cf431a0fe3f5e6f886aa43ac043f5d07c231155
   <%= paginate @paginatable_array %>
   <%= page_entries_info @paginatable_array, entry_name: 'item' %>
 <%end%>

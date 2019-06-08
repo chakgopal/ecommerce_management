@@ -9,9 +9,14 @@ class Product < ApplicationRecord
 
   belongs_to :store, required: false
   belongs_to :seller, required: false
+  
   has_many_attached :images
   has_one :inventory_stock, required: false
   has_many :orders
+  has_many :categorizations
+  has_many :categories, :through => :categorizations
+  #default_scope { where(status: active) }
+  
   paginates_per 2
 
   

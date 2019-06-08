@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
       @inventory_stock_count = InventoryStock.where(product_id:@products[0].id).count if @products.present?
       @inventory_stock = InventoryStock.where(product_id:@products[0].id).first if @products.present?
       puts @inventory_stock_count.to_s
+     
       #@products = current_seller.products.where(status:'active')
        #puts @products.to_json
       
@@ -38,12 +39,19 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-    
+    if customer_signed_in?
+      item_in_cart = Quote.where(customer_id:current_customer.id).first
+      quote_id = item_in_cart.id if item_in_cart.present?
+      @in_cart = QuoteItem.where(quote_id:quote_id).where(product_id:params[:id])
+      #@product_id_in_cart = in_cart[0]["product_id"] if in_cart.present?
+      #puts @product_id_in_cart.to_s
+    end  
   end
   # GET /products/new
   def new
+    @seller_id = current_seller.id
     @product = Product.new
-   
+    #@store_name = Store.where(seller_id:seller_id)
   end
 
   # GET /products/1/edit

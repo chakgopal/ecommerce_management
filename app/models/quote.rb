@@ -1,6 +1,11 @@
 class Quote < ApplicationRecord
-  belongs_to :store
-  belongs_to :customer
-  has_many :quote_items
-  has_many :orders
+  enum status: [:active, :inactive]
+  #after_initialize :set_default_status
+  #before_create {self.status = 'active'}
+
+  belongs_to :store,required: false
+  belongs_to :customer,required: false
+  has_many :quote_items,dependent: :destroy
+  has_many :orders,dependent: :destroy
+  
 end
