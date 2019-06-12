@@ -92,7 +92,45 @@ input[type=number]
   bottom: -1px;
   height: 50%;
 }
+.place_order {
+padding: 15px 30px;
+min-width: 150px;
+margin-right: 6px;
+text-transform: uppercase;
+border-radius: 2px;
+box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
+font-size: 13px;
+font-weight: 500;
+background: #fb641b;
+border: none;
+color: #fff;
+}
+._2CQPOE _1J8_NPPaJLWc{
+  text-transform: uppercase;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
+  font-size: 16px;
+  font-weight: 500;
+  min-width: 250px;
+  margin-right: 16px;
+  padding: 14px 30px;
 
+}
+.continue_shoping{
+  display: inline-block;
+  border-radius: 2px;
+  color: #212121;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: box-shadow .2s ease;
+  vertical-align: super;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+  border: 1px solid #e0e0e0;
+}
 </style>
 <h3>My Cart(<%=@quote_items_count %>)</h3>
 <%= @subtotal %>
@@ -109,12 +147,23 @@ input[type=number]
    <% @product_details.each do|p| %>
        <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
        <div class="quantity">
-          <input type="number" id="qty_<%=p.id%>" min="<%=@quantity%>" max="9" step="1" value = "<%=@quantity%>">
+          <input type="number" id="qty_<%=p.id%>" min="1" max="9" step="1" value = "1">
        </div>
        <%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => p.id),method: :delete,class: "btn btn-inverse" %>
    <%end%>
 </div>
-</div>     
+</div>
+<div class = "_2CQPOE _1J8_NPPaJLWc"> 
+    <%= button_to "Continue Shoping", 
+        root_path, 
+        :class => "continue_shoping",
+        :method => :get %>
+
+        <%= button_to "Place Order", 
+        place_order_for_cart_items_quotes_path, 
+        :class => "place_order",
+        :method => :get %>
+</div>         
 <% @cart_items.each do|c| %>
   <%=c["name"] %>
   <%=c["price"] %>
@@ -136,7 +185,7 @@ $(document).ready(function(){
         btnDown = spinner.find('.quantity-down'),
         min = input.attr('min'),
         max = input.attr('max');
-
+        value = input.attr('value');
       btnUp.click(function() {
         var oldValue = parseFloat(input.val());
         if (oldValue >= max) {

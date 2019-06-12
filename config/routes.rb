@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :orders do
     collection do
       get :checkout
+      get :order_price
+      post :place_order
     end
   end  
   resources :products
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
     collection do
       get :new_quote
       get :show_cart
-      
+      get :place_order_for_cart_items
     end
     member do
      delete :remove_item_from_cart

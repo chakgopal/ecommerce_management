@@ -7,7 +7,7 @@ def new_quote
     session[:id] = id
     @product_details = Product.find(id)
     inventory_details = InventoryStock.where(product_id: @product_details.id)
-    @quant = inventory_details[0].quantity if inventory_details.present?
+    
     if customer_signed_in? 
      quote_count = Quote.where(customer_id: current_customer.id).count
      if quote_count == 0
@@ -63,9 +63,7 @@ def show_cart
          else 
            product_price = q.price.to_f * 1
          end  
-         
          subtotal+=  product_price 
-         
      end
      
      Quote.where(customer_id:current_customer.id).update(subtotal:subtotal)
@@ -103,7 +101,7 @@ def show_cart
     else
       redirect_to new_customer_session_path
     end
-    puts 
+    
 end
 
 def remove_item_from_cart
@@ -114,11 +112,14 @@ def remove_item_from_cart
   quote_id = quote_details[0]["id"]
   QuoteItem.where(quote_id:quote_id).where(product_id:product_id).delete_all
   quote_item_details = QuoteItem.where(quote_id:quote_id).where(product_id:product_id)
-  
+
   redirect_to show_cart_quotes_url
 end
 
-def quote_item_checkout
+def place_order_for_cart_items
+  customer_id = current_customer.id
+  
+      
 end
 
 end
