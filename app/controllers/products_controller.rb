@@ -103,6 +103,10 @@ class ProductsController < ApplicationController
     if customer_signed_in?
     @customer = current_customer.email
     @product = Product.find(params[:id])
+    @seller = Seller.find(params[:id])
+    @store = Store.find(params[:id])
+    puts @store.shop_name
+    puts @seller.email
     puts @product.name
     #puts @product.price
     OrderNotifierMailer.order_create_email(@customer,@product).deliver_now
