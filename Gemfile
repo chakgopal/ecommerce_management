@@ -48,6 +48,7 @@ gem "mini_magick"
 gem 'friendly_id', '~> 5.2.4'
 gem 'kaminari'
 gem 'material_icons'
+gem "jquery-slick-rails"
 
 
 group :development, :test do

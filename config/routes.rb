@@ -20,7 +20,11 @@ Rails.application.routes.draw do
     collection do
       get :new_quote
       get :show_cart
+      
     end
+    member do
+     delete :remove_item_from_cart
+    end  
   end
   resources :quote_items
   resources :inventory_stocks

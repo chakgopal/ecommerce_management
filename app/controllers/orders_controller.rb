@@ -10,20 +10,21 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    product_id = params[:id]
-    product_details = Product.where(id: product_id)
-    @product_price = product_details[0].price
     if customer_signed_in?
+      product_id = params[:id]
+      product_details = Product.where(id: product_id)
+      @product_price = product_details[0].price
       customer_id = current_customer.id  
       if customer_id.present?
         customer_details = Customer.find(customer_id)
         @customer_login_details = customer_details.email 
-     else
-       flash[:notice] = "please sign in before placing your order"
-       redirect_to  new_customer_session_path
-     end
-   end      
-    @customer_address_details = CustomerAddress.find(customer_id) rescue ActiveRecord::RecordNotFound    
+      end      
+    @customer_address_details = CustomerAddress.find(customer_id) rescue ActiveRecord::RecordNotFound
+    else
+      flash[:notice] = "please sign in before placing your order"
+      redirect_to  new_customer_session_path 
+    end
+     if @customer_address_details.nil?    
   end  
   # GET /orders/1
   # GET /orders/1.json

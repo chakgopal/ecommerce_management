@@ -1,11 +1,108 @@
-<h3>My Cart(<%=@quote_items_count %>)</h3>
-<% @product_details.each do|p| %>
-       <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
-<%end%>  
-<% @cart_items.each do|c| %>
-  <%=c["name"] %>
-  <%=c["price"] %>
-  <%=c["desc"] %>
-  <%=c["shop_name"] %>
-<%end%>  
+<%= stylesheet_link_tag 'quotes', media: 'print, screen' %>
 
+<div class = "_2ycxrs"> 
+  <h5>Cart Details</h5> 
+  <hr>
+  <h7>Price for <%= @quantity %> item :</h7>
+  <%= @subtotal %>
+</div>
+
+<% if @cart_items.size == 0 %>
+  <p class="text-center">
+    There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
+  </p>
+<% else %>
+  <div class = "_3ycxrs"> 
+    <h5>My Cart(<%=@quote_items_count %>)</h5> 
+    <hr>
+    <div class = "PaJLWc"> 
+      <% @product_details.each do|p| %>
+        <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
+        <div class="quantity">
+            <input type="number" id="qty_<%=p.id%>" min="<%=@quantity%>" max="9" step="1" value = "<%=@quantity%>">
+        </div>
+        <%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => p.id),method: :delete,class: "btn btn-inverse" %>
+      <%end%>
+    </div>
+  </div>  
+  <div class="description">   
+    <% @cart_items.each do|c| %>
+      <%=c["name"] %><br/>
+      <%=c["shop_name"] %><br/>
+      <%=c["price"] %>
+    <%end%>  
+  </div>
+<%end%>
+
+<script>
+$(document).ready(function(){
+  if(<%=@quote_items_count%>!=0)
+     $(".cart").append('<div class="_2dcihZ"><%=@quote_items_count %></div>');
+  });
+
+  $('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    $('.quantity').each(function() {
+      var spinner = $(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+        input = spinner.find('input[id^=qty]');
+        input_id = input.attr('id').split("_")[1];
+        console.log(input_id);
+        console.log(input.val());
+      
+      $.ajax({
+
+      url: "show_cart?id="+input_id+"&qty="+input.val(),
+      method: "GET",
+      contentType: "application/json",
+      success: function(msg) {
+        console.log(msg);
+       }
+     });
+    });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+    
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 1;
+        }
+        spinner.find("input").val(newVal);
+        if(newVal!=min){
+          spinner.find("input").trigger("change");
+        }else{
+          $('.quantity-down').disabled = true;
+          
+        }
+        
+        input_id = input.attr('id').split("_")[1];
+        console.log(input_id);
+        console.log(input.val());
+        
+      $.ajax({
+
+      url: "show_cart?id="+input_id+"&qty="+input.val(),
+      method: "GET",
+      contentType: "application/json",
+      success: function(msg) {
+       console.log(msg);
+      }
+     });
+  });
+ });
+</script>

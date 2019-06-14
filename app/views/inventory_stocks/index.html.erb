@@ -2,22 +2,20 @@
 
 <h4 class="pro-head">Inventory</h4>
 
-<div class="dropdown-inventory">
-  <button class="btn btn-secondary dropdown-toggle btn-inventory" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="material-icons view">view_headline</i>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-    <a class="dropdown-item" href="#">General View</a>
-    <a class="dropdown-item" href="#">Inventory View</a>
-  </div>
-</div>
-
 <div class="main2">
   <div class="pro_sell-3">
-    <table class="table table-fixed table-striped table-bordered table-scroll">
+    <table class="fixed_header table-bordered table-striped">
       <thead>
-        <tr class="fixedHeader">
-          <th></th>
+        <tr>
+          <th> 
+            <button class="btn btn-secondary dropdown-toggle btn-inventory" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons view">view_headline</i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+              <a class="dropdown-item" href="#">General View</a>
+              <a class="dropdown-item" href="#">Inventory View</a>
+            </div>
+          </th>
           <th>Name</th>
           <th>Sku</th>
           <th>Price</th>
@@ -28,7 +26,7 @@
         </tr>
       </thead>
 
-      <tbody class="scrollContent">
+      <tbody >
         <% unless @seller_products.blank?
         @seller_products.each do |product| %>
           <tr>
@@ -42,7 +40,7 @@
             <% if product.id == inventory["product_id"] %>
               <td><%= inventory["quantity"] %></td>
               <td><%= inventory["min_quantity"] %></td>
-              <td><%= inventory["is_in_stock"] %></td>
+              <td class="setting"><%= inventory["is_in_stock"] %></td>
           </tr>
           <% end %>
           <% end

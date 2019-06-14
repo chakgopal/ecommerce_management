@@ -1,13 +1,5 @@
 /*table */
 
-.long2 {
-    display: flex;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .long {
     display: block;
     white-space: nowrap;
@@ -16,74 +8,66 @@
     width: 150px;
 }
 
-.long1 {
-    overflow: hidden !important;
-    text-overflow: ellipsis;
+.fixed_header {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
-.table th,
-.table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    font-size: 15px;
-}
-
-.table thead th {
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    border-bottom: 0px;
-    width: 10em;
-    text-align: left;
-}
-
-.table tbody td {
-    width: 10em;
-    text-align: left;
-}
-
-.table-bordered td {
-    border: 0px solid #dee2e6;
-}
-
-.table-bordered th,
-.table-bordered td {
-    border: 0px solid #dee2e6;
-}
-
-tbody.scrollContent {
-    display: block;
-    height: 400px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 70em;
-}
-
-.fixedHeader {
+.fixed_header tbody {
     display: block;
     width: 100%;
+    overflow: auto;
+    height: 25em;
+    font-size: 16px;
+}
+
+.fixed_header thead {
+    display: block;
+    background: #009fff;
+    color: rgb(255, 248, 248);
+}
+
+.fixed_header th {
+    text-align: left;
+    width: 150px;
+    border: 0px solid #dee2e6;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+}
+
+.fixed_header td {
+    vertical-align: top;
+    padding: 8px;
+    text-align: left;
+    width: 150px;
+    border: 0px solid #dee2e6;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+    border-bottom-width: 0px;
+}
+
+.setting {
+    width: 12em !important;
 }
 
 
-/*table */
+/*table end */
 
 .vl {
     border-left: 1px solid rgb(216, 216, 216);
     height: 300px;
 }
 
-.dropdown-inventory {
-    position: fixed;
-    top: 0;
-    margin-left: 15rem !important;
-    margin-top: 6rem !important;
-    z-index: 1;
-}
-
 .pro_sell-3 {
     position: fixed;
     top: 0;
-    margin-left: 14rem !important;
+    margin-left: 5rem !important;
     margin-top: 9rem !important;
 }
 

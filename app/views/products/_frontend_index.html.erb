@@ -1,58 +1,53 @@
 <%= stylesheet_link_tag 'frontend', media: 'print, screen' %>
 <%= render "sponsores_ads" %>
 
-<div class="product-grid product-grid--flexbox">
-  <div class="product-grid__wrapper">
-    <div class="product-grid__product-wrapper">
-      <div class="container">
-        <h4>Trending Products</h4> 
-        <div id="loadMore" style="">
-          <a href="#">Load More</a>
-        </div>
-        <hr style="margin-top: 0em; color: #e4e4e4; background-color: #e4e4e4; height: 0.7px;">
-        <div class="row">
-          <% unless @products.blank?
-            @products.each do |product| %>
-              <%= link_to(product, class: "col product-grid__product") do %>
-                <div class="product-grid__img-wrapper">
-                  <%= image_tag url_for(product.images.first),class: "img" if product.images.attached? %>
-                </div>
-                <span class="product-grid__title"><%= product.name %></span><br />
-                <span class="product-grid__price">₹ <%= product.price %></span>  
-              <% end %>
-            <% end
-          end %>
-        </div>
-      </div>
-    </div>
+<div class="product_grid_first">
+  <h4>Trending Products</h4> 
+  <div id="loadMore">
+    <a href="#">Load More</a>
   </div>
+  <hr style="margin-top: 0em; color: #e4e4e4; background-color: #e4e4e4; height: 0.7px;">
+  <section class="center slider">
+    <% unless @products.blank?
+      @products.each do |product| %>
+        <%= link_to(product) do %>
+        <div class="product_grid">
+          <%= image_tag url_for(product.images.first),class: "img" if product.images.attached? %>
+          <span class="product_name"><%= product.name %></span><br />
+          <span>₹ <%= product.price %></span>  
+        </div>
+        <% end %>
+      <% end
+    end %>
+  </section>
 </div>
 
-<div class="product-grid product-grid--flexbox">
-  <div class="product-grid__wrapper">
-    <div class="product-grid__product-wrapper">
-      <div class="container">
-        <h4>Popular Shops</h4> 
-        <div id="loadMore" style="">
-          <a href="#">Load More</a>
-        </div>
-        <hr style="margin-top: 0em; color: #e4e4e4; background-color: #e4e4e4; height: 1px;">
-        <div class="row">
-          <% unless  @shop_details.blank?
-            @shop_details.each do |store| %>
-            <%= link_to(store, class: "col product-grid__product") do %>
-                <div class="product-grid__img-wrapper">
-                  <%= image_tag url_for(store.images.first),class: "img" if store.images.attached? %>
-                </div>
-                <span class="product-grid__title"><%= store.shop_name %></span><br /> 
-              <% end %>
-            <% end 
-          end %>
-        </div>
-      </div>
-    </div>
-  </div>
+<h4>Popular Shops</h4> 
+<div id="loadMore" style="">
+  <a href="#">Load More</a>
 </div>
+<hr style="margin-top: 0em; color: #e4e4e4; background-color: #e4e4e4; height: 1px;">
+<% unless  @shop_details.blank?
+  @shop_details.each do |store| %>
+  <%= link_to(store, class: "col product-grid__product") do %>
+      
+        <%= image_tag url_for(store.images.first),class: "img" if store.images.attached? %>
+      </div>
+      <span ><%= store.shop_name %></span><br /> 
+    <% end %>
+  <% end 
+end %>
+
 
 <%= render "sponsores_ads" %>
 <%= render "company_content" %>
+
+<script>
+  $(".center").slick({
+    dots: false,
+    infinite: true,
+    centerMode: true,
+    slidesToShow: 6,
+    slidesToScroll: 3
+  });
+</script>

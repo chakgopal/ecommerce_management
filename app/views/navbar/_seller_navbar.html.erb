@@ -1,46 +1,19 @@
 <%= stylesheet_link_tag 'backend', media: 'print, screen' %>
 
-<section class="app">
-  <aside class="sidebar">
-    <nav class="sidebar-nav">
-      <ul>
-        <div class="company-logo">
-          <%= link_to products_path do %>
-            <span class="company-name"><i><%= image_tag("logo2-1.png", size: "40x32", class: "logo1", alt: "") %></i> WeeBuy </span>
-          <% end %>
-        </div>
-        <li>
-          <%= link_to products_path do %>
-            <span><i class="material-icons">dashboard</i> Dashboard </span>
-          <% end %>
-        </li>
-        <li>
-          <a href="#"><i class="material-icons">widgets</i> <span class="">Inventory</span><i class="material-icons arrow">keyboard_arrow_right</i></a>
-          <ul class="nav-flyout">
-            <div>
-              <span class="company-name-head">Inventory</span>
-            </div>
-            <li>
-              <%= link_to products_path do %>
-                <span><i class="material-icons">view_carousel</i> Products </span>
-              <% end %>
-            </li>
-              <%= link_to inventory_stocks_path do %>
-                <span><i class="material-icons">view_carousel</i> Product Stocks </span>
-              <% end %>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-</section>
 
-<div class="fixed">
-  <div class="top-menu">
+<div data-component="navbar">
+  <nav class="navbar p-0 fixed-top">
+    <div class="d-inline dropdown">
+      <a class="dropdown-toggle" id="messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+        <%= link_to products_path do %>
+          <%= image_tag("logo2-1.png", size: "40x32", class: "logo1", alt: "") %>
+        <% end %>
+      </a>
+      <h7 class="company-name"> WeeBuy</h7>
+    </div> 
     <div class="dropdown first">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <span><i class="material-icons">person</i><%= current_seller.name&.split&.first %></span>
+        <span><i class="material-icons person">person_pin</i><%= current_seller.name&.split&.first %></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <li><%= link_to('My Account', edit_seller_registration_path, class: "dropdown-item") %></li>
@@ -49,22 +22,78 @@
         <li><%= link_to('Logout', destroy_seller_session_path, method: :delete, class: "dropdown-item") %></li>
       </ul>
     </div>
-  </div>
+  </nav>
+</div> 
+
+<div data-component="sidebar">
+  <div class="sidebar">
+    <ul class="list-group flex-column d-inline-block first-menu">
+      <%= link_to products_path do %>    
+        <li class="list-group-item pl-3 py-2">
+          <a href="#"><i class="material-icons">dashboard</i><span class="ml-2 align-middle">Dashboard</span></a>
+        </li>
+      <% end %>
+      <li class="list-group-item pl-3 py-2">
+        <a href="#"><i class="material-icons">widgets</i><span class="ml-2 align-middle">Inventory</span></a>
+        <ul class="list-group flex-column d-inline-block submenu">
+          <li class="list-group-item pl-4">
+            <a href="#" class=""><i class="material-icons">view_carousel</i>
+              <%= link_to products_path do %>
+                <span> Products </span>
+              <% end %>
+            </a>
+          </li> 
+          <li class="list-group-item pl-4">
+            <a href="#" class=""><i class="material-icons">view_carousel</i>
+             <%= link_to inventory_stocks_path do %>
+                <span> Product Stocks </span>
+              <% end %>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div> 
 </div>
 
-<script>
-  $('.dropdown-toggle').dropdown()
 
-  // SIDEBAR
-  $(document).ready(function(){
-    $('.button-collapse').sideNav({
-        menuWidth: 300, 
-        edge: 'left', 
-        closeOnClick: false, 
-        draggable: true 
+
+
+
+
+              
+
+             
+
+
+
+<script>
+  $('.sidenav-toggle').on('click', function() {
+      var $sidenav, $this;
+      $this = $(this);
+      $sidenav = $('.ct-sidenav');
+      if ($this.hasClass('active')) {
+        $this.removeClass('active');
+        return $sidenav.removeClass('active');
+      } else {
+        $this.addClass('active');
+        return $sidenav.addClass('active');
       }
-    );
-    // START OPEN
-    $('.button-collapse').sideNav('show');
-  });
+    });
+    $('#sidenav-toggle').on('click', function() {
+      var $sidenav, $this;
+      $this = $(this);
+      $sidenav = $('.ct-sidenav');
+      if ($this.hasClass('open')) {
+        $this.removeClass('open');
+        return $sidenav.removeClass('open');
+      } else {
+        $this.addClass('open');
+        return $sidenav.addClass('open');
+      }
+    });
+    $('.ct-sidenav').find('button.close').on('click', function() {
+      $(this).parent().removeClass('open');
+      return $('#sidenav-toggle').removeClass('open');
+    });
 </script>
