@@ -4,9 +4,9 @@ class QuotesController < ApplicationController
 def new_quote
   if customer_signed_in?
     id = params[:id] if params[:id].present?
-    session[:id] = id
+    
     @product_details = Product.find(id)
-    inventory_details = InventoryStock.where(product_id: @product_details.id)
+    
     
     if customer_signed_in? 
      quote_count = Quote.where(customer_id: current_customer.id).count
@@ -117,9 +117,13 @@ def remove_item_from_cart
 end
 
 def place_order_for_cart_items
-  customer_id = current_customer.id
+  current_customer_cart = Quote.where(customer_id: current_customer.id)
+  current_customer_cart_id = current_customer_cart[0].id
+  current_customer_items_in_cart = QuoteItem.where(quote_id:current_customer_cart_id)
+  current_customer_order_obj = Order.new
+  order_obj.customer_id = current_customer.id
+  order_obj.save
   
-      
 end
 
 end

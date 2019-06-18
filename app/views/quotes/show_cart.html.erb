@@ -134,7 +134,7 @@ color: #fff;
 </style>
 <h3>My Cart(<%=@quote_items_count %>)</h3>
 <%= @subtotal %>
-<%= @quantity %>
+
 
 
 <% if @cart_items.size == 0 %>
@@ -146,9 +146,12 @@ color: #fff;
 <div class = "PaJLWc"> 
    <% @product_details.each do|p| %>
        <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
-       <div class="quantity">
-          <input type="number" id="qty_<%=p.id%>" min="1" max="9" step="1" value = "1">
-       </div>
+       
+       <div class="col-md-4" >Qty
+      <select class="qty"  id="qty_<%=p.id%>"  >
+        <option value="1"><strong>1</strong></option>
+      </select>
+    </div> 
        <%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => p.id),method: :delete,class: "btn btn-inverse" %>
    <%end%>
 </div>
@@ -172,74 +175,51 @@ color: #fff;
 <%end%>  
 <%end%>
 <script>
+var selItem = [];
+var data_hash = {};
 $(document).ready(function(){
-  if(<%=@quote_items_count%>!=0)
+  
+  if(<%=@quote_items_count%>!=0){
      $(".cart").append('<div class="_2dcihZ"><%=@quote_items_count %></div>');
+  }
+  var options =  '<option value="1"><strong>1</strong></option>';
+  for(i=2;i<=10;i++){
+     options += '<option value="'+i+'">'+i+'</option>';
+  }
+  $('.qty').html(options);
+  setSelectedValue();
   });
-
-  $('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-    $('.quantity').each(function() {
-      var spinner = $(this),
-        input = spinner.find('input[type="number"]'),
-        btnUp = spinner.find('.quantity-up'),
-        btnDown = spinner.find('.quantity-down'),
-        min = input.attr('min'),
-        max = input.attr('max');
-        value = input.attr('value');
-      btnUp.click(function() {
-        var oldValue = parseFloat(input.val());
-        if (oldValue >= max) {
-          var newVal = oldValue;
-        } else {
-          var newVal = oldValue + 1;
-        }
-        spinner.find("input").val(newVal);
-        spinner.find("input").trigger("change");
-        input = spinner.find('input[id^=qty]');
-        input_id = input.attr('id').split("_")[1];
-        console.log(input_id);
-        console.log(input.val());
-      
-      $.ajax({
-
-      url: "show_cart?id="+input_id+"&qty="+input.val(),
-      method: "GET",
-      contentType: "application/json",
-      success: function(msg) {
-        console.log(msg);
-       }
-     });
-    });
-
-      btnDown.click(function() {
-        var oldValue = parseFloat(input.val());
+  
+  
+    $('select').change(function() {
     
-        if (oldValue <= min) {
-          var newVal = oldValue;
-        } else {
-          var newVal = oldValue - 1;
-        }
-        spinner.find("input").val(newVal);
-        if(newVal!=min){
-          spinner.find("input").trigger("change");
-        }else{
-          $('.quantity-down').disabled = true;
-          
-        }
-        
-        input_id = input.attr('id').split("_")[1];
-        console.log(input_id);
-        console.log(input.val());
-        
-      $.ajax({
+    var id = $(this).attr('id').split("_")[1];
+    var qty = $("#qty_"+id).val();
+    data_hash["id"] = id;
+    data_hash["qty"] = qty;
+   
+    selItem.push(data_hash);
+    console.log(selItem);
+    sessionStorage.setItem("SelItem", JSON.stringify(data_hash));
+   
 
-      url: "show_cart?id="+input_id+"&qty="+input.val(),
+    $.ajax({
+
+      url: "show_cart?id="+id+"&qty="+qty,
       method: "GET",
       contentType: "application/json",
-      success: function(msg) {
-       console.log(msg);
+      success: function() {
+        
       }
      });
+
   });
- });
+  
+  function setSelectedValue(){
+    
+    
+   
+  }
+        
+        
 </script>

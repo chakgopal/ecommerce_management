@@ -52,7 +52,7 @@
         <option value="1"><strong>1</strong></option>
       </select>
     </div> 
-    
+    <div>
 </div>
 <span style="">Order confirmation email will be sent to <%=@customer_login_details%></span>
 <div class = "_1GRhLX _38vNoF" >
@@ -88,19 +88,13 @@ $(document).ready(function(){
   function placeOrder(){
      var price = $('.price_details_1').text();
      var quantity = $('.qty').val();
-     
-    
-     
-     
     if($("#payment_option").is(':checked')){
       $.ajax({
 
       url: "place_order?id="+<%=@product_detail.id%>+"&qty="+quantity+"&price="+price,
-      
       method: "POST",
       contentType: "application/json",
-      success: function(msg) {
-        
+      success: function(msg) { 
         
        }
      });
