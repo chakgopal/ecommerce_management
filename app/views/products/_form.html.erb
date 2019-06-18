@@ -2,10 +2,12 @@
 
 <div class="pro-head">
   <%if @product.new_record? %>
-      <h5>Create a new product</h5>
+    <h5>Create a new product</h5>
+    <div class="import"><i class="material-icons">input</i></div>
   <%elsif @product.persisted? %>
-      <h5>Edit your product</h5>
-  <%end%>    
+    <h5>Edit your product</h5>
+  <%end%>  
+  <hr>  
 </div>
 <div class="pro_sell-2">
   <%= simple_form_for @product do |f| %>
@@ -14,11 +16,10 @@
     <div class="pro-header-select">
       <div class="row">
         <div class="col-sm">
-          <h6>+ Import from CSV</h6>
+          
         </div>
       </div>
     </div>
-
     <div class="form-inputs">
       <div class="row">
         <div class="col-sm">

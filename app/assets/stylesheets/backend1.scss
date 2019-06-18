@@ -56,6 +56,11 @@
     width: 12em !important;
 }
 
+.view {
+    color: white;
+    float: left;
+}
+
 
 /*table end */
 
@@ -102,10 +107,6 @@ btn-secondary:not(:disabled):not(.disabled):active:focus,
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-secondary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem transparent;
-}
-
-.view {
-    color: black;
 }
 
 .btn-secondary:focus,

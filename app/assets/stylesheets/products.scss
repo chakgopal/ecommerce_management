@@ -1,17 +1,25 @@
 /* product create or edit page */
 
 .pro-head {
-    position: absolute;
+    position: fixed;
     top: 0;
-    margin-left: 15rem !important;
-    margin-top: 1.2rem !important;
+    margin-left: 7rem !important;
+    margin-top: 5rem !important;
+    width: 90%;
+}
+
+.import {
+    position: fixed;
+    top: 0;
+    margin-left: 13rem !important;
+    margin-top: 5rem !important;
 }
 
 .pro_sell-2 {
     position: fixed;
     top: 0;
-    margin-left: 14rem !important;
-    margin-top: 5rem !important;
+    margin-left: 7rem !important;
+    margin-top: 8rem !important;
 }
 
 .row {

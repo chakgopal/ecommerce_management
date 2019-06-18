@@ -48,7 +48,7 @@ $(document).ready(function(){
         btnDown = spinner.find('.quantity-down'),
         min = input.attr('min'),
         max = input.attr('max');
-
+        value = input.attr('value');
       btnUp.click(function() {
         var oldValue = parseFloat(input.val());
         if (oldValue >= max) {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_094739) do
+ActiveRecord::Schema.define(version: 2019_06_10_150917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,7 +122,14 @@ ActiveRecord::Schema.define(version: 2019_06_06_094739) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sku"
+    t.string "name"
+    t.string "description"
+    t.integer "quantity"
+    t.integer "price"
+    t.bigint "product_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
     t.index ["store_id"], name: "index_order_items_on_store_id"
   end
 
@@ -141,8 +148,8 @@ ActiveRecord::Schema.define(version: 2019_06_06_094739) do
     t.decimal "shipping_refunded", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "quote_item_id"
-    t.index ["quote_item_id"], name: "index_orders_on_quote_item_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -221,12 +228,10 @@ ActiveRecord::Schema.define(version: 2019_06_06_094739) do
     t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "quote_item_id"
     t.integer "status", default: 0
     t.integer "item_quantity", default: 1
     t.integer "subtotal"
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
-    t.index ["quote_item_id"], name: "index_quotes_on_quote_item_id"
     t.index ["store_id"], name: "index_quotes_on_store_id"
   end
 
@@ -285,8 +290,9 @@ ActiveRecord::Schema.define(version: 2019_06_06_094739) do
   add_foreign_key "order_addresses", "customer_addresses"
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "order_items", "stores"
-  add_foreign_key "orders", "quote_items"
+  add_foreign_key "orders", "customers"
   add_foreign_key "products", "sellers"
   add_foreign_key "quote_addresses", "customer_addresses"
   add_foreign_key "quote_addresses", "customers"
@@ -298,7 +304,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_094739) do
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
-  add_foreign_key "quotes", "quote_items"
   add_foreign_key "quotes", "stores"
   add_foreign_key "stores", "quote_items"
   add_foreign_key "stores", "sellers"

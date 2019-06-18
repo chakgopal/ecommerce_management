@@ -2,19 +2,21 @@
 <%= render "sponsores_ads" %>
 
 <div class="product_grid_first">
-  <h4>Trending Products</h4> 
+  <h4 class="titel_trending">Trending Products</h4> 
   <div id="loadMore">
     <a href="#">Load More</a>
   </div>
-  <hr style="margin-top: 0em; color: #e4e4e4; background-color: #e4e4e4; height: 0.7px;">
+  <hr>
   <section class="center slider">
     <% unless @products.blank?
       @products.each do |product| %>
         <%= link_to(product) do %>
         <div class="product_grid">
           <%= image_tag url_for(product.images.first),class: "img" if product.images.attached? %>
-          <span class="product_name"><%= product.name %></span><br />
-          <span>₹ <%= product.price %></span>  
+          <div class="product_details">
+            <span class="product_name product_name_view"><%= product.name %></span><br />
+            <span class="product_name">₹ <%= product.price %></span>  
+          </div> 
         </div>
         <% end %>
       <% end
