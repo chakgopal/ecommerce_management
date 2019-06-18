@@ -1,33 +1,114 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo2-1.png", size: "62x50", class: "d-inline-block align-top", alt: "") %></a>
-    
+<style>
+
+    .form{
+        width: 40%;
+        margin-left: 15px;
+    }
+
+    .search{
+        position: absolute;
+        right: 0.001px;
+        margin-right: 50%;
+        top: 1.5px;
+        margin-top: 1.4%;
+        height: 30px;
+        width: 30px;
+        background-color: white;
+        border: none;   
+    }
+
+    .log{
+        color: white;
+        position: absolute;
+        top: 1.5px;
+        margin-top: 1.7%;
+        right: 0.001px;
+        margin-right: 30%;  
+    }
+
+    #navbarDropdown2{
+        color: white;
+    }
+
+    #navbarDropdown3{
+        color: white;
+    }
+
+    .dropdown{
+        position: absolute;
+        right: 0.001px;
+        margin-right: 24%;  
+        top: 1.5px;
+        margin-top: 1.2%;
+    }
+
+    .cart{
+        color: white;
+        position: absolute;
+        right: 0.001px;
+        margin-right: 21%;
+        margin-top: 1.8%;  
+        top: 1.5px;
+    }
+
+    .drop{
+        position: absolute;
+        right: 0.001px;
+        margin-right: 29.5%; 
+        top: 1.5px;
+        margin-top: 1%;
+    }
+
+    .log:hover{
+        color: #222;
+        text-decoration: none;
+    }
+
+    .cart:hover{
+        color: #222;
+        text-decoration: none;
+    }
+
+    #navbarDropdown2:hover{
+        color: #222;
+        text-decoration: none;
+    }
+
+    #navbarDropdown3:hover{
+        color: #222;
+        text-decoration: none;
+    } 
+
+</style>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-trasparent" style="background-image: linear-gradient(120deg, #50A6DD, #3173B9);">
+    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo2-1.png", size: "62x50", class: "logo", alt: "") %></a>
     <div class="collapse navbar-collapse" id="navbarColor03">
         <!-- Search -->
-        <form class="form-inline">
-            <input class="form-control ml-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="form">
+            <input class="form-control ml-sm-2" type="search" placeholder="Search for apparel,shops..." aria-label="Search">
+            <button type="submit" class="search"><%= image_tag("search.png", size: "35x30", class: "icon") %></button>
+        </div>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <!-- Profile/Account, Orders, Wishlist, Notifications, Logout -->
             <% if customer_signed_in? %>
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%= current_customer.first_name %>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <%= link_to('My Account',  new_customer_address_url, class: "dropdown-item") %>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Notifications</a>
-                        <div class="dropdown-divider"></div>
-                        <%= link_to('Logout', destroy_customer_session_path, method: :delete, class: "dropdown-item") %>
+                <div class="drop">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= current_customer.firstname %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <%= link_to('My Account', edit_customer_registration_path, class: "dropdown-item") %>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Notifications</a>
+                            <div class="dropdown-divider"></div>
+                            <%= link_to('Logout', destroy_customer_session_path, method: :delete, class: "dropdown-item") %>
+                        </div>
                     </div>
                 </div>
             <% else %>
                 <div class="nav-item ">
-                    <%= link_to('Login & Signup', new_customer_session_path, style: "vertical-align: -webkit-baseline-middle;") %>
+                    <%= link_to('Login & Signup', new_customer_session_path, class: "log") %>
                 </div>
             <% end %>
             <!-- Sell On Weebuy, 24x7 Customer Care --> 
@@ -43,7 +124,7 @@
             </div>
 
             <div class="cart">
-                <%= link_to('Cart',show_cart_quotes_url , style: "vertical-align: -webkit-baseline-middle;") %>
+                <%= link_to('Cart',show_cart_quotes_url , style: "vertical-align: -webkit-baseline-middle;", class: "cart" ) %>
             </div>
         </ul>
         

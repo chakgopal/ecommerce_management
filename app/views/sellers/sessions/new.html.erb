@@ -1,20 +1,78 @@
-<h2>Log in</h2>
+<style>
+  .line1{
+    margin-left: 30%;
+    margin-right: 30%;
+    height: 10px;
+    border: 0;
+    box-shadow: 0 5px 5px -5px #8c8b8b inset;
+  }
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+  .line2{
+      margin-top: 40px;
+  }
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+  hr.line2:after {
+      content: "or";
+      display: inline-block;
+      position: relative;
+      top: -0.7em;
+      font-size: 1em;
+      padding: 0 0.25em;
+      background: #F1F3F6;
+  }
 
-<%= render "sellers/shared/links" %>
+  .text-new{
+      font-size: 15px;
+      margin-right: 10px;
+  }
+
+  .fog{
+      font-size: 15px;
+      float: right;
+  }
+
+  .section1{
+      margin-top: 10px;
+      margin-bottom: 20px;
+      margin-left: -15px;
+  }
+
+  .center{
+      margin-top: 40px;
+  }
+</style>
+
+
+
+<center class="center">
+  <h2> One account. Access stock from anywhere </h2>
+  <hr class="line1">
+  <h5>Sign In to access Your account</h5>
+
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name),html: {style: "width: 100%;max-width: 330px;padding: 15px;"}) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email,
+                  required: false,
+                  autofocus: true,
+                  label: false,
+                  input_html: { autocomplete: "email", class: "form-control", placeholder: "Email" } %>
+      <%= f.input :password,
+                  required: false,
+                  label: false,
+                  input_html: { autocomplete: "current-password", class: "form-control", placeholder: "Password" } %>
+      <div class="section1">            
+        <%= link_to "Forgot your password?", new_password_path(resource_name), class: "fog" %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %> 
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Log in", class: "btn btn-lg btn-primary btn-block" %>
+      <hr class="line2">
+    </div>
+  <% end %>
+
+  <h7 class="text-new">Don't have a WeeBuy account?</h7>
+  <%= link_to "SignUp Now", new_registration_path(resource_name) %>
+
+</center>

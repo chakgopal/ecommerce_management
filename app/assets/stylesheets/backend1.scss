@@ -1,0 +1,115 @@
+/*table */
+
+.long {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 150px;
+}
+
+.fixed_header {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    height: 25em;
+    font-size: 16px;
+}
+
+.fixed_header thead {
+    display: block;
+    background: #009fff;
+    color: rgb(255, 248, 248);
+}
+
+.fixed_header th {
+    text-align: left;
+    width: 150px;
+    border: 0px solid #dee2e6;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+}
+
+.fixed_header td {
+    vertical-align: top;
+    padding: 8px;
+    text-align: left;
+    width: 150px;
+    border: 0px solid #dee2e6;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+    border-bottom-width: 0px;
+}
+
+.setting {
+    width: 12em !important;
+}
+
+.view {
+    color: white;
+    float: left;
+}
+
+
+/*table end */
+
+.vl {
+    border-left: 1px solid rgb(216, 216, 216);
+    height: 300px;
+}
+
+.pro_sell-3 {
+    position: fixed;
+    top: 0;
+    margin-left: 5rem !important;
+    margin-top: 9rem !important;
+}
+
+.btn-inventory {
+    background-color: transparent;
+    border: none;
+}
+
+.btn-inventory:hover {
+    background-color: transparent;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn {
+    padding: 0rem 0rem 0rem 0rem;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show>.btn-secondary.dropdown-toggle {
+    color: black;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+btn-secondary:not(:disabled):not(.disabled):active:focus,
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.btn-secondary:focus,
+.btn-secondary.focus {
+    box-shadow: 0 0 0 0.2rem transparent;
+}

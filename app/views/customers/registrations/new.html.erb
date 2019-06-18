@@ -1,40 +1,80 @@
-<h2>Sign up</h2>
+<style>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  .fld1{
+    margin-top: 20px;
+  }
 
-  <div class="field">
-     <%= f.label :first_name %><br />
-     <%= f.text_field :first_name, autocomplete: "firstname" %>
-  </div>
+  .center{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .btn-lg{
+    margin-top: 20px;
+  }
 
-  <div>
-     <%= f.label :last_name %><br />
-     <%= f.text_field :last_name, autocomplete: "lastname" %>
-  </div>
+  .line1{
+    margin-left: 35%;
+    margin-right: 35%;
+    height: 10px;
+    border: 0;
+    box-shadow: 0 5px 5px -5px #8c8b8b inset;
+  }
+  
+  .hint{
+    position: absolute;
+    right: 0.001px;
+    margin-right: 28.5%;
+    color: #889096;
+    font-size: 13px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    top: 1.5em;
+    margin-top: 31.9%;
+    line-height: 18px;
+  }
 
+</style>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<center class="center">
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <h2>Signup with WeeBuy</h2>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <hr class="line1">
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {style: "width: 100%;max-width: 330px;padding: 15px;"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= render "customers/shared/links" %>
+    <div class="field">
+      <%= f.text_field :firstname, autocomplete: "firstname", class: "form-control", placeholder: "First name" %>
+    </div>
+
+    <div>
+      <%= f.text_field :lastname, autocomplete: "lastname", class: "form-control fld1", placeholder: "Last name" %>
+    </div>
+
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control fld1", placeholder: "Email" %>
+    </div>
+
+    <div class="field2">
+      <% if @minimum_password_length %>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control fld1", placeholder: "Create Password" %>
+    </div>
+    <h7 class="hint">Minimum 6 characters</h7>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control fld1", placeholder: "Confirm Password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+    </div>
+
+  <% end %>
+
+  <h7>Already have an account?</h7>
+
+  <%= render "customers/shared/links" %>
+
+</center>

@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -86,8 +87,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.string "firstname"
+    t.string "lastname"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -102,7 +103,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
     t.datetime "updated_at", null: false
     t.bigint "product_id"
     t.integer "is_in_stock"
+    t.bigint "store_id"
     t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
+    t.index ["store_id"], name: "index_inventory_stocks_on_store_id"
   end
 
   create_table "order_addresses", force: :cascade do |t|
@@ -226,11 +229,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.bigint "product_id"
     t.integer "item_quantity", default: 1
     t.integer "subtotal"
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
-    t.index ["product_id"], name: "index_quotes_on_product_id"
     t.index ["store_id"], name: "index_quotes_on_store_id"
   end
 
@@ -275,8 +276,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
     t.datetime "updated_at", null: false
     t.bigint "seller_id"
     t.boolean "deleted_flag"
-    t.bigint "quote_item_id"
     t.integer "status"
+    t.bigint "quote_item_id"
     t.index ["quote_item_id"], name: "index_stores_on_quote_item_id"
     t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
@@ -285,6 +286,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
   add_foreign_key "categories", "categories"
   add_foreign_key "customer_addresses", "customers"
   add_foreign_key "inventory_stocks", "products"
+  add_foreign_key "inventory_stocks", "stores"
   add_foreign_key "order_addresses", "customer_addresses"
   add_foreign_key "order_addresses", "orders"
   add_foreign_key "order_items", "orders"
@@ -302,7 +304,6 @@ ActiveRecord::Schema.define(version: 2019_06_10_150917) do
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
-  add_foreign_key "quotes", "products"
   add_foreign_key "quotes", "stores"
   add_foreign_key "stores", "quote_items"
   add_foreign_key "stores", "sellers"

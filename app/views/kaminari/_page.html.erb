@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'pagination', media: 'print, screen' %>
+
 <% if page.current? %>
   <li class="page-item active">
     <%= content_tag :a, page, data: { remote: remote }, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: 'page-link' %>
