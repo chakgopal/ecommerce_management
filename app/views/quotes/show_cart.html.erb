@@ -3,7 +3,7 @@
 <div class = "_2ycxrs"> 
   <h5>Cart Details</h5> 
   <hr>
-  <h7>Price for <%= @quantity %> item :</h7>
+  <h7>Price for <%= @quote_items_count %> item :</h7>
   <%= @subtotal %>
 </div>
 
@@ -19,9 +19,11 @@
     <div class = "PaJLWc"> 
       <% @product_details.each do|p| %>
         <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
-        <div class="quantity">
-            <input type="number" id="qty_<%=p.id%>" min="<%=@quantity%>" max="9" step="1" value = "<%=@quantity%>">
-        </div>
+        <div class="col-md-4" >Qty
+      <select class="qty" id ="qty_<%=p.id%>">
+        <option value="1"><strong>1</strong></option>
+      </select>
+    </div> 
         <%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => p.id),method: :delete,class: "btn btn-inverse" %>
       <%end%>
     </div>
@@ -70,7 +72,7 @@ $(document).ready(function(){
       method: "GET",
       contentType: "application/json",
       success: function() {
-        
+        location.reload();
       }
      });
 

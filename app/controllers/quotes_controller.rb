@@ -123,6 +123,8 @@ def place_order_for_cart_items
   current_customer_order_obj = Order.new
   order_obj.customer_id = current_customer.id
   order_obj.save
+  current_customer_order = Order.where(customer_id: current_customer.id)
+  current_customer_order_id = current_customer_order[0].id
   
 end
 
