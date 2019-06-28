@@ -18,14 +18,16 @@
                 <div class="drop">
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <%= current_customer.firstname %>
+                            
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <%= link_to('My Account', edit_customer_registration_path, class: "dropdown-item") %>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Notifications</a>
                             <div class="dropdown-divider"></div>
-                            <%= link_to('Logout', destroy_customer_session_path, method: :delete, class: "dropdown-item") %>
+                              <%= link_to('Logout', destroy_customer_session_path, method: :delete, class: "dropdown-item") %>
+                            <div class="dropdown-divider"></div>
+                            <%= link_to('My Order', order_history_orders_path, class: "dropdown-item") %>
                         </div>
                     </div>
                 </div>

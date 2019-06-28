@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :checkout
       get :order_price
       post :place_order
+      get :order_history
     end
   end  
   resources :products
