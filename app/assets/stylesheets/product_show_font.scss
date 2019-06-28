@@ -1,0 +1,125 @@
+.details {
+    margin-top: 10px;
+    padding-right: 0px;
+}
+
+.products_image_all {
+    margin-top: 10px;
+}
+
+.product_show_full {
+    background-color: white;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 10px;
+    border-top: 1px solid rgb(184, 184, 184);
+}
+
+#vertical-product-slider {
+    display: flex;
+    &.reverse {
+        flex-direction: row-reverse;
+    }
+    .slick-slide {
+        display: flex;
+        align-items: center;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+        }
+    }
+}
+
+.product_show_image {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 30%;
+}
+
+.button_cart {
+    max-width: 40%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.col-6-12 {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.add_to_cart {
+    padding: 18px 8px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+    width: 110%;
+    border: none;
+    float: left;
+    background: #ff9f00;
+    color: #fff;
+}
+
+.go_to_cart {
+    padding: 18px 8px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+    width: 20%;
+    border: none;
+    float: left;
+    background: #ff9f00;
+    color: #fff;
+}
+
+.buy_now {
+    padding: 18px 8px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+    width: 110%;
+    border: none;
+    float: left;
+    background: #fb641b;
+    color: #fff;
+    margin-left: 14em;
+    margin-top: -3.7em;
+}
+
+#product-slider__main {
+    text-align: center;
+    display: block;
+    &:hover {
+        &::after {
+            content: none;
+        }
+    }
+    .slick-slide {
+        height: 100%;
+        opacity: 0;
+    }
+}
+
+.main_show_product {
+    height: 400px;
+    width: 380px !important;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+#product-slider__nav {
+    .slick-list {
+        height: 380px !important;
+        padding: 0 !important;
+        width: 100px;
+    }
+    &.object-fit--contain .slick-slide img {
+        object-fit: cover;
+    }
+    .slick-slide {
+        &.slick-current img {
+            box-sizing: border-box;
+        }
+        img {
+            cursor: pointer;
+        }
+    }
+}

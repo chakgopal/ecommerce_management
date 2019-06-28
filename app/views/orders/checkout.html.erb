@@ -1,70 +1,46 @@
-<style>
-.price_details{
-  display: block;
-  text-transform: uppercase;
-  padding: 13px 24px;
-  font-weight: 500;
-  font-size: 16px;
-  color: #878787;
-  min-height: 47px;
-  border-radius: 2px 2px 0 0;
-}
-.price_div{
-  padding: 0 24px;
-  box-sizing: border-box;
-  font-size: 15px;
-  margin: 20px 0;
-}
-._1GRhLX _38vNoF{
-  margin-bottom: 16px;
-  position: relative;
-  display: inline-block;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
-}
-._1_m52b{
-  color: #fff;
-  background-color: #2874f0;
-  font-size: 18px;
-}
+<%= stylesheet_link_tag 'orders', media: 'print, screen' %>
 
-</style>
-<div class = "check_div" style="height: auto;"><%=@customer_login_details%></div>
-<div class = "check_div" style="height: auto;">
-  <div class = "check_div_1" style="top: 0px; left: auto;">
-  <div class = "check_div_2" style="background: #fff; border-radius: 2px;min-height: 47px;box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
-    float: inline-end;">
-  <span class ="price_details" style="border-bottom: 1px solid #f0f0f0;">Price Details </span>
-  <div class = "check_div1" style="border-bottom: 1px solid #f0f0f0;">
-    <div class = "price_div" >Price
-      <span class ="price_details_1"> <%= @product_price %> </span>
-    </div>
-    <div class = "price_div1"> Delivery Charges <span class ="delivery_span" style="color: #388e3c;text-transform: uppercase;">Free</span></div>
-    <div class = "price_div2"> Amount Payable <span class ="amount_span"><%= @product_price %></span></div>
+ <div class = "check_div_1">
+  <h5 class ="price_details">Price Details <span class ="price_details_1"> <%= @product_price %> </span></h5>
+</div>
+
+
+<div class = "check_div">
+  <h5>Delivery Details<span>&#10003;</span> <span class="show_details">&#43;</span></h5>
+</div>
+<div class="delivery_details" style="display: none;"><%=@customer_login_details%></div>
+
+
+<div class = "order_details">
+  <h5>Order Details <span class="show_details_2">&#187;</span></h5>
+</div>
+<div class="product_details" style="display: none;">
+  <%= image_tag url_for(@product_detail.images.first), size: "120" if @product_detail.images.attached? %>
+ <%= @product_detail.name %>
+ 
+  <div>Qty
+    <select class="qty" onchange = "changeQuantity()">
+      <option value="1"><strong>1</strong></option>
+    </select>
   </div>
+  <div class = "" >
+    <div class = "price_div1"> Delivery Charges <span class ="delivery_span">Free</span></div>
+    <div class = "price_div2"> Amount Payable <span class ="amount_span"><%= @product_price %></span></div>
+  </div> 
+  <div class = "payment" >
+  <h5>Payment Option</h5>
 </div>
+<div class = "payment_options">
+<input type="checkbox" id="payment_option"  value="1">Cash on Delivery
 </div>
+<div class="place_order">
+<span style="">Order confirmation email will be sent to <%=@customer_login_details%></span><button type="button" value="Submit" class="btn btn-success" onclick="placeOrder()">Place Order</button>
 </div>
-<div class="col-md-4" >
-  
-    <%= image_tag url_for(@product_detail.images.first), size: "120" if @product_detail.images.attached? %>
-    <div class="col-md-4" >Qty
-      <select class="qty" onchange = "changeQuantity()">
-        <option value="1"><strong>1</strong></option>
-      </select>
-    </div> 
-    
+  <div>
 </div>
-<div class="col-md-4" >
-  
-</div>
-<span style="">Order confirmation email will be sent to <%=@customer_login_details%></span>
-<div class = "_1GRhLX _38vNoF" >
-  <h3 class ="_1fM65H _2RMAtd">
-    <span class ="_1_m52b"> Payment Option</span>
-  </h3>
-</div>
-<input type="checkbox" id="payment_option"  value="1">Cash on Delivery</input>
-<button type="button" value="Submit" class="btn btn-success" onclick="placeOrder()">Place Order</button>
+
+
+
 <script>
 $(document).ready(function(){
   
@@ -105,4 +81,16 @@ $(document).ready(function(){
       alert("please select a payment option for proceed");
     }
   }
+
+  $( ".show_details" ).click(function() {
+    $( ".delivery_details" ).toggle( "slow" );
+  });
+
+  $( ".show_details_2" ).click(function() {
+    $( ".product_details" ).toggle( "slow" );
+  });
+
+   $( ".show_details_1" ).click(function() {
+    $( ".check_div_11" ).toggle( "slow" );
+  });
 </script>
