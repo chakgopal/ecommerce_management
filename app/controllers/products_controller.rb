@@ -31,7 +31,9 @@ class ProductsController < ApplicationController
          @inventory_stock_count << data_hash
       end
     else
-      @products = Product.with_attached_images.order(:name).page params[:page]
+      @products = Product.with_attached_images.order(:name).limit(10)
+      @shop_details = Store.take(6)
+     
     end
   end
 
@@ -92,7 +94,7 @@ class ProductsController < ApplicationController
     
     @product.update(status:'inactive')
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url}
       format.json { head :no_content }
     end
   end

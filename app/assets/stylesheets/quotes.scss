@@ -1,3 +1,140 @@
-// Place all the styles related to the quotes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+._3ycxrs {
+    position: fixed;
+    top: 0;
+    margin-top: 12%;
+    margin-left: 5%;
+    border-top: 1px solid #f0f0f0;
+    padding: 23px;
+    width: 40%;
+    height: 20em;
+    background: #fff;
+    -webkit-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
+}
+
+._2ycxrs {
+    position: fixed;
+    top: 0;
+    border-top: 1px solid #f0f0f0;
+    margin-left: 50%;
+    margin-top: 12%;
+    padding: 23px;
+    width: 40%;
+    height: 20em;
+    background: #fff;
+    -webkit-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px -9px rgba(0, 0, 0, 0.75);
+}
+
+.PaJLWc {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+._2dcihZ {
+    position: absolute;
+    top: 7px;
+    text-align: center;
+    border-radius: 7px;
+    width: 18px;
+    height: 18px;
+    background-color: #ff6161;
+    border: 1px solid #fff;
+    font-weight: 400;
+    color: #f0f0f0;
+    line-height: 16px;
+    font-size: 10px;
+}
+
+.quantity {
+    position: relative;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.quantity input {
+    width: 45px;
+    height: 42px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding-left: 8px;
+    border: 1px solid #eee;
+}
+
+.quantity input:focus {
+    outline: 0;
+}
+
+.quantity-nav {
+    float: left;
+    position: relative;
+    height: 42px;
+}
+
+.quantity-button {
+    position: relative;
+    cursor: pointer;
+    border-left: 1px solid #eee;
+    width: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.7;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.quantity-button.quantity-up {
+    position: absolute;
+    height: 50%;
+    top: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.quantity-button.quantity-down {
+    position: absolute;
+    bottom: -1px;
+    height: 50%;
+}
+
+.description {
+    position: fixed;
+    top: 0;
+    margin-top: 18%;
+    margin-left: 18%;
+}
+
+.btn-inverse {
+    font-weight: bold;
+    color: rgb(2, 99, 209);
+    position: fixed;
+    top: 0;
+    margin-top: 24%;
+    margin-left: 7%;
+    padding:30px;
+}
+
+.btn-inverse:hover {
+    color: rgb(0, 0, 0);
+}
+

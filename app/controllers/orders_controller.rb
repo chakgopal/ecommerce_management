@@ -1,6 +1,6 @@
 
 class OrdersController < ApplicationController
-  #before_action :set_order
+  
   
 
   def checkout
@@ -20,8 +20,7 @@ class OrdersController < ApplicationController
       flash[:notice] = "please sign in before placing your order"
       redirect_to  new_customer_session_path 
     end
-     if @customer_address_details.nil?
-     end    
+         
   end  
 
 
@@ -67,6 +66,20 @@ def place_order
 
   
 end
+def order_history
+  if customer_signed_in?
+    order_details = Order.where(customer_id: current_customer.id)
+    order_ids = []
+    order_details.each do|od|
+      order_ids << od.id
+    end
+    @order_items = OrderItem.where('order_id IN (?)', order_ids)
+  else
+    flash[:notice] = "please sign in before checking order history"
+    redirect_to  new_customer_session_path 
+  end
+end
+
 end
 
 def check_orders

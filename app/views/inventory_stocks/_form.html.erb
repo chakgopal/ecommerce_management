@@ -1,18 +1,19 @@
+<%= stylesheet_link_tag 'inventory_stocks', media: 'print, screen' %>
 
-<%= simple_form_for @inventory_stock do |f| %>
+<h1 class="h1">Product Details</h1>
+<div class="pro_sell-3">
+  <%= simple_form_for @inventory_stock do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  
-    <div class="form-inputs">
+    <div class="form-inputs inpt-new">
       <%= f.input :quantity %>
       <%= f.input :min_quantity %>
-     
       <%= f.input :min_sale_quantity %>
       <%= f.input :max_sale_quantity %>
       <%= f.select :is_in_stock, InventoryStock.is_in_stocks.keys.to_a, prompt: "Select stock aviability" %>
     </div>
-    
-    <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-actions-3">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>

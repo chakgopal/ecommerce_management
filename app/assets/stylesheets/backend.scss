@@ -1,0 +1,264 @@
+.form {
+    position: absolute;
+    margin-left: 50rem !important;
+    width: 20em;
+}
+
+.search {
+    position: absolute;
+    margin-left: 17.5em;
+    margin-top: -2.05em;
+    background-color: #ffffff;
+    border-color: white;
+    border-style: none;
+}
+
+.pro-create {
+    position: absolute;
+    width: 8em;
+    margin-left: 72rem !important;
+    margin-top: 0.2rem !important;
+}
+
+.add {
+    font-size: 32px !important;
+}
+
+.header_bck {
+    position: fixed;
+    top: 0;
+    margin-top: 5em !important;
+}
+
+.pro-head {
+    position: absolute;
+    top: 0;
+    margin-left: 7rem !important;
+    margin-top: 5.2rem !important;
+}
+
+.pro_sell {
+    position: fixed;
+    top: 0;
+    margin-left: 5rem !important;
+    margin-top: 10rem !important;
+}
+
+.container2 {
+    float: left;
+    padding-left: 0px;
+    width: 1.0000em;
+}
+
+.first {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    margin-left: 66em;
+    margin-top: 0.9em;
+}
+
+
+/*table */
+
+.long {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+
+.long1 {
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.fixed_header {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    height: 25em;
+    font-size: 12px;
+}
+
+.fixed_header thead {
+    display: block;
+    background: #009fff;
+    color: rgb(255, 248, 248);
+}
+
+.fixed_header th {
+    text-align: left;
+    width: 150px;
+    border: 0px solid #dee2e6;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+}
+
+.fixed_header td {
+    vertical-align: top;
+    padding: 8px;
+    text-align: left;
+    width: 150px;
+    border: 0px solid #dee2e6;
+}
+
+
+/*table end */
+
+
+/* Sidebar style */
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.logo1 {
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+    margin-left: 6px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 2px;
+}
+
+.company-name {
+    margin-left: 20px;
+    color: white;
+    font-weight: bolder;
+    font-size: 28px;
+    letter-spacing: 5px;
+}
+
+.person {
+    color: white;
+}
+
+$font-stack: 'Open Sans',
+sans-serif;
+$primary-color: #009fff;
+$background: #eee;
+$browser-context: 16;
+@function em($pixels, $context: $browser-context) {
+    @return #{$pixels/$context}em;
+}
+
+$transition-duration: 0ms;
+$transition-delay: $transition-duration;
+$sidebar-transition: $transition-duration opacity $transition-delay,
+$transition-duration visibility $transition-delay;
+.wp-content {
+    margin-top: 60px;
+    margin-left: 75px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+[data-component='navbar'] {
+    .navbar {
+        background-color: #009fff;
+    }
+} //END TOP NAVBAR
+[data-component='sidebar'] {
+    .sidebar {
+        position: fixed;
+        z-index: 9999;
+    }
+    //black menu
+    .first-menu {
+        position: fixed;
+        background-color: rgb(0, 68, 110);
+        height: 100vw;
+        width: 75px;
+        top: 60px;
+        overflow: hidden;
+        transition: width .1s;
+        a {
+            color: #fff;
+        }
+        i {
+            font-size: 24px;
+        }
+        span {
+            font-size: 14px;
+            white-space: nowrap;
+            font-family: 'Open Sans', sans-serif;
+            opacity: 0;
+            visibility: hidden;
+            vertical-align: top !important;
+        }
+        &:hover span {
+            opacity: 1;
+            visibility: visible;
+        }
+        .list-group-item {
+            border-radius: 0;
+            &:hover {
+                background-color: #3173B9;
+            }
+        }
+    }
+    .first-menu:hover {
+        width: 160px;
+    }
+    .list-group-item {
+        font-size: 14px;
+    }
+    //blue menu#50A6DD, #3173B9
+    .submenu {
+        position: fixed;
+        left: 160px;
+        width: 195px;
+        top: 60px;
+        background-color: $primary-color;
+        height: 50vw;
+        opacity: 0;
+        visibility: hidden;
+        transition: $sidebar-transition;
+    }
+    .first-menu li:hover .submenu {
+        visibility: visible;
+        opacity: 1;
+    }
+    .submenu li:hover .sub-submenu {
+        visibility: visible;
+        opacity: 1;
+    }
+    .list-group-item {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+    }
+}
+
+
+/* sidebar style end */
+
+
+/* index inventory stock */
+
+.main2 {
+    margin-top: -43%;
+}
+
+.company-name-head {
+    margin-left: 3.5%;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.arrow {
+    margin-left: 34%;
+}

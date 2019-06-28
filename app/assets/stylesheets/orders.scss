@@ -1,3 +1,74 @@
-// Place all the styles related to the Orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.price_details {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    color: #878787;
+    min-height: 47px;
+    border-radius: 2px 2px 0 0;
+}
+
+.price_div {
+    padding: 0 24px;
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: 20px 0;
+}
+
+.check_div {
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    margin-top: 20px;
+    height: 60px;
+    padding: 20px;
+}
+
+.check_div_1 {
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    margin-top: 20px;
+    height: 60px;
+    padding: 20px;
+}
+
+.order_details {
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    margin-top: 20px;
+    height: 60px;
+    padding: 20px;
+}
+
+.show_details_1 {
+    cursor: pointer;
+}
+
+.show_details_2 {
+    cursor: pointer;
+}
+
+.show_details {
+    cursor: pointer;
+}
+
+.check_div_11 {
+    background-color: white;
+    height: 100px;
+    margin-top: 0.5px;
+    padding: 10px;
+}
+
+.delivery_details {
+    background-color: white;
+    height: 100px;
+    margin-top: 1px;
+    padding: 10px;
+}
+
+.product_details {
+    background-color: white;
+    height: 350px;
+    margin-top: 1px;
+    margin-bottom: 20px;
+    padding: 10px;
+}

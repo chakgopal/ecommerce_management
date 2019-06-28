@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p id="notice"><%= notice %></p>
  
  <p>
@@ -125,3 +126,10 @@
 <% else %> 
      <%= link_to 'Back', stores_path %>
 <% end %>
+=======
+<% if admin_signed_in? || seller_signed_in? %>
+  <%= render "back_storeshow" %>
+<% else %>
+  <%= render "front_storeshow" %>
+<% end %>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f

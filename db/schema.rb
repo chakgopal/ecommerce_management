@@ -108,7 +108,9 @@ ActiveRecord::Schema.define(version: 2019_06_26_092743) do
     t.datetime "updated_at", null: false
     t.bigint "product_id"
     t.integer "is_in_stock"
+    t.bigint "store_id"
     t.index ["product_id"], name: "index_inventory_stocks_on_product_id"
+    t.index ["store_id"], name: "index_inventory_stocks_on_store_id"
   end
 
   create_table "order_addresses", force: :cascade do |t|
@@ -303,6 +305,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_092743) do
   add_foreign_key "categories", "categories"
   add_foreign_key "customer_addresses", "customers"
   add_foreign_key "inventory_stocks", "products"
+  add_foreign_key "inventory_stocks", "stores"
   add_foreign_key "order_addresses", "customer_addresses"
   add_foreign_key "order_addresses", "customers"
   add_foreign_key "order_addresses", "orders"

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 <p id="notice"><%= notice %></p>
@@ -70,7 +71,10 @@
   <% end %>
 <% if seller_signed_in? || admin_signed_in? %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
+=======
+<% if admin_signed_in? || seller_signed_in? %>
+  <%= render "back_show" %>
+<% else %>
+  <%= render "front_show" %>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
 <% end %>
-<%= link_to 'Back', products_path %>
-
-

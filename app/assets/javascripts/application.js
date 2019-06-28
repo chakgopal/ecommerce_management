@@ -17,4 +17,5 @@
 //= require bootstrap-sprockets
 //= require popper
 //= require bootstrap
+//= require jquery.slick
 //= require_tree .

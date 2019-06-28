@@ -1,0 +1,135 @@
+<%= stylesheet_link_tag 'product_show_font', media: 'print, screen' %>
+
+<div class="row product_show_full">
+  <div class="col-sm-4 products_image_all">
+    <div id="vertical-product-slider">
+      <div class="col product_show_image">
+        <div id="product-slider__nav" class="object-fit--contain">
+          <% if @product.images.attached? %>
+            <% @product.images.each do |product_image| %>
+              <div class="lazyload">
+                <%= image_tag url_for(product_image.variant(resize:"100x460").processed) %>
+              </div> 
+            <% end %>
+          <% end %> 
+        </div> 
+      </div> 
+
+      <div class="col main_show_product">
+        <div id="product-slider__main" >
+          <% if @product.images.attached? %>
+            <% @product.images.each do |product_image| %>
+              <%= image_tag url_for(product_image.variant(resize:"100x460").processed) %> 
+            <% end %>
+          <% end %> 
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-sm-4 button_cart">
+      <%= button_to "Add To Cart", 
+        new_quote_quotes_url, 
+        :params =>{id:@product.id},
+        :class => "add_to_cart",
+        :onclick => "checkItem()",
+        :method => :get 
+      %>
+      <%= button_to "Go to cart",
+        show_cart_quotes_path,
+        :class => "go_to_cart",
+        :onclick => "checkItem()",
+        :method => :get 
+      %>
+
+      <%= button_to "Buy Now", 
+        checkout_orders_path, 
+        :params =>{id:@product.id},
+        :class => "buy_now", 
+        :method => :get 
+      %> 
+    </div> 
+  </div>
+  
+  <div class="col-sm-4 details">
+    <p>
+      <strong>Name:</strong>
+      <%= @product.name %>
+    </p>
+
+    <p>
+      <strong>Sku:</strong>
+      <%= @product.sku %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @product.status %>
+    </p>
+
+    <p>
+      <strong>Short desc:</strong>
+      <%= @product.short_desc %>
+    </p>
+
+    <p>
+      <strong>Long desc:</strong>
+      <%= @product.long_desc %>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <%= @product.price %>
+    </p>
+
+    <p>
+      <strong>Store:</strong>
+      <%= @product&.store&.shop_name if @product&.store&.shop_name&.present? %>
+    </p>
+  </div>
+</div>
+<%= render "company_content" %>
+
+<script>
+  $(document).ready(function(){
+    $(".go_to_cart").hide();
+  });
+  function checkItem(){
+    if($(".add_to_cart").clicked == true){
+        $(".add_to_cart").hide();
+        $(".go_to_cart").show();
+    }else{
+      $(".add_to_cart").show();
+      $(".go_to_cart").hide();
+    }
+  }
+
+
+
+// SLICK
+$("#product-slider__main").slick({
+  asNavFor: "#product-slider__nav",
+  rows: 0,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  adaptiveHeight: true,
+  autoplaySpeed: 4000,
+  draggable: false,
+  swipe: false
+});
+
+$("#product-slider__nav").slick({
+  asNavFor: "#product-slider__main",
+  rows: 1,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  focusOnSelect: true,
+  adaptiveHeight: true,
+  dots: false,
+  arrows: false,
+  centerMode: true,
+  vertical: true
+});
+
+</script>

@@ -1,0 +1,58 @@
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+label {
+
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle; 
+}
+.status{
+    float:right;
+    color: #1e7b1e;
+}
+</style>
+<h2>Ordered Items</h2>
+<% if @order_items.size != 0%>
+<% @order_items.each do|oi| %>
+<div class="card">
+
+<%= image_tag url_for(oi.product.images.first), size: "120" if oi.product.images.attached? %>
+  <div class="container">
+    <h6><b><%=oi.name%></b></h6> 
+    <label for="product_description">Description:</label>
+    <h6><b><%=oi.description%></b></h6>
+    <label for="quantity">Quantity:</label>
+    <h6><b><%=oi.quantity %></b></h6>
+    <label for="price">Price:</label>
+    <h6><b><%=oi.price %></b></h6>
+    <label for="shop_name">Shop Name:</label>
+    <h6><b><%=oi.store.shop_name %></b></h6>
+    <label for="mode_of_payment">Mode Of Payment:</label>
+    <h6><b>Cash on Delivery</b></h6>
+    <label for="order_placed_on">Order Placed On:</label>
+    <h6><b><%=oi.created_at.to_date %></b></h6>
+    <span class ="status">Delivered</span>
+  </div>
+</div>
+<%end%>
+<%else%>
+<p class="text-center">
+    Place your first order.  Please <%= link_to "go back", root_path %> and shop from different shops.
+  </p>
+<%end%>

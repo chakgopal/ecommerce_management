@@ -1,0 +1,43 @@
+ 
+ <p>
+  <strong>Shop Name:</strong>
+  <%= @store.shop_name %>
+</p>
+
+<p>
+  <strong>Website Url:</strong>
+  <%= @store.website_url %>
+</p>
+
+<p>
+  <strong>Shop Intro:</strong>
+  <%= @store.shop_intro %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @store.address1 %>
+</p>
+<p>
+  <strong>Address2:</strong>
+  <%= @store.address2 %>
+</p>
+ 
+  <p>
+  <strong>LandMark:</strong>
+  <%= @store.landmark %>
+</p>
+
+<p>
+  <strong>Shop Phone No:</strong>
+  <%= @store.shop_phone_no %>
+</p>
+
+<p>
+  <% if @store.images.attached? %>
+    <% @store.images.each do |image| %>
+      <%= image_tag url_for(image), size: "64" %>
+    <% end %>
+  <% end %>
+</p>
+

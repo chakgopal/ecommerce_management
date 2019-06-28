@@ -1,21 +1,20 @@
-<h1>Products</h1>
+<%= stylesheet_link_tag 'backend', media: 'print, screen' %>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Sku</th>
-      <th>Status</th>
-      <th>Short desc</th>
-      <th>Long desc</th>
-      <th>Price</th>
-      <th>Color</th>
-      <th>Store</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h4 class="pro-head">Products</h4>
+<div class="main-3">
+  <div class="header_bck">
+    <div class="form">
+      <input class="form-control ml-sm-2" type="search" placeholder="Search..." aria-label="Search">
+      <button type="submit" class="search"><%= image_tag("search.png", size: "25x25", class: "icon") %></button>
+    </div>
+    <div class="pro-create" >
+      <%= link_to new_product_path do %>
+        <i class="material-icons add">add_to_photos</i>
+      <% end %>
+    </div>
+  </div>
 
+<<<<<<< HEAD
   <tbody>
     
     <% unless @products.blank?
@@ -60,3 +59,64 @@
 <br>
 
 <%= link_to 'New Product', new_product_path %>
+=======
+  <div class="pro_sell">
+    <table class="fixed_header table-bordered table-striped">
+      <thead>
+        <tr >
+          <th ></th>
+          <th >Name</th>
+          <th >Sku</th>
+          <th >Status</th>
+          <th >Short desc</th>
+          <th >Long desc</th>
+          <th >Price</th>
+          <th ></th>
+          <th ></th>
+          <th ></th>
+          <th ></th>
+        </tr>
+      </thead>
+      <tbody >
+        <% unless @products.blank?
+          @products.each do |product| %>
+            <tr>
+              <td ><%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %></td>
+              <td ><%= product.name %></td>
+              <td ><%= product.sku %></td>
+              <td ><%= product.status %></td>
+              <td ><%= product.short_desc %></td>
+              <td class="long"><%= product.long_desc %></td>
+              <td ><%= product.price %></td>
+              <td ><%= link_to 'Show', product %></td>
+              <td ><%= link_to 'Edit', edit_product_path(product) %></td>
+              <td ><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% if seller_signed_in? %>
+                <% unless @inventory_stock_count.blank?
+                @inventory_stock_count.each do |i| %>
+              <% if i["pid"] == product.id && i["count"] == 0  %>
+                <td ><%= link_to 'Add Inventory', new_inventory_stock_path(id: product.id), :method => :get %></td>
+              <%elsif i["pid"] == product.id && i["count"] != 0%>
+                <% unless @inventory_stock.blank?
+                  @inventory_stock.each do |i| %>
+                    <% if i["product_id"] == product.id %>
+                      <td ><%= link_to 'Edit Inventory', edit_inventory_stock_path(i["id"]), :method => :get %></td>
+                    <%end%> 
+                <% end
+                  end %>   
+              <%end%>
+              <%end%>
+              <% end
+              end %>
+            </tr>
+          <% end
+        end %>
+      </tbody>
+    </table>
+    <div class="paginate">
+      <%= paginate @products %>
+      <%#= page_entries_info @products, entry_name: 'item' %>
+    </div>
+  </div>
+</div>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f

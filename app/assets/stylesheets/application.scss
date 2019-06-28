@@ -1,110 +1,15 @@
 @import "bootstrap";
-
-
-body{
-    background-color: rgb(243, 243, 243);
+@import 'slick';
+@import 'slick-theme';
+body {
+    background-color: #F1F3F6;
 }
 
-/* Navbar */
-
-.navbar-expand{
-    background-image: linear-gradient(150deg, #50A6DD, #3173B9);
-}
-
-.logo { 
+.logo {
     -webkit-filter: drop-shadow(5px 5px 5px #222);
-    filter:         drop-shadow(5px 5px 5px #222); 
-    padding-left: 10%;
-}
-
-.fnt-lgin-ed-rg-lgot-2{
-    color: white;
-    padding-left: 30%;
-    &:hover {
-        color:black;
-        text-decoration: none;
-    }
+    filter: drop-shadow(5px 5px 5px #222);
+    margin-left: 150px;
 }
 
 
-.fnt-lgin-ed-rg-lgot{
-    color: white;
-    padding-left: 15px;
-    &:hover {
-        color:black;
-        text-decoration: none;
-    }
-}
-
-.fnt-lgin-ed-rg-lgot-1{
-    color: white;
-    padding-left: 30%;
-    &:hover {
-        color:black;
-        text-decoration: none;
-    }
-}
-
-.fnt-lgin-ed-rg-lgot-3{
-    color: white;
-    padding-left: 15px;
-    &:hover {
-        color:black;
-        text-decoration: none;
-    }
-}
-
-
-#search-box {
-    position: relative;
-    width: 50%;
-    padding-left: 5%;
-    margin-top: 0%;
-}
-    
-#search-text 
-    {
-    height: 40px;
-    border-radius: 50px;
-    background-color: #fff;
-    overflow: hidden;
-    font-size: 14px;
-    color: rgb(202, 202, 202);
-    border-width: 0;
-    padding-bottom: 15px;
-}
-
-#search-box input[type="text"]
-    {
-    width: 80%;
-    padding: 11px 0 12px 1em;
-    color: #333;
-    outline: none;
-}
-    
-#search-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 20%;
-    padding-bottom: 15px;
-    font-size: 14px;
-    color: #fff;
-    text-align: center;
-    line-height: 42px;
-    border-width: 0;
-    -webkit-border-radius: 0px 5px 5px 0px;
-    -moz-border-radius: 0px 5px 5px 0px;
-    border-radius: 0px 5px 5px 0px;
-    cursor: pointer;
-}
-
-/* Notice */ 
-
-.notice{
-    text-align: center;
-    padding-top: 5px;
-}
-
-
-/*  test */ 
+/*  test */

@@ -1,24 +1,37 @@
+<h4 class="order-header">New Order</h4>
 
+<div class="order-new">
+<hr>
 <%= simple_form_for(@order) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <div class="row">
+    <div class="col-sm">
     <%= f.input :total_paid %>
     <%= f.input :email_sent %>
     <%= f.input :total_invoice %>
     <%= f.input :total_cancel %>
+    </div>
+    <div class="col-sm">
     <%= f.input :total_refunded %>
     <%= f.input :discount_amount %>
     <%= f.input :discount_cancelled %>
     <%= f.input :discount_invoice %>
+    </div>
+    <div class="col-sm">
     <%= f.input :discount_refunded %>
     <%= f.input :shipping_amount %>
     <%= f.input :shipping_invoice %>
     <%= f.input :shipping_refunded %>
+    </div>
+    </div>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+  <%= link_to 'Back', orders_path %>
 <% end %>
+</div>

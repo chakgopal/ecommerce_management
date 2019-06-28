@@ -48,6 +48,31 @@ class InventoryStocksController < ApplicationController
       end
     end  
 
+    def index
+      current_seller_id = current_seller.id
+      @seller_products = Product.where(seller_id: current_seller.id)
+      
+      product_ids = []
+      @inventory_stock = []
+
+      @seller_products.each do|s|
+         product_ids << s.id
+      end
+      product_ids.each do|p|
+        inventory_result = InventoryStock.where(product_id: p)
+        inventory_result.each do|inv|
+          data_hash = {}
+          data_hash["product_id"] = inv["product_id"]
+          data_hash["quantity"] = inv["quantity"]
+          data_hash["min_quantity"] = inv["min_quantity"]
+          data_hash["is_in_stock"] = inv["is_in_stock"]
+          @inventory_stock << data_hash
+        end  
+        puts "---------"+@inventory_stock.to_json+"------------------"
+      end
+     
+    end
+
 
 private
     # Use callbacks to share common setup or constraints between actions.

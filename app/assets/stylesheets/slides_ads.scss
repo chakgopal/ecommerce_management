@@ -1,0 +1,40 @@
+#slideshow {
+    margin: 0px auto;
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: auto;
+}
+
+.ads {
+    width: 100%;
+    height: 280px;
+}
+
+#slideshow>div {
+    position: absolute;
+    top: 0.1px;
+    left: 0.1px;
+    right: 0.1px;
+    bottom: 0.1px;
+}
+
+#slideshow2 {
+    margin: 0px auto;
+    position: relative;
+    width: 100%;
+    height: 320px;
+}
+
+.ads2 {
+    width: 100%;
+    height: 280px;
+}
+
+#slideshow2>div {
+    position: absolute;
+    top: 0.1px;
+    left: 0.1px;
+    right: 0.1px;
+    bottom: 0.1px;
+}

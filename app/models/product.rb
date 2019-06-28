@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   
   
-  paginates_per 2
+  paginates_per 6
 
   
 
