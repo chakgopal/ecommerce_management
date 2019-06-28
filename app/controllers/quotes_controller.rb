@@ -92,7 +92,7 @@ def show_cart
             cart_items_hash ={}
             cart_items_hash["name"] = product_details[0]["name"]
             cart_items_hash["price"] = product_details[0]["price"]
-            cart_items_hash["shop_name"] = product_details[0].store.shop_name
+            #cart_items_hash["shop_name"] = product_details[0].store.shop_name
             cart_items_hash["count"] = @quote_items_count
             cart_items_hash["desc"] = product_details[0]["short_desc"]
             @cart_items << cart_items_hash
@@ -119,6 +119,9 @@ def remove_item_from_cart
 end
 
 def quote_item_checkout
+end
+
+def show_order
 end
 
 end

@@ -1,4 +1,7 @@
 class CustomerAddressesController < ApplicationController
+
+  include Veriffyy
+
   before_action :authenticate_customer!
   before_action :set_customer_address, only: [:show, :edit, :update, :destroy]
 
@@ -27,28 +30,29 @@ class CustomerAddressesController < ApplicationController
   def create
     @customer_address = CustomerAddress.new(customer_address_params.merge(customer_id: current_customer.id))
 
-    respond_to do |format|
-      if @customer_address.save
-        format.html { redirect_to "/products"}
-        format.json { render :show, status: :created, location: @customer_address }
+     
+      if valid_phone_number?(customer_address_params['country_code'], customer_address_params['phone1'])
+        @customer_address.save
+        redirect_to @customer_address , notice: 'You have a valid phone number!'
       else
-        format.html { render :new }
-        format.json { render json: @customer_address.errors, status: :unprocessable_entity }
+        flash.alert = 'Please enter a valid phone number'
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /customer_addresses/1
   # PATCH/PUT /customer_addresses/1.json
   def update
-    respond_to do |format|
-      if @customer_address.update(customer_address_params)
-        format.html { redirect_to @customer_address, notice: 'Customer address was successfully updated.' }
-        format.json { render :show, status: :ok, location: @customer_address }
-      else
-        format.html { render :edit }
-        format.json { render json: @customer_address.errors, status: :unprocessable_entity }
-      end
+    
+    
+    @customer = Customer.find(params[:id])
+    @customer_address = CustomerAddress.find(params[:id])
+    if  valid_confirmation_code?(params['code'], @customer_address.country_code, @customer_address.phone1)
+      @customer_address.update(verified: true)
+     OrderNotifierMailer.phone_no_email(@customer,@customer_address).deliver_now
+     redirect_to products_path, notice: "#{@customer_address.phone1} has been verified!"
+    else
+      redirect_to @customer_address, alert: 'invalid or expired token'
     end
   end
 
@@ -70,6 +74,8 @@ class CustomerAddressesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_address_params
-      params.require(:customer_address).permit(:address1, :address2, :city, :state, :postalcode, :country, :phone1, :phone2)
+      params.require(:customer_address).permit(:address1, :address2, :city, :state, :postalcode, :country, :phone1, :phone2, :country_code)
     end
 end
+
+

@@ -1,5 +1,23 @@
-<p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+    <%= stylesheet_link_tag 'confirmation_for-mail', media: 'print, screen' %>
+    
+    <h1> WeeBuy </h1>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+    <p>Hi <%= @email %>!</p>
+
+     <h7>Welcome to Weebuy,enjoy your shopping</h7>
+
+     <p>Click on this button to confirm your email</p>
+
+     <button type="button" class="btn btn-success">
+     <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+
+     </button>
+
+
+
+    <p>from</p>
+    <p>Weebuy Team</p>
+ 
+
+

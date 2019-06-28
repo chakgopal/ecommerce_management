@@ -12,4 +12,17 @@ class OrderNotifierMailer < ApplicationMailer
       @customer = customer
       mail(to: @customer.email, subject: "Welcome to Weebuy")
     end
+
+    def phone_no_email(customer,customer_address)
+      @customer = customer
+      @customer_address = customer_address
+      mail(:to => @customer.email,:subject => 'phone number verified')
+    end
+
+    def order_delivered()
+      @customer = customer    
+      mail(:to => @customer.email,:subject => 'order delivered')
+    end
+
+
 end

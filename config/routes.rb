@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers, controllers: { registrations: 'customers/registrations' }
+  devise_for :customers, controllers: { confirmations: 'confirmations' }
   devise_for :sellers
 
   resources :customer_addresses
@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :orders do
     collection do
       get :checkout
+      get :order_price
+      post :place_order
+      get :check_orders
     end
   end  
   resources :products do
@@ -24,7 +27,7 @@ Rails.application.routes.draw do
     collection do
       get :new_quote
       get :show_cart
-      
+      get :place_order_for_cart_items
     end
     member do
      delete :remove_item_from_cart

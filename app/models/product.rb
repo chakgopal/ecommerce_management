@@ -12,10 +12,9 @@ class Product < ApplicationRecord
   
   has_many_attached :images
   has_one :inventory_stock, required: false
-  has_many :orders
-  has_many :categorizations
-  has_many :categories, :through => :categorizations
-  #default_scope { where(status: active) }
+  has_many :orders, dependent: :destroy
+  has_many :order_items, dependent: :destroy
+  
   
   paginates_per 2
 

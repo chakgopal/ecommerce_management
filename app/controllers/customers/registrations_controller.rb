@@ -72,7 +72,13 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   end
 
      
-  def after_sign_up_path_for(resource)
-    "/customer_addresses/new"
-  end
+  #def after_sign_up_path_for(resource)
+    #"/customer_addresses/new"
+  #end
+
+  #private
+  #def after_confirmation_path_for(resource_name, resource)
+    #sign_in(resource) # In case you want to sign in the user
+    #"/customer_addresses/new"
+  #end
 end

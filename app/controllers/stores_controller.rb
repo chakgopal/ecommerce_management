@@ -3,7 +3,7 @@ class StoresController < ApplicationController
   include Verify
   
   #before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_seller!, only:[:new,:destroy,:index]
+  before_action :authenticate_seller!, only:[:new,:destroy,:index,:update]
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
  
@@ -67,9 +67,15 @@ end
   end 
 
   def update
+   
+    seller_id = current_seller.id
+    @seller=Seller.find(seller_id)
+    @store = Store.find(params[:id])
     if  valid_confirmation_code?(params['code'], @store.countrycode, @store.shop_phone_no)
       @store.update(verified: true)
+      SellerMailer.phone_no_email(@store,@seller).deliver_now
       redirect_to @store, notice: "#{@store.shop_phone_no} has been verified!"
+     
     else
       redirect_to @store, alert: 'invalid or expired token'
     end
@@ -102,3 +108,5 @@ private
       @store = Store.find(params[:id])
   end
 end
+
+

@@ -40,5 +40,23 @@
   <%= @customer_address.phone2 %>
 </p>
 
-<%= link_to 'Edit', edit_customer_address_path(@customer_address) %> |
+<strong>Verified:</strong>
+<%= @customer_address.verified %>
+</p>
+
+<% if !@customer_address.verified %>
+  <h3>Verify your number</h3>
+  <%= form_tag @customer_address, url: customer_address_path(@customer_address.id), :method => :put do %>
+  <%= label_tag :code, "Enter the code you received at #{@customer_address.phone1} here" %>
+  <%= text_field_tag :code %>
+  <%= submit_tag 'Verify' %>
+  <% end %>
+<% end %>
+ 
+
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+ 
+
+
 <%= link_to 'Back', customer_addresses_path %>
