@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers
+  devise_for :customers, controllers: { confirmations: 'confirmations' }
   devise_for :sellers
 
   resources :customer_addresses
@@ -13,10 +13,18 @@ Rails.application.routes.draw do
       get :checkout
       get :order_price
       post :place_order
+<<<<<<< HEAD
+      get :check_orders
+=======
       get :order_history
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
     end
   end  
-  resources :products
+  resources :products do
+    member do
+      get :send_email
+    end
+  end
   resources :sellers
   resources :stores
   resources :quotes do

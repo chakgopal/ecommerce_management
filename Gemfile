@@ -46,10 +46,16 @@ gem 'kaminari'
 gem 'simple_form'
 gem "mini_magick"
 gem 'friendly_id', '~> 5.2.4'
+<<<<<<< HEAD
+gem 'authy'
+gem 'pry-rails' 
+gem 'twilio-ruby' 
+=======
 gem 'kaminari'
 gem 'material_icons'
 gem "jquery-slick-rails"
 
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

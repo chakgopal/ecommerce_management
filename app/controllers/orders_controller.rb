@@ -70,8 +70,16 @@ def place_order
     ordered_product_ids << op.product_id
   end
   QuoteItem.where('product_id IN (?)', ordered_product_ids).delete_all
-  redirect_to root_path
+  if order_item_obj.save
+    @customer = current_customer.email
+    @product = Product.find(params[:id])
+    OrderNotifierMailer.order_create_email(@customer,@product).deliver_now
+    redirect_to root_path
+  else
+    render :plain => 'message not sent'
+  end
 end
+
 def order_history
   if customer_signed_in?
     order_details = Order.where(customer_id: current_customer.id)

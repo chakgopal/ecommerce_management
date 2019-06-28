@@ -2,8 +2,16 @@
 
 one:
   name: MyString
+<<<<<<< HEAD
+  product: one
+
+two:
+  name: MyString
+  product: two
+=======
   category: one
 
 two:
   name: MyString
   category: two
+>>>>>>> 5cf431a0fe3f5e6f886aa43ac043f5d07c231155

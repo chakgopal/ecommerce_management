@@ -6,8 +6,13 @@ def new_quote
     id = params[:id] if params[:id].present?
     
     @product_details = Product.find(id)
+<<<<<<< HEAD
+    inventory_details = InventoryStock.where(product_id: @product_details.id)
+    @quant = inventory_details[0].quantity if inventory_details.present?
+=======
     
     
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
     if customer_signed_in? 
      quote_count = Quote.where(customer_id: current_customer.id).count
      if quote_count == 0
@@ -63,7 +68,9 @@ def show_cart
          else 
            product_price = q.price.to_f * 1
          end  
+         
          subtotal+=  product_price 
+         
      end
      
      Quote.where(customer_id:current_customer.id).update(subtotal:subtotal)
@@ -90,7 +97,7 @@ def show_cart
             cart_items_hash ={}
             cart_items_hash["name"] = product_details[0]["name"]
             cart_items_hash["price"] = product_details[0]["price"]
-            cart_items_hash["shop_name"] = product_details[0].store.shop_name
+            #cart_items_hash["shop_name"] = product_details[0].store.shop_name
             cart_items_hash["count"] = @quote_items_count
             cart_items_hash["desc"] = product_details[0]["short_desc"]
             @cart_items << cart_items_hash
@@ -101,7 +108,7 @@ def show_cart
     else
       redirect_to new_customer_session_path
     end
-    
+    puts 
 end
 
 def remove_item_from_cart
@@ -112,10 +119,16 @@ def remove_item_from_cart
   quote_id = quote_details[0]["id"]
   QuoteItem.where(quote_id:quote_id).where(product_id:product_id).delete_all
   quote_item_details = QuoteItem.where(quote_id:quote_id).where(product_id:product_id)
-
+  
   redirect_to show_cart_quotes_url
 end
 
+<<<<<<< HEAD
+def quote_item_checkout
+end
+
+def show_order
+=======
 def place_order_for_cart_items
   current_customer_cart = Quote.where(customer_id: current_customer.id)
   current_customer_cart_id = current_customer_cart[0].id
@@ -126,6 +139,7 @@ def place_order_for_cart_items
   current_customer_order = Order.where(customer_id: current_customer.id)
   current_customer_order_id = current_customer_order[0].id
   
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
 end
 
 end
