@@ -1,5 +1,135 @@
+<<<<<<< HEAD
+<p id="notice"><%= notice %></p>
+ 
+ <p>
+  <strong>Shop Name:</strong>
+  <%= @store.shop_name %>
+</p>
+
+<p>
+  <strong>Website Url:</strong>
+  <%= @store.website_url %>
+</p>
+
+<p>
+  <strong>Company Email:</strong>
+  <%= @store.company_email %>
+</p>
+
+<p>
+  <strong>Shop Intro:</strong>
+  <%= @store.shop_intro %>
+</p>
+
+<p>
+  <strong>Address1:</strong>
+  <%= @store.address1 %>
+</p>
+<p>
+  <strong>Address2:</strong>
+  <%= @store.address2 %>
+</p>
+ 
+  <p>
+  <strong>LandMark:</strong>
+  <%= @store.landmark %>
+</p>
+
+<p>
+  <strong>Shop Phone No:</strong>
+  <%= @store.shop_phone_no %>
+</p>
+<p>
+  <strong>Alternative Phone No1:</strong>
+  <%= @store.alternative_phone_no1 %>
+</p>
+<p>
+  <strong>Alternative Phone No2:</strong>
+  <%= @store.alternative_phone_no2 %>
+</p>
+<p>
+  <strong>Gst Image:</strong>
+  <% if @store.gst_image.attached? %>
+     <%= image_tag url_for(@store.gst_image), size: "64"%>
+  <% end %>   
+</p>
+ <p>
+  <strong>Shop Pan Image:</strong>
+  <% if @store.shop_pan_image.attached? %>
+     <%= image_tag url_for(@store.shop_pan_image), size: "64"%>
+  <% end %>   
+</p>
+ 
+ <p>
+  <strong>Trade Liscense Image:</strong>
+  <% if @store.trade_license_image.attached? %>
+     <%= image_tag url_for(@store.trade_license_image), size: "64"%>
+  <% end %>   
+</p>
+ 
+ <p>
+  <strong>Iso Image:</strong>
+  <% if @store.iso_image.attached? %>
+     <%= image_tag url_for(@store.iso_image), size: "64"%>
+  <% end %>   
+</p>
+ <p>
+  <strong>Certificate Of Incorporation:</strong>
+  <% if @store.certificate_image.attached? %>
+     <%= image_tag url_for(@store.certificate_image), size: "64"%>
+  <% end %>   
+</p>
+<p>
+  <strong>Trade Mark Registration:</strong>
+  <% if @store.trade_mark_image.attached? %>
+     <%= image_tag url_for(@store.trade_mark_image), size: "64"%>
+  <% end %>   
+</p>
+<p>
+  <strong>Address Proof:</strong>
+  <% if @store.address_proff_image.attached? %>
+     <%= image_tag url_for(@store.address_proff_image), size: "64"%>
+  <% end %>   
+</p>
+
+
+
+
+<p>
+  <% if @store.images.attached? %>
+    <% @store.images.each do |image| %>
+      <%= image_tag url_for(image), size: "64" %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+<strong>Verified:</strong>
+<%= @store.verified %>
+</p>
+
+<% if !@store.verified %>
+  <h3>Verify your number</h3>
+  <%= form_tag @store, url: store_path(@store.id), :method => :put do %>
+  <%= label_tag :code, "Enter the code you received at #{@store.shop_phone_no} here" %>
+  <%= text_field_tag :code %>
+  <%= submit_tag 'Verify' %>
+  <% end %>
+<% end %>
+ 
+
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+ 
+<% if admin_signed_in? %>
+    <%= link_to "SellersBack", controller: "sellers", action: "show",id:@store.seller_id %>
+<% else %> 
+     <%= link_to 'Back', stores_path %>
+<% end %>
+=======
 <% if admin_signed_in? || seller_signed_in? %>
   <%= render "back_storeshow" %>
 <% else %>
   <%= render "front_storeshow" %>
 <% end %>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f

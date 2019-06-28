@@ -50,8 +50,21 @@ def place_order
   order_item_obj.price = order_price
   order_item_obj.product_id =order_product_id
   order_item_obj.order_id = order_obj[0].id
-  order_item_obj.save
-  redirect_to root_path
+  if order_item_obj.save
+    if customer_signed_in?
+      @customer = current_customer.email
+      @product = Product.find(params[:id])
+      #@seller = Seller.find(params[:id])
+      #@store = Store.find(params[:id])
+     
+      #puts @product.price
+      OrderNotifierMailer.order_create_email(@customer,@product).deliver_now
+      end
+      redirect_to root_path
+  else
+    render :plain => 'message not sent'
+
+  
 end
 def order_history
   if customer_signed_in?
@@ -65,6 +78,38 @@ def order_history
     flash[:notice] = "please sign in before checking order history"
     redirect_to  new_customer_session_path 
   end
+end
+
+end
+
+def check_orders
+  if customer_signed_in?
+    
+   
+    #@product_price = @product_detail.price
+    
+    customer_id = current_customer.id  
+    if customer_id.present?
+    customer_details = Customer.find(customer_id)
+        
+    #@product_details = Product.find(params[:id])
+    orders = Order.where(customer_id:current_customer.id)
+    #order_items = OrderItem.where(order_id:orders.id)
+    order_ids = []
+    orders.each do|q|
+      #order_id = q.order_id
+      order_ids << q.id
+      #order_details = OrderItem.where(id:order_id)
+    end
+    @order_details = OrderItem.where('id IN (?)',order_ids)
+
+    
+       
+    end 
+  else
+    redirect_to new_customer_session_path
+  end
+  
 end
 
 end

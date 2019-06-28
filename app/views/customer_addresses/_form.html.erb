@@ -41,6 +41,12 @@
     <%= form.text_field :country %>
   </div>
 
+
+  <div class="field">
+    <%= form.label :country_code %>
+    <%= form.text_field :country_code %>
+  </div>
+
   <div class="field">
     <%= form.label :phone1 %>
     <%= form.text_field :phone1 %>
@@ -55,4 +61,5 @@
     <%= form.submit %>
   </div>
 </centre>
+<%= link_to 'skip', products_path %>
 <% end %>

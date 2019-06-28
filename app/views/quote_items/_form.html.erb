@@ -11,7 +11,7 @@
     <%= f.input :price %>
     <%= f.association :quote %>
     <%= f.association :product %>
-    <%= f.association :store %>
+    <%= f.association :store, label_method: :shop_name, value_method: :seller_id, prompt: "Select your Shop" %>
   </div>
 
   <div class="form-actions">

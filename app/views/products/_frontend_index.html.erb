@@ -1,5 +1,14 @@
+<<<<<<< HEAD
+<h1>Products</h1>
+
+
+<div class="container">
+  <div class="row">
+
+=======
 <%= stylesheet_link_tag 'frontend', media: 'print, screen' %>
 <%= render "sponsores_ads" %>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
 
 <div class="product_grid_first">
   <h4 class="titel_trending">Trending Products</h4> 
@@ -24,6 +33,20 @@
   </section>
 </div>
 
+<<<<<<< HEAD
+  <%unless @products.blank?
+  @products.each do |product| %>
+    <div class="col-4">
+       <%= link_to product do %>
+          <%= image_tag url_for(product.images.first), size: "64" if product.images.attached? %>
+          <%= product.name %>
+      <% end %>
+     
+      <%= product.price %>
+      <%= link_to 'send mail', send_email_product_path(product) %>
+    </div>
+   
+=======
 <h4>Popular Shops</h4> 
 <div id="loadMore" style="">
   <a href="#">Load More</a>
@@ -37,10 +60,20 @@
       </div>
       <span ><%= store.shop_name %></span><br /> 
     <% end %>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
   <% end 
 end %>
 
 
+<<<<<<< HEAD
+  </div>
+</div>
+
+
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+ 
+=======
 <%= render "sponsores_ads" %>
 <%= render "company_content" %>
 
@@ -53,3 +86,4 @@ end %>
     slidesToScroll: 3
   });
 </script>
+>>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f

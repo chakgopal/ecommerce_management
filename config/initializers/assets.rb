@@ -8,6 +8,8 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
+Rails.application.config.assets.precompile += %w( confirmation_for-mail.scss )
+
 # Precompile additional assets.
 Rails.application.config.assets.precompile += %w( orders.scss slides_ads.scss company_content.scss customers_nav.scss product_show_font.scss frontend.scss seller.scss pagination.scss quotes.scss backend.scss backend1.scss inventory_stocks.scss products.scss)
 

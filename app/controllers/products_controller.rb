@@ -7,6 +7,13 @@ class ProductsController < ApplicationController
   def index
     if seller_signed_in?
       @products = current_seller.products.order(:name).page params[:page]
+      @inventory_stock_count = InventoryStock.where(product_id:@products[0].id).count if @products.present?
+      @inventory_stock = InventoryStock.where(product_id:@products[0].id).first if @products.present?
+      puts @inventory_stock_count.to_s
+     
+      #@products = current_seller.products.where(status:'active')
+       #puts @products.to_json
+      
       @inventory_stock_count = []
       @inventory_stock = []
       @products.each do|p|
@@ -92,15 +99,35 @@ class ProductsController < ApplicationController
     end
   end
 
+  def send_email
+    if customer_signed_in?
+    @customer = current_customer.email
+    @product = Product.find(params[:id])
+    @seller = Seller.find(params[:id])
+    @store = Store.find(params[:id])
+    puts @store.shop_name
+    puts @seller.email
+    puts @product.name
+    #puts @product.price
+    OrderNotifierMailer.order_create_email(@customer,@product).deliver_now
+    end
+    render :plain => 'message sent'
+   
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
+
       @product = Product.find(params[:id])
     end
 
     #def set_store
        #redirect_to new_store_url
     #end
+
 
 
     # Never trust parameters from the scary internet, only allow the white list through.

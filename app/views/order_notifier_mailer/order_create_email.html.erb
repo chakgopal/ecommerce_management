@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order Confirmation</title>
+</head>
+<body>
+	<h1>Your order <%= @product.name %> has been placed price is <%= @product.price %></h1>
+	<%= image_tag url_for(@product.images.first), size: "64" if @product.images.attached? %>
+	<%= @customer %>
+</body>
+</html>
