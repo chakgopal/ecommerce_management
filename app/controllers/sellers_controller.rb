@@ -4,6 +4,7 @@ class SellersController < ApplicationController
   
   before_action :set_seller, only: [:show, :edit, :update, :destroy]
 
+  before_action :seller_shop
   # GET /sellers
   # GET /sellers.json
   def index
@@ -36,6 +37,8 @@ class SellersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

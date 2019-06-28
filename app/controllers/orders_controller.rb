@@ -9,7 +9,19 @@ class OrdersController < ApplicationController
        
       @product_detail = Product.find_by_id(params[:id])
       @product_price = @product_detail.price
-      
+     
+      loged_in_customer_cart = Quote.where(customer_id: current_customer.id )
+      loged_in_customer_cart_id = loged_in_customer_cart[0].id
+      quote_item = QuoteItem.new
+      quote_item.sku = @product_detail.sku
+      quote_item.name = @product_detail.name 
+      quote_item.description = @product_detail.long_desc
+      quote_item.price = @product_detail.price
+      quote_item.quote_id = loged_in_customer_cart_id
+      quote_item.product_id = @product_detail.id
+      quote_item.store_id = @product_detail.store_id
+      quote_item.save
+
       customer_id = current_customer.id  
       if customer_id.present?
         customer_details = Customer.find(customer_id)
@@ -31,10 +43,12 @@ def order_price
   @product_price_with_quant = product_price.to_f * quantity.to_i 
   render :json=>@product_price_with_quant
 end
+
 def place_order
   order_price = params[:price]
   order_quantity = params[:qty]
   order_product_id = params[:id]
+  ordered_product_ids = []
   loged_in_customer_id = current_customer.id
   order_obj = Order.new
   order_obj.customer_id = loged_in_customer_id
@@ -51,6 +65,11 @@ def place_order
   order_item_obj.product_id =order_product_id
   order_item_obj.order_id = order_obj[0].id
   order_item_obj.save
+  ordered_product = OrderItem.all 
+  ordered_product.each do|op|
+    ordered_product_ids << op.product_id
+  end
+  QuoteItem.where('product_id IN (?)', ordered_product_ids).delete_all
   redirect_to root_path
 end
 def order_history

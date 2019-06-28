@@ -34,6 +34,7 @@ label {
 
 <%= image_tag url_for(oi.product.images.first), size: "120" if oi.product.images.attached? %>
   <div class="container">
+  <label for="item">Item:</label>
     <h6><b><%=oi.name%></b></h6> 
     <label for="product_description">Description:</label>
     <h6><b><%=oi.description%></b></h6>

@@ -25,9 +25,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Notifications</a>
                             <div class="dropdown-divider"></div>
-                              <%= link_to('Logout', destroy_customer_session_path, method: :delete, class: "dropdown-item") %>
+                              <%= link_to('My Order', order_history_orders_path, class: "dropdown-item") %>
                             <div class="dropdown-divider"></div>
-                            <%= link_to('My Order', order_history_orders_path, class: "dropdown-item") %>
+                            <%= link_to('Logout', destroy_customer_session_path, method: :delete, class: "dropdown-item") %>
                         </div>
                     </div>
                 </div>
