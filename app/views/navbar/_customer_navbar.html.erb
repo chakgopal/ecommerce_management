@@ -1,90 +1,13 @@
-<style>
+<%= stylesheet_link_tag 'customers_nav', media: 'print, screen' %>
 
-    .form{
-        width: 40%;
-        margin-left: 15px;
-    }
-
-    .search{
-        position: absolute;
-        right: 0.001px;
-        margin-right: 50%;
-        top: 1.5px;
-        margin-top: 1.4%;
-        height: 30px;
-        width: 30px;
-        background-color: white;
-        border: none;   
-    }
-
-    .log{
-        color: white;
-        position: absolute;
-        top: 1.5px;
-        margin-top: 1.7%;
-        right: 0.001px;
-        margin-right: 30%;  
-    }
-
-    #navbarDropdown2{
-        color: white;
-    }
-
-    #navbarDropdown3{
-        color: white;
-    }
-
-    .dropdown{
-        position: absolute;
-        right: 0.001px;
-        margin-right: 24%;  
-        top: 1.5px;
-        margin-top: 1.2%;
-    }
-
-    .cart{
-        color: white;
-        position: absolute;
-        right: 0.001px;
-        margin-right: 21%;
-        margin-top: 1.8%;  
-        top: 1.5px;
-    }
-
-    .drop{
-        position: absolute;
-        right: 0.001px;
-        margin-right: 29.5%; 
-        top: 1.5px;
-        margin-top: 1%;
-    }
-
-    .log:hover{
-        color: #222;
-        text-decoration: none;
-    }
-
-    .cart:hover{
-        color: #222;
-        text-decoration: none;
-    }
-
-    #navbarDropdown2:hover{
-        color: #222;
-        text-decoration: none;
-    }
-
-    #navbarDropdown3:hover{
-        color: #222;
-        text-decoration: none;
-    } 
-
-</style>
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-trasparent" style="background-image: linear-gradient(120deg, #50A6DD, #3173B9);">
     <a class="navbar-brand" href="<%= root_path %>"><%= image_tag("logo2-1.png", size: "62x50", class: "logo", alt: "") %></a>
     <div class="collapse navbar-collapse" id="navbarColor03">
         <!-- Search -->
+
+        <div class="link"></div>
+ 
         <div class="form">
             <input class="form-control ml-sm-2" type="search" placeholder="Search for apparel,shops..." aria-label="Search">
             <button type="submit" class="search"><%= image_tag("search.png", size: "35x30", class: "icon") %></button>
@@ -124,7 +47,9 @@
             </div>
 
             <div class="cart">
-                <%= link_to('Cart',show_cart_quotes_url , style: "vertical-align: -webkit-baseline-middle;", class: "cart" ) %>
+                <%= link_to show_cart_quotes_url, class: :cart do %>
+                    <i class="material-icons">shopping_cart</i> 
+                <% end %>
             </div>
         </ul>
         
