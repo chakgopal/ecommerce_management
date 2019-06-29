@@ -1,18 +1,13 @@
 class QuotesController < ApplicationController
-  before_action :authenticate_customer!, only: [:new_quote, :show_cart, :remove_item]
+  before_action :authenticate_customer!, only: [:new_quote, :show_cart, :remove_item,:place_order_for_cart_items]
 
 def new_quote
   if customer_signed_in?
     id = params[:id] if params[:id].present?
     
     @product_details = Product.find(id)
-<<<<<<< HEAD
-    inventory_details = InventoryStock.where(product_id: @product_details.id)
-    @quant = inventory_details[0].quantity if inventory_details.present?
-=======
     
     
->>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
     if customer_signed_in? 
      quote_count = Quote.where(customer_id: current_customer.id).count
      if quote_count == 0
@@ -28,6 +23,7 @@ def new_quote
           quote_item.quote_id = quotes.id
           quote_item.product_id = @product_details.id
           quote_item.store_id = @product_details.store_id
+          quote_item.quantity = 1
           quote_item.save
        end  
       else 
@@ -40,6 +36,7 @@ def new_quote
           quote_item.quote_id = quote_details[0]["id"]
           quote_item.product_id = @product_details.id
           quote_item.store_id = @product_details.store_id
+          quote_item.quantity = 1
           quote_item.save
       end
    end
@@ -97,7 +94,7 @@ def show_cart
             cart_items_hash ={}
             cart_items_hash["name"] = product_details[0]["name"]
             cart_items_hash["price"] = product_details[0]["price"]
-            #cart_items_hash["shop_name"] = product_details[0].store.shop_name
+            cart_items_hash["shop_name"] = product_details[0].store.shop_name
             cart_items_hash["count"] = @quote_items_count
             cart_items_hash["desc"] = product_details[0]["short_desc"]
             @cart_items << cart_items_hash
@@ -112,7 +109,7 @@ def show_cart
 end
 
 def remove_item_from_cart
-  customer_id = session[:customer_id]
+  
   product_id = params[:id]
   customer_id = current_customer.id
   quote_details = Quote.where(customer_id:customer_id)
@@ -123,23 +120,25 @@ def remove_item_from_cart
   redirect_to show_cart_quotes_url
 end
 
-<<<<<<< HEAD
-def quote_item_checkout
+def quantity_of_cart_items
+  id = params[:id] if params[:id].present?
+  quotes = Quote.where(customer_id:current_customer.id).first
+  quote_items = QuoteItem.where(product_id:id ).where(quote_id:quotes.id)
+  quote_items_quantity = quote_items[0].quantity
+  
+  render :json=>quote_items_quantity
 end
 
-def show_order
-=======
 def place_order_for_cart_items
   current_customer_cart = Quote.where(customer_id: current_customer.id)
   current_customer_cart_id = current_customer_cart[0].id
-  current_customer_items_in_cart = QuoteItem.where(quote_id:current_customer_cart_id)
-  current_customer_order_obj = Order.new
-  order_obj.customer_id = current_customer.id
-  order_obj.save
-  current_customer_order = Order.where(customer_id: current_customer.id)
-  current_customer_order_id = current_customer_order[0].id
-  
->>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
+  @current_customer_items_in_cart = QuoteItem.where(quote_id:current_customer_cart_id)
+  customer_id = current_customer.id  
+      if customer_id.present?
+        customer_details = Customer.find(customer_id)
+        @customer_login_details = customer_details.email 
+      end
+  @subtotal = current_customer_cart[0].subtotal  
 end
 
 end

@@ -13,11 +13,7 @@ Rails.application.routes.draw do
       get :checkout
       get :order_price
       post :place_order
-<<<<<<< HEAD
-      get :check_orders
-=======
       get :order_history
->>>>>>> fd74ded663917e2068024f3adc91e22a5a0d436f
     end
   end  
   resources :products do
@@ -32,6 +28,7 @@ Rails.application.routes.draw do
       get :new_quote
       get :show_cart
       get :place_order_for_cart_items
+      get :quantity_of_cart_items
     end
     member do
      delete :remove_item_from_cart

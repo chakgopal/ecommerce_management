@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'quotes', media: 'print, screen' %>
-
+<div>
 <div class = "_2ycxrs"> 
   <h5>Cart Details</h5> 
   <hr>
@@ -21,7 +21,16 @@
         <%= image_tag url_for(p.images.first), size: "120" if p.images.attached? %>
         <div class="col-md-4" >Qty
       <select class="qty" id ="qty_<%=p.id%>">
-        <option value="1"><strong>1</strong></option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
       </select>
     </div> 
         <%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => p.id),method: :delete,class: "btn btn-inverse" %>
@@ -35,22 +44,23 @@
       <%=c["price"] %>
     <%end%>  
   </div>
+  <%= button_to "Continue Shoping",
+      root_path,:method => :get
+  %>
+  <%= button_to "Place Order", place_order_for_cart_items_quotes_path,:method => :get
+  %>
+</div>
 <%end%>
 
 <script>
-var selItem = [];
-var data_hash = {};
+
 $(document).ready(function(){
   
   if(<%=@quote_items_count%>!=0){
      $(".cart").append('<div class="_2dcihZ"><%=@quote_items_count %></div>');
   }
-  var options =  '<option value="1"><strong>1</strong></option>';
-  for(i=2;i<=10;i++){
-     options += '<option value="'+i+'">'+i+'</option>';
-  }
-  $('.qty').html(options);
-  setSelectedValue();
+  
+  
   });
   
   
@@ -58,14 +68,6 @@ $(document).ready(function(){
     
     var id = $(this).attr('id').split("_")[1];
     var qty = $("#qty_"+id).val();
-    data_hash["id"] = id;
-    data_hash["qty"] = qty;
-   
-    selItem.push(data_hash);
-    console.log(selItem);
-    sessionStorage.setItem("SelItem", JSON.stringify(data_hash));
-   
-
     $.ajax({
 
       url: "show_cart?id="+id+"&qty="+qty,
@@ -73,16 +75,23 @@ $(document).ready(function(){
       contentType: "application/json",
       success: function() {
         location.reload();
+        $.ajax({
+          url: "quantity_of_cart_items?id="+id,
+          method: "GET",
+          contentType: "application/json",
+          success: function(msg) {
+            var sel = $("#qty_"+id)
+            console.log(msg);
+            
+            $('sel option[value="'+msg+'"]').prop('selected', true);
+          }
+
+       });
       }
-     });
+    });
 
   });
   
-  function setSelectedValue(){
-    
-    
-   
-  }
         
         
 </script>

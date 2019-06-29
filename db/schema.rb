@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_26_092743) do
+ActiveRecord::Schema.define(version: 2019_06_29_051149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_092743) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_customers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
@@ -240,11 +241,13 @@ ActiveRecord::Schema.define(version: 2019_06_26_092743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.bigint "product_id"
     t.integer "item_quantity", default: 1
     t.integer "subtotal"
     t.integer "grand_total"
     t.integer "subtotal_with_discount"
     t.index ["customer_id"], name: "index_quotes_on_customer_id"
+    t.index ["product_id"], name: "index_quotes_on_product_id"
     t.index ["store_id"], name: "index_quotes_on_store_id"
   end
 
@@ -295,6 +298,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_092743) do
     t.bigint "seller_id"
     t.boolean "deleted_flag"
     t.bigint "quote_item_id"
+    t.integer "status"
     t.string "countrycode"
     t.boolean "verified", default: false
     t.index ["quote_item_id"], name: "index_stores_on_quote_item_id"
@@ -325,6 +329,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_092743) do
   add_foreign_key "quote_shipping_rates", "quote_addresses"
   add_foreign_key "quote_shipping_rates", "quote_payments"
   add_foreign_key "quotes", "customers"
+  add_foreign_key "quotes", "products"
   add_foreign_key "quotes", "stores"
   add_foreign_key "stores", "quote_items"
   add_foreign_key "stores", "sellers"
