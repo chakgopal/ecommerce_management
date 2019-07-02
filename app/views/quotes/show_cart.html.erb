@@ -59,9 +59,21 @@ $(document).ready(function(){
   if(<%=@quote_items_count%>!=0){
      $(".cart").append('<div class="_2dcihZ"><%=@quote_items_count %></div>');
   }
+  $.ajax({
+          url: "items_in_cart_with_quantity",
+          method: "GET",
+          contentType: "application/json",
+          success: function(msg) {
+            msg.forEach(function(element, index) {
+               $("#qty_"+element.quote_item_product_id).val(element.quantity).prop('selected', true);
+              
+            }); 
+            
+          }
+
+      });
   
-  
-  });
+});
   
   
     $('select').change(function() {
@@ -91,7 +103,5 @@ $(document).ready(function(){
     });
 
   });
-  
-        
         
 </script>

@@ -129,6 +129,21 @@ def quantity_of_cart_items
   render :json=>quote_items_quantity
 end
 
+def items_in_cart_with_quantity
+  quote_item_id_with_quantity = []
+  quote_details = Quote.where(customer_id:current_customer.id)
+  quote_id = quote_details[0].id
+  quote_item_details = QuoteItem.where(quote_id:quote_id)
+  quote_item_details.each do|qi|
+    data_hash = {}
+    data_hash["quote_item_product_id"] = qi.product_id
+    data_hash["quantity"] = qi.quantity
+    quote_item_id_with_quantity << data_hash
+  end
+  puts quote_item_id_with_quantity
+  render :json=>quote_item_id_with_quantity.to_json
+end
+
 def place_order_for_cart_items
   current_customer_cart = Quote.where(customer_id: current_customer.id)
   current_customer_cart_id = current_customer_cart[0].id

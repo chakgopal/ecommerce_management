@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get :show_cart
       get :place_order_for_cart_items
       get :quantity_of_cart_items
+      get :items_in_cart_with_quantity
     end
     member do
      delete :remove_item_from_cart
