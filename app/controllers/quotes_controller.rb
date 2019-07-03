@@ -47,7 +47,7 @@ def new_quote
 end
 
 def show_cart
-   if customer_signed_in?
+  
      session[:customer_id] = current_customer.id
      subtotal = 0
      product_price = 0
@@ -102,10 +102,6 @@ def show_cart
           @product_details = Product.where('id IN (?)', product_ids)
           @subtotal = quotes.subtotal
       end 
-    else
-      redirect_to new_customer_session_path
-    end
-    puts 
 end
 
 def remove_item_from_cart
@@ -140,9 +136,11 @@ def items_in_cart_with_quantity
     data_hash["quantity"] = qi.quantity
     quote_item_id_with_quantity << data_hash
   end
-  puts quote_item_id_with_quantity
+  
   render :json=>quote_item_id_with_quantity.to_json
 end
+
+
 
 def place_order_for_cart_items
   current_customer_cart = Quote.where(customer_id: current_customer.id)
@@ -154,6 +152,30 @@ def place_order_for_cart_items
         @customer_login_details = customer_details.email 
       end
   @subtotal = current_customer_cart[0].subtotal  
+end
+
+def checkout_for_cart_item
+  cart_items_details = ActiveSupport::JSON.decode( params[:data] )
+  puts ">>>>"+cart_items_details.to_json
+  loged_in_customer_id = current_customer.id
+  order_obj = Order.new
+  order_obj.customer_id = loged_in_customer_id
+  order_obj.save
+  cart_items_details.each do|ci|
+    order_obj = Order.where(customer_id: loged_in_customer_id)
+    order_item_obj = OrderItem.new
+    order_item_obj.name = ci["name"]
+    order_item_obj.sku = ci["sku"]
+    order_item_obj.description = ci["description"]
+    order_item_obj.store_id = ci["store_id"]
+    order_item_obj.quantity = ci["quantity"]
+    order_item_obj.price = ci["total_price"]
+    order_item_obj.product_id =ci["product_id"]
+    order_item_obj.order_id = order_obj[0].id
+    order_item_obj.save
+    QuoteItem.where(product_id:ci["product_id"]).delete_all
+  end
+  
 end
 
 end

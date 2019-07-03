@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag 'quotes', media: 'print, screen' %>
+
 <div>
 <div class = "_2ycxrs"> 
   <h5>Cart Details</h5> 
@@ -56,9 +57,7 @@
 
 $(document).ready(function(){
   
-  if(<%=@quote_items_count%>!=0){
-     $(".cart").append('<div class="_2dcihZ"><%=@quote_items_count %></div>');
-  }
+ 
   $.ajax({
           url: "items_in_cart_with_quantity",
           method: "GET",

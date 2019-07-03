@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     member do
       get :send_email
     end
+    
   end
   resources :sellers
   resources :stores
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
       get :place_order_for_cart_items
       get :quantity_of_cart_items
       get :items_in_cart_with_quantity
+      post :checkout_for_cart_item
     end
     member do
      delete :remove_item_from_cart

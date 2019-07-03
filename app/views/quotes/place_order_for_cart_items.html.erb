@@ -11,12 +11,28 @@
   <h5>Order Details <span class="show_details_2">&#187;</span></h5>
 </div>
 <div class="product_details" style="display: none;">
-
- 
+<% @current_customer_items_in_cart.each do|ci|%>
+  <%= image_tag url_for(ci.product.images.first), size: "120" if ci.product.images.attached? %>
+  <%= ci.name%>
+  <%= ci.description %>
+  <%= ci.store.shop_name %>
+  
   <div>Qty
-    <select class="qty" onchange = "changeQuantity()">
-      <option value="1"><strong>1</strong></option>
-    </select>
+  <select class="qty" id ="qty_<%=ci.product_id%>">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+</div>
+<%= link_to 'Remove Item', remove_item_from_cart_quote_path(:id => ci.product_id),method: :delete,class: "btn btn-inverse" %>
+<%end%> 
   </div>
   <div class = "" >
     <div class = "price_div1"> Delivery Charges <span class ="delivery_span">Free</span></div>
@@ -29,7 +45,7 @@
 <input type="checkbox" id="payment_option"  value="1">Cash on Delivery
 </div>
 <div class="place_order">
-<span style="">Order confirmation email will be sent to <%=@customer_login_details%></span><button type="button" value="Submit" class="btn btn-success" onclick="placeOrder()">Place Order</button>
+<span style="">Order confirmation email will be sent to <%=@customer_login_details%></span><button type="button" value="Submit" class="btn btn-success" onclick="placeOrderforCart()">Place Order</button>
 </div>
   <div>
 </div>
@@ -39,43 +55,100 @@
 <script>
 $(document).ready(function(){
   
-  var options =  '<option value="1"><strong>1</strong></option>';
-  for(i=2;i<=10;i++){
-     options += '<option value="'+i+'">'+i+'</option>';
-  }
-  $('.qty').html(options);
-  });
-  function changeQuantity(){
-     qty = $('.qty').val();
-    $.ajax({
-
-      url: "order_price?id="+<%=@product_detail.id%>+"&qty="+qty,
-      method: "GET",
-      contentType: "application/json",
-      success: function(msg) {
-        $('.price_details_1').html(msg);
-        $('.amount_span').html(msg);
-        price = msg;
-       }
-     });
-  }
-  function placeOrder(){
-     var price = $('.price_details_1').text();
-     var quantity = $('.qty').val();
-    if($("#payment_option").is(':checked')){
-      $.ajax({
-
-      url: "place_order?id="+<%=@product_detail.id%>+"&qty="+quantity+"&price="+price,
-      method: "POST",
-      contentType: "application/json",
-      success: function(msg) { 
+  $.ajax({
+    url: "items_in_cart_with_quantity",
+    method: "GET",
+    contentType: "application/json",
+    success: function(msg) {
+      msg.forEach(function(element, index) {
+         $("#qty_"+element.quote_item_product_id).val(element.quantity).prop('selected', true);
         
-       }
-     });
-    }else{
-      alert("please select a payment option for proceed");
+      }); 
+      
     }
-  }
+
+});
+
+});
+
+
+$('select').change(function() {
+
+var id = $(this).attr('id').split("_")[1];
+var qty = $("#qty_"+id).val();
+$.ajax({
+
+url: "show_cart?id="+id+"&qty="+qty,
+method: "GET",
+contentType: "application/json",
+success: function() {
+  location.reload();
+  $.ajax({
+    url: "quantity_of_cart_items?id="+id,
+    method: "GET",
+    contentType: "application/json",
+    success: function(msg) {
+      var sel = $("#qty_"+id)
+      console.log(msg);
+      
+      $('sel option[value="'+msg+'"]').prop('selected', true);
+    }
+
+ });
+}
+});
+
+});
+  
+function placeOrderforCart(){
+  var product_details = [];
+  var placed_product_details = [];
+  <% @current_customer_items_in_cart.each do|ci|%>
+     var data_hash = {};
+     data_hash["product_id"] = <%=ci.product_id%>;
+     data_hash["price"] = <%=ci.price%>;
+     data_hash["name"] = "<%=ci.name %>";
+     data_hash["sku"] = <%=ci.sku%>;
+     data_hash["description"] = "<%=ci.description %>";
+     data_hash["store_id"] = <%=ci.store_id%>;
+     
+     product_details.push(data_hash);
+    <%end%>
+  
+ if($("#payment_option").is(':checked')){
+  
+  product_details.forEach(function(element, index) {
+    var data_hash = {};
+    var sel = $("#qty_"+element.product_id);
+    var quantity = sel.val();
+    var total_price = quantity * element.price;
+    data_hash["product_id"] = element.product_id;
+    data_hash["quantity"] = quantity;
+    data_hash["total_price"] = total_price;
+    data_hash["name"] = element.name;
+    data_hash["sku"] = element.sku;
+    data_hash["description"] = element.description;
+    data_hash["store_id"] = element.store_id;
+    placed_product_details.push(data_hash);
+   
+ }); 
+ console.log(placed_product_details);
+
+ $.ajax({
+    url: "checkout_for_cart_item",
+    data: {"data":JSON.stringify(placed_product_details)},
+    method: "POST",
+    dataType: 'json',
+    success: function() {
+      alert("Order Placed Succesfully");
+      window.location.href = "/products";
+    }
+
+ });
+ }else{
+   alert("please select a payment option for proceed");
+ }
+}
 
   $( ".show_details" ).click(function() {
     $( ".delivery_details" ).toggle( "slow" );
